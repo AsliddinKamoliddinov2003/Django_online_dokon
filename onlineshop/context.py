@@ -1,12 +1,14 @@
-from store.models import Category,Product
+from store.models import Category,SubCategory,Product
 
 
 
-def doimiy(request):
+def category(request):
     categories = Category.objects.all()
-    products=Product.objects.all()
+    subcategories = SubCategory.objects.all()
+    daily_products = Product.objects.filter().order_by("-updated_at")[:6]
    
     return {
         "categories": categories,
-        "products":products
+        "subcategories":subcategories,
+        "daily_products":daily_products
     } 
