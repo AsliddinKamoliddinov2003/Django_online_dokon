@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Product
+from django.shortcuts import get_list_or_404
   
 def home(request):
 
@@ -11,4 +12,8 @@ def home(request):
     return render(request,"index.html",context)
 
 def product_detail(request,slug):
-    return render(request, "product_detail.html")
+    product = get_list_or_404(Product, slug=slug)
+    context = {
+        "product":product
+    }
+    return render(request, "product_detail.html", context)

@@ -9,14 +9,14 @@
     <div class="row row-sm">
         {% for daily_product in daily_products %}
             <div class="col-xl-2 col-lg-3 col-md-4 col-6">
-                <div href="#" class="card card-sm card-product-grid">
-                    <a href="#" class="img-wrap"> 
+                <div  class="card card-sm card-product-grid">
+                    <a href="{% url 'product-detail' slug=daily_product.slug %}" class="img-wrap"> 
                         <img src="{% get_media_prefix %}{{daily_product.image}}"> 
                     </a>
                     <figcaption class="info-wrap">
-                        <a href="#" class="title">{{daily_product.title}}</a>
+                        <a href="{% url 'product-detail' slug=daily_product.slug %}" class="title">{{daily_product.title}}</a>
                         <div class="price-wrap">
-                            <span class="price">{{daily_product.price}</span>
+                            <span class="price">{{daily_product.price}}</span>
                         </div> <!-- price-wrap.// -->
                     </figcaption>
                 </div>
