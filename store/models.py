@@ -1,17 +1,6 @@
 from django.db import models
-
-
-# class User(models.Model):
-#     firstname = models.CharField(max_length=255)
-#     lastname = models.CharField(max_length=255)
-#     gmail = models.CharField(max_length=255)
-#     phone_number = models.CharField(max_length=255,null=True)
-#     password = models.CharField(max_length=255)
-#     is_admin = models.BooleanField(default=False)
-#     is_staff = models.BooleanField(default=True)
-#     is_superuser = models.BooleanField(default=True)
-
-
+from datetime import datetime, timezone
+from django.conf import settings
 
 class Category(models.Model):
     class Meta:
@@ -26,6 +15,7 @@ class Category(models.Model):
 
     created_at = models.DateTimeField(verbose_name="yaratilgan sana",auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="O'zgartirilgan sana",auto_now=True)
+    slug = models.CharField(max_length=255,null=True)
 
     def __str__(self):
         return self.name
@@ -37,6 +27,9 @@ class SubCategory(models.Model):
 
     name = models.CharField(max_length=255)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
+    slug = models.CharField(max_length=255,null=True)
+
+    
 
     def __str__(self):
    
@@ -60,14 +53,18 @@ class Product(models.Model):
     
 
 
-    created_at = models.DateTimeField(auto_now_add=True,null=True)
-    updated_at = models.DateTimeField(auto_now=True,null=True)
+    created_at = models.DateTimeField(auto_now_add = True, null=True)
+    updated_at = models.DateTimeField(auto_now = True, null=True)
 
 
     def __str__(self):
         return f"{self.title} - {self.price}"
 
+
     def get_rating_percent(self):
         return 100 * (self.rating/5)
 
 
+    def is_new_product(self):
+        time_delta = datetime.now(timezone.utc) - self.created_at
+        return time_delta.seconds < settings.NEW_PRODUCT_SECONDS

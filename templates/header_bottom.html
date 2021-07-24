@@ -23,7 +23,7 @@
                 </button>
                 <div class="dropdown-menu">
                     {% for category in categories %}
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{% url 'category-products-page' category_slug=category.slug %}">
                             <b>{{category.name}}</b>
                             {% for subcategory in subcategories %}
                                 {% if subcategory.category == category %}
