@@ -27,7 +27,7 @@
                             <b>{{category.name}}</b>
                             {% for subcategory in subcategories %}
                                 {% if subcategory.category == category %}
-                                    /{{subcategory.name}}
+                                    <a href="{url 'subcategory-products-page' category_slug=category.slug sub_category_slug=subcategory.slug}"> {{subcategory.name}} </a>
                                 {% endif %}
                             {% endfor %}
                         </a>
