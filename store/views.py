@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Category, Product, SubCategory
 from django.shortcuts import get_object_or_404
-from utils import filter_min_max
+from .utils import filter_min_max
 
   
 def home(request):
