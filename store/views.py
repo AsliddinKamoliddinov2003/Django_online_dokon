@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from store.models import Category, Product, SubCategory
+from .models import Category, Product, SubCategory
 from django.shortcuts import get_object_or_404
 from .utils import filter_min_max
 
@@ -39,7 +39,8 @@ def category_products(request,category_slug):
 
 def sub_category_products(request,category_slug,sub_category_slug):
     category = get_object_or_404(Category, slug=category_slug)
-    subcategory = get_object_or_404(SubCategory,sub_category_slug, category=category )
+    subcategory = get_object_or_404(SubCategory,slug=sub_category_slug, category=category )
+    print(category,subcategory)
     products = Product.objects.filter(sub_category=subcategory)
     products=filter_min_max(request,products)
 

@@ -26,8 +26,8 @@
                         <a class="dropdown-item" href="{% url 'category-products-page' category_slug=category.slug %}">
                             <b>{{category.name}}</b>
                             {% for subcategory in subcategories %}
-                                {% if subcategory.category == category %}
-                                    <a href="{url 'subcategory-products-page' category_slug=category.slug sub_category_slug=subcategory.slug}"> {{subcategory.name}} </a>
+                                {% if subcategory.category == category %} 
+                                    |{{subcategory.name}} 
                                 {% endif %}
                             {% endfor %}
                         </a>
@@ -68,7 +68,7 @@
                                 <div class="col-12">
                                     {% for subcategory in subcategories %}
                                         {% if subcategory.category == category %}
-                                            <a class="ml-3" style="display: block;" href="">{{subcategory.name}}</a>
+                                            <a href="{% url 'subcategory-products-page' category_slug=category.slug sub_category_slug=subcategory.slug %}">{{subcategory.name}}</a>
                                         {% endif %}
                                     {% endfor %}
                                 </div>
