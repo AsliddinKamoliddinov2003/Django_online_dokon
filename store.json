@@ -1,0 +1,238 @@
+[
+    {
+        "model": "store.category",
+        "pk": 1,
+        "fields": {
+            "name": "Electronics",
+            "icon": "images/progress-1_aQzm5iG.png",
+            "created_at": "2021-07-21T11:32:41.033Z",
+            "updated_at": "2021-07-23T16:13:48.085Z",
+            "slug": "electronics"
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 2,
+        "fields": {
+            "name": "kiyim kechak",
+            "icon": "images/progress-1_UTpFWio.png",
+            "created_at": "2021-07-21T17:47:23.494Z",
+            "updated_at": "2021-07-23T16:13:43.584Z",
+            "slug": "kiyim-kechak"
+        }
+    },
+    {
+        "model": "store.subcategory",
+        "pk": 1,
+        "fields": {
+            "name": "Quloqchinlar",
+            "category": 1,
+            "slug": "quloqchinlar"
+        }
+    },
+    {
+        "model": "store.subcategory",
+        "pk": 2,
+        "fields": {
+            "name": "kiyim kechak",
+            "category": 1,
+            "slug": "kiyim-kechak"
+        }
+    },
+    {
+        "model": "store.subcategory",
+        "pk": 3,
+        "fields": {
+            "name": "oyoq kiyim",
+            "category": 1,
+            "slug": "oyoq-kiyim"
+        }
+    },
+    {
+        "model": "store.subcategory",
+        "pk": 4,
+        "fields": {
+            "name": "Electronics",
+            "category": 1,
+            "slug": "electronics"
+        }
+    },
+    {
+        "model": "store.subcategory",
+        "pk": 5,
+        "fields": {
+            "name": "Qishki kiyimlar",
+            "category": 2,
+            "slug": "qishki-kiyimlar"
+        }
+    },
+    {
+        "model": "store.subcategory",
+        "pk": 6,
+        "fields": {
+            "name": "Yozgi kiyimlar",
+            "category": 2,
+            "slug": "yozgi-kiyimlar"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 1,
+        "fields": {
+            "title": "ferfer",
+            "price": 15.0,
+            "slug": null,
+            "description": "vfwsrgwrt",
+            "rating": 23.0,
+            "image": "images/progress-1_WBufdtS.png",
+            "sub_category": 1,
+            "is_active": true,
+            "created_at": "2021-07-21T11:34:06.129Z",
+            "updated_at": "2021-07-21T11:34:06.129Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 2,
+        "fields": {
+            "title": "cwscw",
+            "price": 1.0,
+            "slug": null,
+            "description": "cadcv",
+            "rating": 2.0,
+            "image": "images/progress-1_Wq6RNe1.png",
+            "sub_category": 1,
+            "is_active": true,
+            "created_at": "2021-07-21T11:35:14.206Z",
+            "updated_at": "2021-07-21T11:35:14.206Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 3,
+        "fields": {
+            "title": "Vivo S12 +",
+            "price": 6500000.0,
+            "slug": null,
+            "description": "Kafolat muddati (oy): 1\r\n\r\nBraslet materiali: Silikon\r\n\r\nDiagonali: 1.1\"\r\n\r\nSiz Xiaomi Mi Band 5, Black XMSH10HM (Global version) sotib olish uchun nafaqat Toshkent, balki Andijon, Buxoro, Farg'ona, Jizzax, Xorazm, Namangan, Navoiy, Qashqadaryo, Qoraqalpog'iston Respublikasi, Samarqand, Sirdaryo, Surxondaryo, Toshkent viloyatidan buyurtma berishingiz mumkin. Siz :brend muddatli to'lovga sotib olishingiz mumkin. Xiaomi Mi Band 5, Black XMSH10HM (Global version) kreditga olib nima qilasiz, bo'lib to'lashga olish osonroq va tezroq bo'lsa? O'zbekiston bo'ylab juda tez yetkazib beramiz.",
+            "rating": 5.6,
+            "image": "images/vivo.jpeg",
+            "sub_category": 4,
+            "is_active": true,
+            "created_at": "2021-07-21T18:49:05.999Z",
+            "updated_at": "2021-07-21T18:49:05.999Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 4,
+        "fields": {
+            "title": "Televizor",
+            "price": 4500000.0,
+            "slug": null,
+            "description": "Kafolat muddati (oy): 12\r\n\r\nOperatsion sistema versiyasi: Android 11\r\n\r\nDoimiy xotira hajmi: 128GB\r\n\r\nSiz Vivo V21 8/128GB sotib olish uchun nafaqat Toshkent, balki Andijon, Buxoro, Farg'ona, Jizzax, Xorazm, Namangan, Navoiy, Qashqadaryo, Qoraqalpog'iston Respublikasi, Samarqand, Sirdaryo, Surxondaryo, Toshkent viloyatidan buyurtma berishingiz mumkin. Siz :brend muddatli to'lovga sotib olishingiz mumkin. Vivo V21 8/128GB kreditga olib nima qilasiz, bo'lib to'lashga olish osonroq va tezroq bo'lsa? O'zbekiston bo'ylab juda tez yetkazib beramiz.",
+            "rating": 5.0,
+            "image": "images/televizor.png",
+            "sub_category": 4,
+            "is_active": true,
+            "created_at": "2021-07-21T18:57:19.833Z",
+            "updated_at": "2021-07-21T18:57:19.833Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 5,
+        "fields": {
+            "title": "Samsung S21",
+            "price": 12000000.0,
+            "slug": null,
+            "description": "Kafolat muddati (oy): 12\r\n\r\nOperatsion sistema versiyasi: Android 11\r\n\r\nDoimiy xotira hajmi: 128GB\r\n\r\nSiz Vivo V21 8/128GB sotib olish uchun nafaqat Toshkent, balki Andijon, Buxoro, Farg'ona, Jizzax, Xorazm, Namangan, Navoiy, Qashqadaryo, Qoraqalpog'iston Respublikasi, Samarqand, Sirdaryo, Surxondaryo, Toshkent viloyatidan buyurtma berishingiz mumkin. Siz :brend muddatli to'lovga sotib olishingiz mumkin. Vivo V21 8/128GB kreditga olib nima qilasiz, bo'lib to'lashga olish osonroq va tezroq bo'lsa? O'zbekiston bo'ylab juda tez yetkazib beramiz.",
+            "rating": 2.0,
+            "image": "images/s21.png",
+            "sub_category": 4,
+            "is_active": true,
+            "created_at": "2021-07-21T18:59:25.350Z",
+            "updated_at": "2021-07-21T18:59:25.350Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 6,
+        "fields": {
+            "title": "wedcew",
+            "price": 15.0,
+            "slug": null,
+            "description": "ecwecwec",
+            "rating": 1.0,
+            "image": "images/rul.png",
+            "sub_category": 4,
+            "is_active": true,
+            "created_at": "2021-07-21T19:06:08.591Z",
+            "updated_at": "2021-07-21T19:06:08.591Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 7,
+        "fields": {
+            "title": "dwefdeawff erfwefwe",
+            "price": 2.0,
+            "slug": "dwefdeawff-erfwefwe",
+            "description": "dewfserfc",
+            "rating": 3.0,
+            "image": "images/monitor.png",
+            "sub_category": 4,
+            "is_active": true,
+            "created_at": "2021-07-22T08:15:19.891Z",
+            "updated_at": "2021-07-22T08:15:19.891Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 8,
+        "fields": {
+            "title": "dwdwefdxaxs",
+            "price": 2.0,
+            "slug": "dwefdeawff-erfwefwe",
+            "description": "dwefcerfvaxsdcW",
+            "rating": 2.3,
+            "image": "images/kirmashina.jpeg",
+            "sub_category": 4,
+            "is_active": true,
+            "created_at": "2021-07-22T08:35:13.011Z",
+            "updated_at": "2021-07-22T08:43:27.751Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 9,
+        "fields": {
+            "title": "fvfvfvf",
+            "price": 2.0,
+            "slug": "fvfvfvf",
+            "description": "ecdwecs",
+            "rating": 2.0,
+            "image": "images/kirmashina_IHAmJiO.jpeg",
+            "sub_category": 4,
+            "is_active": true,
+            "created_at": "2021-07-23T05:27:59.672Z",
+            "updated_at": "2021-07-23T05:27:59.672Z"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 10,
+        "fields": {
+            "title": "cedcew",
+            "price": 2.0,
+            "slug": "cedcew",
+            "description": "drecsdfvswbsdfvas",
+            "rating": 4.0,
+            "image": "images/moy.jpeg",
+            "sub_category": 2,
+            "is_active": true,
+            "created_at": "2021-07-24T12:24:52.496Z",
+            "updated_at": "2021-07-24T12:24:52.496Z"
+        }
+    }
+]
