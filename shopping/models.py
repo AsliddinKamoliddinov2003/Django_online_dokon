@@ -22,4 +22,8 @@ class CartItem(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
+
+    def total_price(self):
+        return self.quantity * self.product.price
+
     
