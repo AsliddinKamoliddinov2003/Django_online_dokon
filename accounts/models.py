@@ -12,7 +12,7 @@ class UserManager(UserManager):
 
     
     def create_superuser(self, gmail, password):
-        user = self.create_superuser(gmail,password)
+        user = self.create_user(gmail,password)
         user.is_admin = True
         user.is_superuser = True
         user.save()
