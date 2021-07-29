@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load has_query_string %}
 
 {% block main %}
 <!-- ========================= SECTION CONTENT ========================= -->
@@ -20,7 +21,6 @@
     </div> <!-- card.// -->
     <!-- ============================ FILTER TOP END.// ================================= -->
     
-    
     <div class="row">
         <aside class="col-md-2">
     
@@ -32,7 +32,7 @@
                 <div class="inner">
                     <ul class="list-menu">
                         {% for category in categories %}
-                            <li><a href="{% url 'category-products-page' category_slug=category.slug %}">{{category.name}}</a></li>
+                            <li><a href="">{{category.name}}</a></li>
                         {% endfor %}
                     </ul>
                 </div> <!-- inner.// -->
@@ -57,30 +57,9 @@
                         </div> <!-- form-row.// -->
                         <span class="text text-danger" id="warning-text" style="display: none;">Qiymatlar oralig'i xato</span>
                         <button class="btn btn-block btn-primary"> Filter qilish </button>
-                        <script>
-                            const minPrice = document.getElementById("min-price");
-                            const maxPrice = document.getElementById("max-price");
-                            const warningText = document.getElementById("warning-text");
+                        
 
-                            function checkDifference(){
-                                if (max < min){
-                                    warningText.style.display = "block";
-                                }
-                                else{
-                                    warningText.style.display = "none";
 
-                                }
-                            }
-
-                            minPrice.addEventListener("input", function(){
-                                checkDifference(maxPrice.value, minPrice.value);                            
-                            });
-                            
-                            maxPrice.addEventListener("input", function(){
-                                checkDifference(maxPrice.value, minPrice.value);                            
-                            });
-
-                        </script>
                     </div> <!-- inner.// -->
                 </form>
             </div>
@@ -117,11 +96,11 @@
         </aside> <!-- col.// -->
         <main class="col-md-10">
             
-    {% if products.count > 0 %}
+    {% if products.object_list.count > 0 %}
     
     <header class="mb-3">
             <div class="form-inline">
-                <strong class="mr-md-auto">{{products.count}} ta mahsulot topildi</strong>
+                <strong class="mr-md-auto">{{products.object_list.count}} ta mahsulot topildi</strong>
                 <select class="mr-2 form-control">
                     <option>Latest items</option>
                     <option>Trending</option>
@@ -130,13 +109,11 @@
                 </select>
             </div>
     </header><!-- sect-heading -->
-    
-
         {% for product in products %}
             <article class="card card-product-list">
                 <div class="row no-gutters">
                     <aside class="col-md-3">
-                        <a href="{% url 'product-detail' slug=product.slug %}" class="img-wrap">
+                        <a href="" class="img-wrap">
                             {% if product.is_new_product  %}
                             <span class="badge badge-danger"> NEW </span>
                             {% endif %}
@@ -145,7 +122,7 @@
                     </aside> <!-- col.// -->
                     <div class="col-md-6">
                         <div class="info-main">
-                            <a href="{% url 'product-detail' slug=product.slug %}" class="h5 title">{{product.title}}</a>
+                            <a href="" class="h5 title">{{product.title}}</a>
                             <div class="rating-wrap mb-2">
                                 <ul class="rating-stars">
                                     <li style="width:100%" class="stars-active"> 
@@ -189,19 +166,21 @@
                 </div> <!-- row.// -->
             </article> <!-- card-product .// -->
         {% endfor %}
-        
+
         <nav class="mb-4" aria-label="Page navigation sample">
             <ul class="pagination">
-            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+
+
+                <li class="page-item {% if not products.has_previous %}disabled{% endif %}"><a class="page-link" href="{% if  products.has_previous %}{% if request|has_query_string  %}{{request.get_full_path}}&{% else %}?{% endif %}page={{products.previous_page_number}}{% endif %}">Previous</a></li>
+
+
+                {% for page_num in pages.page_range %}
+                    <li class="page-item {% if page_num == products.number %}active{% endif %}"><a class="page-link" href="{% if request|has_query_string  %}{{request.get_full_path}}&{% else %}?{% endif %}page={{page_num}}">{{page_num}}</a></li>
+                {% endfor %}
+                <li class="page-item {% if not products.has_next %}disabled{% endif %}"><a class="page-link" href="{% if  products.has_next %}{% if request|has_query_string  %}{{request.get_full_path}}&{% else %}?{% endif %}page={{products.next_page_number}}{% endif %}">Next</a></li>
             </ul>
         </nav>
-
+         
     {% else %}
 
     <section class="section-content bg padding-y">
@@ -238,5 +217,32 @@
     </div> <!-- container .//  -->
     </section>
     <!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+    <script>
+        const minPrice = document.getElementById("min-price");
+        const maxPrice = document.getElementById("max-price");
+        const warningText = document.getElementById("warning-text");
+
+        function checkDifference(){
+            if (max < min){
+                warningText.style.display = "block";
+            }
+            else{
+                warningText.style.display = "none";
+
+            }
+        }
+
+        minPrice.addEventListener("input", function(){
+            checkDifference(maxPrice.value, minPrice.value);                            
+        });
+        
+        maxPrice.addEventListener("input", function(){
+            checkDifference(maxPrice.value, minPrice.value);                            
+        });
+
+    </script>
+
     
     {% endblock main %} 

@@ -68,3 +68,17 @@ class Product(models.Model):
     def is_new_product(self):
         time_delta = datetime.now(timezone.utc) - self.created_at
         return time_delta.seconds < settings.NEW_PRODUCT_SECONDS
+
+
+
+class  Product_color(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class Product_size(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class Product_image(models.Model):
+    image = models.ImageField(upload_to="images/")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)

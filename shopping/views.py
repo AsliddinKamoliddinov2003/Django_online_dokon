@@ -6,7 +6,7 @@ from .models import Cart,CartItem
 
 def get_cart(request):
     session_id = request.session.session_key
-    if session_id:
+    if not session_id:
         session_id = request.session.create()
 
     cart = Cart.objects.filter(session_id=session_id)

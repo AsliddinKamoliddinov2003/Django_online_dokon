@@ -9,7 +9,7 @@
         {% for product in products %}
         <div class="col-xl-3 col-lg-3 col-md-4 col-6">
             <div class="card card-product-grid">
-                <a href="{% url 'product-detail' slug=product.slug %}" class="img-wrap"> <img src="{% get_media_prefix %}{{ product.image }}"> </a>
+                <a href="" class="img-wrap"> <img src="{% get_media_prefix %}{{ product.image }}"> </a>
                 <figcaption class="info-wrap">
                     <ul class="rating-stars mb-1">
                         <li style="width:{{ product.get_rating_percent }}%" class="stars-active">
@@ -21,7 +21,7 @@
                     </ul>
                     <div>
                         <a href="#" class="text-muted">{{product.sub_category.category}}</a>
-                        <a href="{% url 'product-detail' slug=product.slug %}" class="title">{{product.title}}</a>
+                        <a href="" class="title">{{product.title}}</a>
                     </div>
                     <div class="price h5 mt-2">{{product.price}} so'm</div> <!-- price.// -->
                 </figcaption>
