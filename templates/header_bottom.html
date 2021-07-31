@@ -47,12 +47,14 @@
                 </div>
             </form> <!-- search-wrap .end// -->
         </div> <!-- col.// -->
-        <div class="col col-lg col-md flex-grow-0">
-            <button class="btn btn-block btn-primary" type="submit"> Search </button>
-        </div>
-        <div class="col col-lg col-md flex-grow-0">
-            <button class="btn btn-block btn-light" type="submit"> Advanced </button>
-        </div>
+        
+        <form action="" >
+            <div class="col-lg-6 col-xl col-md-5 col-sm-12 flex-grow-1">
+                <input type="search" name="q" aria-label="Search" valvue="{{word}}" class="form-control mb-2" placeholder="Search">
+                <button class="btn  btn-primary" type="submit"> Search </button>
+                <button class="btn  btn-light" type="submit"> Advanced </button>
+            </div>
+        </form>
     </div> <!-- row.// -->
     </section> <!-- header-main .// -->
     
