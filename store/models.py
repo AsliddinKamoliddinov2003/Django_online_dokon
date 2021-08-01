@@ -81,4 +81,10 @@ class Product_size(models.Model):
 
 class Product_image(models.Model):
     image = models.ImageField(upload_to="images/")
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_images")
+
+# for product in products:
+#     product.title
+#     product.description
+#     for image in product.product_images:
+#         print(image)

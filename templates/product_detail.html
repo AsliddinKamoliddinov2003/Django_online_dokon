@@ -10,13 +10,17 @@
 <div class="card">
 <article class="gallery-wrap"> 
 <div class="img-big-wrap">
-  <div> <a href="#"><img src="{% get_media_prefix %}{{product.image}}"></a></div>
+  <div> <a href="#"><img src="{% get_media_prefix %}{{product.image}}" id="main-image-frame"></a></div>
 </div> <!-- slider-product.// -->
 <div class="thumbs-wrap">
-  <a href="#" class="item-thumb"> <img src="images/items/15.jpg"></a>
-  <a href="#" class="item-thumb"> <img src="images/items/15-1.jpg"></a>
-  <a href="#" class="item-thumb"> <img src="images/items/15-2.jpg"></a>
-  <a href="#" class="item-thumb"> <img src="images/items/15-1.jpg"></a>
+  <a href="#" class="item-thumb"> 
+    <img src="{% get_media_prefix %}{{product.image}}" class="extra-images">
+  </a>
+  {% for product_image in product.product_images.all %}
+    <a href="#" class="item-thumb"> 
+      <img src="{% get_media_prefix %}{{product_image.image}}" class="extra-images">
+    </a>
+  {% endfor %}
 </div> <!-- slider-nav.// -->
 </article> <!-- gallery-wrap .end// -->
 </div> <!-- card.// -->
@@ -84,5 +88,21 @@
 </div> <!-- row.// -->
 
 <!-- ================ ITEM DETAIL END .// ================= -->
-
 {% endblock main %}
+
+
+{% block script %}
+
+<script>
+  const extraImages = document.querySelectorAll(".extra-images");
+  const mainImage = document.getElementById("main-image-frame");
+  extraImages.forEach((image)=>{
+      image.addEventListener("click", (e)=>{
+        e.preventDefault();
+        const chosenImage = image.getAttribute("src")
+        mainImage.setAttribute("src", chosenImage);
+      });
+  })
+</script>
+
+{% endblock script %}

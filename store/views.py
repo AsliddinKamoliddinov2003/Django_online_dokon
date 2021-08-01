@@ -1,5 +1,8 @@
 from django.shortcuts import get_object_or_404,render
 from django.urls import reverse
+from django.db.models import Q
+
+
 
 from .models import Category, Product, SubCategory
 from .utils import filter_min_max, get_paginated
@@ -17,27 +20,14 @@ def home(request):
 
 
 
-def search(request):
+def search(request, products):
     word = request.GET.get('q',None)
-    print(word)
     if word:
-        product=Product.objects.all().filter(title__contains=word)
-        products = Product.objects.all()
-        paginated = get_paginated(request, products, 3)
+        return products.filter(Q(title__contains=word) | Q(description__contains=word))\
+            .exclude(Q(price__gte=2) | Q(rating__lte=3))
 
+    return None
 
-        return product
-
-    else:
-        products = Product.objects.all()
-        paginated = get_paginated(request, products, 3)
-
-
-        context = {
-            "products" : paginated["items"],
-            "pages": paginated["pages"]
-        }
-        return render(request, "store.html",context)
 
 
 
@@ -46,12 +36,16 @@ def search(request):
     
 def store(request):
     products = Product.objects.all()
+
+    if search(request, products):
+        products=search(request,products)
+
+
     paginated = get_paginated(request, products, 3)
-    product=search(request)
     context = {
         "products" : paginated["items"],
         "pages": paginated["pages"],
-        "word": product
+        "word": products
         }
 
     return render(request, "store.html",context)
@@ -63,14 +57,19 @@ def category_products(request,category_slug):
     category = get_object_or_404(Category, slug=category_slug)
     products = Product.objects.filter(sub_category__category=category)
     products=filter_min_max(request,products)
-    product=search(request)
-    
+
+    products = Product.objects.all()
+
+    if search(request, products):
+        products=search(request,products)
+        
+
     paginated = get_paginated(request, products, 3)
 
     context = {
         "products" : paginated["items"],
         "pages": paginated["pages"],
-        "word": product
+        "word": products
         }
     return render(request, "store.html",context)
     
@@ -80,18 +79,21 @@ def category_products(request,category_slug):
 def sub_category_products(request,category_slug,sub_category_slug):
     category = get_object_or_404(Category, slug=category_slug)
     subcategory = get_object_or_404(SubCategory,slug=sub_category_slug, category=category )
-    print(category,subcategory)
     products = Product.objects.filter(sub_category=subcategory)
     products=filter_min_max(request,products)
 
-    product=search(request)
+    products = Product.objects.all()
+
+    if search(request, products):
+        products=search(request,products)
+        
     
     paginated = get_paginated(request, products, 3)
 
     context = {
         "products" : paginated["items"],
         "pages": paginated["pages"],
-        "word": product
+        "word": products
         }
     return render(request, "store.html",context)
 

@@ -1,21 +1,10 @@
 from django.shortcuts import redirect, render
 from store.models import Product
 from django.urls import reverse
-from .models import Cart,CartItem
+from .models import CartItem
+from .utils import get_cart
 
 
-def get_cart(request):
-    session_id = request.session.session_key
-    if not session_id:
-        session_id = request.session.create()
-
-    cart = Cart.objects.filter(session_id=session_id)
-    if cart.exists():
-        cart = cart.first()
-    else:
-        cart = Cart(session_id=session_id).save()
-
-    return cart
 
 def add_cart_item(request,product_id):
     try:
