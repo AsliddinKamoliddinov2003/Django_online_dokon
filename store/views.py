@@ -6,6 +6,8 @@ from django.db.models import Q
 
 from .models import Category, Product, SubCategory
 from .utils import filter_min_max, get_paginated
+from shopping.models import CartItem
+from shopping.utils import get_cart
 
 
   
@@ -23,9 +25,7 @@ def home(request):
 def search(request, products):
     word = request.GET.get('q',None)
     if word:
-        return products.filter(Q(title__contains=word) | Q(description__contains=word))\
-            .exclude(Q(price__gte=2) | Q(rating__lte=3))
-
+        return products.filter(Q(title__contains=word) | Q(description__contains=word))
     return None
 
 
@@ -104,8 +104,33 @@ def product_detail(request,slug):
         return render(reverse("home-page"))
     else:
         product = products.first()
+
+    
+
+    if request.method == "POST":
+        color =  request.POST.get('color',"")
+        size =  request.POST.get('size',"")
+        cart = get_cart(request) 
+
+        cartitems = CartItem.objects.filter(cart=cart, product=product,color=color,size=size)
+
+
+        if color == "-1" and size == "-1":
+            pass
+        elif cartitems.exists():
+            cartitem = cartitems.first()
+            cartitem.quantity += 1    
+            cartitem.save()
+        else:
+            cartitem = CartItem(product=product, cart=cart,color=color, size=size)
+            cartitem.save()
+            
+
+
+       
     context = {
         "product":product
     }
     return render(request, "product_detail.html", context)
+
 

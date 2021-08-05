@@ -28,7 +28,14 @@
                             <div class="aside"><img src="{% get_media_prefix %}{{ cartitem.product.image }}" class="img-sm"></div>
                             <figcaption class="info">
                                 <a href="#" class="title text-dark">{{cartitem.product.title}}</a>
-                                <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
+                                
+                                {% if  cartitem.get_size_name %}
+                                    <p class="text-muted small">Size: {{cartitem.get_size_name}}</p>
+                                {% endif %}
+
+                                {% if  cartitem.get_color_name %}
+                                    <p class="text-muted small">color: {{cartitem.get_color_name}}</p>
+                                {% endif %}
                             </figcaption>
                         </figure>
                     </td>
@@ -40,10 +47,10 @@
                               </div>
                               <input type="text" class="form-control" value="{{cartitem.quantity}}">
                               <div class="input-group-append">
-                                <a class="btn btn-light" href="{% url 'add-cart-item'  product_id=cartitem.product.id %}" id="button-plus"> + </a>
+                                <a class="btn btn-light" href="{% url 'add-cart-item'  cartitem_id=cartitem.id %}" id="button-plus"> + </a>
                               </div>
                             </div>
-                        </div> <!-- col.// -->
+                        </div> <!-- col.// -->  
                     </td>
                     <td> 
                         <div class="price-wrap"> 
@@ -53,7 +60,7 @@
                     </td>
                     <td class="text-right"> 
                     <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
-                    <a href="{% url 'remove-cart-item' product_id=cartitem.product.id %}" class="btn btn-light"> Remove</a>
+                    <a href="{% url 'remove-cart-item' cartitem_id=cartitem.id %}" class="btn btn-light"> Remove</a>
                     </td>
                 </tr>
             {% endfor %}

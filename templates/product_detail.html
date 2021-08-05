@@ -54,34 +54,50 @@
 
 <p>{{product.description}}</p>
 
-
+<form action="" method="POST">
+  {% csrf_token %}
+<input type="hidden" name="product_id" value="{{product.id}}">
 <dl class="row">
-<dt class="col-sm-3">Manufacturer</dt>
-<dd class="col-sm-9"><a href="#">Great textile Ltd.</a></dd>
-
-<dt class="col-sm-3">Article number</dt>
-<dd class="col-sm-9">596 065</dd>
-
-<dt class="col-sm-3">Guarantee</dt>
-<dd class="col-sm-9">2 year</dd>
-
-<dt class="col-sm-3">Delivery time</dt>
-<dd class="col-sm-9">3-4 days</dd>
-
 <dt class="col-sm-3">Availabilty</dt>
 <dd class="col-sm-9">in Stock</dd>
+
+
+
+<dt class="col-sm-3">Colors</dt>
+<dd class="col-sm-9">
+    <select  name="color" id="">
+        <option value="-1">Choose color</option>
+        {% for color in product.product_colors.all %}
+            <option value="{{color.id}}">{{color.name}}</option>  
+        {% endfor %}
+    </select>
+</dd>
+
+
+<dt class="col-sm-3">size</dt>
+<dd class="col-sm-9">
+    <select  name="size" id="">
+      <option value="-1" selected>Choose size</option>
+      {% for size in product.product_size.all %}
+          <option value="{{size.id}}">{{size.name}}</option>  
+      {% endfor %}
+  </select>
+</dd>
+        
+  
 </dl>
 
 <div class="form-row  mt-4">
   <div class="form-group col-md">
-    <a href="{% url 'add-cart-item'  product_id=product.id %}"  class="btn  btn-primary"> 
+    <button  type="submit"  class="btn  btn-primary"> 
       <i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span> 
-    </a>
+    </button>
     <a href="#" class="btn btn-light">
       <i class="fas fa-envelope"></i> <span class="text">Contact supplier</span> 
     </a>
   </div> <!-- col.// -->
 </div> <!-- row.// -->
+</form>
 
 </article> <!-- product-info-aside .// -->
   </main> <!-- col.// -->
@@ -106,3 +122,5 @@
 </script>
 
 {% endblock script %}
+
+href="{% url 'add-cart-item'  product_id=product.id %}"

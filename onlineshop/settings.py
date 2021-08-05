@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'store',
     'shopping',
     'accounts',
+    'simpleforms',
 ]
 
 MIDDLEWARE = [

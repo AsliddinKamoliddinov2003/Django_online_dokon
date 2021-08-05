@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+    <style>
+        table, tr, td{
+            border: 1px solid black;
+            border-collapse: collapse; 
+        }
+    </style>
+</head>
+<body>
+
+    <a href="{% url 'news-careate' %}">Add news</a>
+
+    <table>
+        <thead>
+            <tr>
+                <td>ID </td>
+                <td>Title </td>
+                <td>Content </td>
+                <td>Category </td>
+                <td>Views </td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for singlenews in news %}
+                <tr>
+                    <td>{{singlenews.id}}</td>
+                    <td>{{singlenews.title| truncatechars:20}}</td>
+                    <td>{{singlenews.content|truncatechars:50}}</td>
+                    <td>{{singlenews.category}}</td>
+                    <td>{{singlenews.views}}</td>
+                    <td>
+                        <a href="{% url 'news-update' pk=singlenews.id %}">Update</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'news-delete' pk=singlenews.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>

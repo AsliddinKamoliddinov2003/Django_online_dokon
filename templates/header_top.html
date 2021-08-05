@@ -7,7 +7,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarTop4">
         <ul class="navbar-nav mr-auto">
-            <li><span class="nav-link">Hi, <a href="#"> Sign in </a> or <a href="#"> Register </a></span></li>
+            <li><span class="nav-link">Hi, <a href="#"> Sign in </a> or <a href="{% url 'account-register' %}"> Register </a></span></li>
             <li><a href="#" class="nav-link"> Deals </a></li>
             <li><a href="#" class="nav-link"> Sell </a></li>
             <li><a href="#" class="nav-link"> Help </a></li>
@@ -24,8 +24,7 @@
             </li>
             <li><a href="#" class="nav-link"> My shop </a></li>
             <li><a href="#" class="nav-link"> <i class="fa fa-bell"></i> </a></li>
-            <li><a href="#" class="nav-link"> <i class="fa fa-shopping-cart"></i> </a></li>
-            <a href="#" class="nav-link">
+            <a href="{% url 'cart' %}" class="nav-link">
               <i class="fa fa-shopping-cart"></i>
               <span class="notify" style="top: 8px!important; right: 8px!important; width: 15px; height: 15px; font-size: 10px;">{{cartitems_amount}}</span>
             </a>
