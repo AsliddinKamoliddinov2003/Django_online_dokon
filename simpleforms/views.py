@@ -1,8 +1,10 @@
+from django.forms.fields import CharField
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
 
 from .models import Category, News
+from .forms import *
 
 
 
@@ -16,24 +18,17 @@ def index(request):
 
 
 def create(request):
-    if request.method == "POST":
-        title = request.POST.get("title", None)
-        content = request.POST.get("content", None)
-        category_id = request.POST.get("category_id", None)
+    form = NewsForm()
 
-        category = Category.objects.get(id=category_id)
+    if request.method=="POST":
+        form = NewsForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse("news-list"))
 
-        n = News()
-        n.title = title
-        n.content = content
-        n.category = category
 
-        n.save()
-        return redirect(reverse("news-list"))
-
-    categories = Category.objects.all()
     context = {
-        "categories": categories
+        "form":form
     }
 
     return render(request,"simpleforms/create.html",context)
@@ -48,25 +43,16 @@ def update(request, pk):
     else:
         news = news.first()
 
+    form = NewsForm(instance=news)
 
-    if request.method == "POST":
-        title = request.POST.get("title", None)
-        content = request.POST.get("content", None)
-        category_id = request.POST.get("category_id", None)
+    if request.method=="POST":
+        news = NewsForm(request.POST, request.FILES, instance = news)
+        if news.is_valid():
+            news.save()
+            return redirect(reverse("news-list"))
 
-        category = Category.objects.get(id=category_id)
-
-        news.title = title
-        news.content = content
-        news.category = category
-
-        news.save()
-        return redirect(reverse("news-list"))
-
-    categories = Category.objects.all()
     context = {
-        "categories": categories,
-        "news":news
+        "form":form
     }
 
     return render(request,"simpleforms/update.html", context)
@@ -78,6 +64,9 @@ def delete(request, pk):
     except News.DoesNotExist:
         pass
     return redirect(reverse("news-list"))
+
+
+
 
     
 
