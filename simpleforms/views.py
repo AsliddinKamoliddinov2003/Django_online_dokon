@@ -122,12 +122,12 @@ def update_director(request, pk):
         image = request.POST.get("image", None)
         experience = request.POST.get("experience", None)
         
-        # with transaction.atomic():
         filial.title = title
         filial.established_at = parse_date_time(date, time)
         filial.director.fullname = director
         filial.director.image = image
         filial.director.experience = experience
+        filial.save()
         filial.director.save()
 
         return redirect(reverse("home"))

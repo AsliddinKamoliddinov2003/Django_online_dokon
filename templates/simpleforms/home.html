@@ -33,7 +33,7 @@
                     <td>{{filial.id}}</td>
                     <td>{{filial.title}}</td>
                     <td>{{filial.director.fullname}}</td>
-                    <img src="{% url 'media/images/filial.image' %}">
+                    <td>{{filial.director.image}}</td>
                     <td>
                         <a href="{% url 'update-director' pk=filial.id %}">Update</a>
                     </td>
