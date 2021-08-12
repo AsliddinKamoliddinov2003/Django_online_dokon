@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+    <style>
+        table, tr, td{
+            border: 1px solid black;
+            border-collapse: collapse; 
+        }
+    </style>
+</head>
+<body>
+
+    <a href="{% url 'create-director' %}">Add director</a>
+
+    <table>
+        <thead>
+            <tr>
+                <td>ID </td>
+                <td>Filial </td>
+                <td>Director </td>
+                <td>Image </td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for filial in filials %}
+                <tr>
+                    <td>{{filial.id}}</td>
+                    <td>{{filial.title}}</td>
+                    <td>{{filial.director.fullname}}</td>
+                    <img src="{% url 'media/images/filial.image' %}">
+                    <td>
+                        <a href="{% url 'update-director' pk=filial.id %}">Update</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'delete-director' pk=filial.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>
