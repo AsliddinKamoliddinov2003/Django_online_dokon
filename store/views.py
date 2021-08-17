@@ -31,9 +31,6 @@ def search(request, products):
 
 
 
-
-
-    
 def store(request):
     products = Product.objects.all()
 
@@ -58,8 +55,6 @@ def category_products(request,category_slug):
     products = Product.objects.filter(sub_category__category=category)
     products=filter_min_max(request,products)
 
-    products = Product.objects.all()
-
     if search(request, products):
         products=search(request,products)
         
@@ -81,8 +76,6 @@ def sub_category_products(request,category_slug,sub_category_slug):
     subcategory = get_object_or_404(SubCategory,slug=sub_category_slug, category=category )
     products = Product.objects.filter(sub_category=subcategory)
     products=filter_min_max(request,products)
-
-    products = Product.objects.all()
 
     if search(request, products):
         products=search(request,products)
@@ -132,5 +125,8 @@ def product_detail(request,slug):
         "product":product
     }
     return render(request, "product_detail.html", context)
+
+
+    
 
 

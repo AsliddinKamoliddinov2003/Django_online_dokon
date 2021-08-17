@@ -25,4 +25,6 @@ def get_cartitems_count(request):
             amount += cartitem.quantity
 
     return  amount
-    
+
+
+

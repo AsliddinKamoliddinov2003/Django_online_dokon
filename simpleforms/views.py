@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.db import transaction
 
-from .models import  News
+from .models import  *
 from .forms import *
 from .utils import parse_date_time
 
@@ -74,34 +74,28 @@ def home(request):
 
 
 def create_director(request):
+    director_form = DirectorForm()
+    filial_form = FilialForm()
+
     if request.method == "POST":
-        title = request.POST.get("title", None)
-        date = request.POST.get("date", None)
-        time = request.POST.get("time", None)
-        director = request.POST.get("director", None)
-        image = request.POST.get("image", None)
-        experience = request.POST.get("experience", None)
-        
-        with transaction.atomic():
-            f = Filial(
-                title = title,
-                established_at = parse_date_time(date, time)
-            )        
-            f.save()
+        director_form = DirectorForm(request.POST, request.FILES)
+        filial_form = FilialForm(request.POST)
 
-            d = Director(
-                fullname = director,
-                experience = experience,
-                image = image,
-                filial = f
-                
-            )
-            d.save()
+        if director_form.is_valid() and  filial_form.is_valid():
+            filial = filial_form.save(commit=False)
+            director = director_form.save(commit=False)
 
-        return redirect(reverse("home"))
+            director.filial = filial
+
+            filial.save()
+            director.save()
+      
+            return redirect(reverse("home"))
+
 
     context = {
-        
+        "filial_form":filial_form,
+        "director_form":director_form
     }
     return render(request, "simpleforms/create_director.html", context)
 
@@ -109,34 +103,33 @@ def create_director(request):
 def update_director(request, pk):
     try:
         filial = Filial.objects.get(id=pk)
-        date = filial.established_at.strftime("%Y-%m-%d")
-        time = filial.established_at.strftime("%H:%M")
     except:
         return redirect(reverse("home"))
 
-    if request.method == "POST":
-        title = request.POST.get("title", None)
-        date = request.POST.get("date", None)
-        time = request.POST.get("time", None)
-        director = request.POST.get("director", None)
-        image = request.POST.get("image", None)
-        experience = request.POST.get("experience", None)
-        
-        filial.title = title
-        filial.established_at = parse_date_time(date, time)
-        filial.director.fullname = director
-        filial.director.image = image
-        filial.director.experience = experience
-        filial.save()
-        filial.director.save()
+    
+    director_form = DirectorForm(instance=filial.director)
+    filial_form = FilialForm(instance=filial)
 
-        return redirect(reverse("home"))
+    if request.method=="POST":
+        director_form = DirectorForm(request.POST, instance=filial.director)
+        filial_form = FilialForm(request.POST,instance=filial)
+
+        if director_form.is_valid() and  filial_form.is_valid():
+            filial = filial_form.save(commit=False)
+            director = director_form.save(commit=False)
+
+            director.filial = filial
+
+            filial.save()
+            director.save()
+      
+            return redirect(reverse("home"))
+
 
 
     context = {
-        "filial":filial,
-        "date":date,
-        "time":time
+        "director_form":director_form,
+        "filial_form":filial_form
     }
     return render(request,"simpleforms/update_director.html", context)
 

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 
-from .models import Actor, Category, Director, Filial, Movie, News
+from .models import  Category, Director, Filial, News
 
 
 
@@ -12,5 +12,3 @@ admin.site.register(Category)
 admin.site.register(News,NewsAdmin)
 admin.site.register(Director)
 admin.site.register(Filial)
-admin.site.register(Actor)
-admin.site.register(Movie)

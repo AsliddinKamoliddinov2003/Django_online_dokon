@@ -1,0 +1,26 @@
+<input type="text" name="title" placeholder="Filial nomi">
+<br>
+<input type="date" name="date">
+<input type="time" name="time">
+<br>
+<input type="text" name="director" placeholder="Director">
+<br>
+<input type="text" name="experience" placeholder="Experience">
+<br>
+<input type="file" name="image" accept="image/*" class="form-control" required_id="id_image ">
+<br>
+
+
+
+<input type="text" name="title" placeholder="Filial nomi" value="{{filial.title}}">
+<br>
+<input type="date" name="date" value="{{date}}">
+<input type="time" name="time" value="{{time}}">
+<br>
+<input type="text" name="director" placeholder="Director" value="{{filial.director.fullname}}">
+<br>
+<input type="text" name="experience" placeholder="Experience" value="{{filial.director.experience}}">
+<br>
+<input type="file" name="image" accept="image/*" class="form-control" required_id="id_image " value="{{filial.director.image}}">
+<br>
+                    

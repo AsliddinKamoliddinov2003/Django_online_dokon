@@ -14,17 +14,8 @@
 
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <input type="text" name="title" placeholder="Filial nomi">
-                    <br>
-                    <input type="date" name="date">
-                    <input type="time" name="time">
-                    <br>
-                    <input type="text" name="director" placeholder="Director">
-                    <br>
-                    <input type="text" name="experience" placeholder="Experience">
-                    <br>
-                    <input type="file" name="image" accept="image/*" class="form-control" required_id="id_image ">
-                    <br>
+                    {{filial_form.as_p}}
+                    {{director_form.as_p}}
                     <input type="submit" value="Save">
                 </form>
 

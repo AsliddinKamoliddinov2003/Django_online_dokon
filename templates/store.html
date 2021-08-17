@@ -32,7 +32,7 @@
                 <div class="inner">
                     <ul class="list-menu">
                         {% for category in categories %}
-                            <li><a href="">{{category.name}}</a></li>
+                            <li><a href="{% url 'category-products-page' category_slug=category.slug %}">{{category.name}}</a></li>
                         {% endfor %}
                     </ul>
                 </div> <!-- inner.// -->
@@ -109,11 +109,11 @@
                 </select>
             </div>
     </header><!-- sect-heading -->
-        {% for product in products %}
+        {% for product in products.object_list %}
             <article class="card card-product-list">
                 <div class="row no-gutters">
                     <aside class="col-md-3">
-                        <a href="" class="img-wrap">
+                        <a href="{% url 'product-detail' slug=product.slug %}" class="img-wrap">
                             {% if product.is_new_product  %}
                             <span class="badge badge-danger"> NEW </span>
                             {% endif %}
@@ -122,7 +122,7 @@
                     </aside> <!-- col.// -->
                     <div class="col-md-6">
                         <div class="info-main">
-                            <a href="" class="h5 title">{{product.title}}</a>
+                            <a href="{% url 'product-detail' slug=product.slug %}" class="h5 title">{{product.title}}</a>
                             <div class="rating-wrap mb-2">
                                 <ul class="rating-stars">
                                     <li style="width:100%" class="stars-active"> 

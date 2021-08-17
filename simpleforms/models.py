@@ -56,23 +56,6 @@ class Director(models.Model):
 
 
 
-class Actor(models.Model):
-    fullname = models.CharField(max_length=255)
-    age = models.PositiveIntegerField(default=0)
-
-    def __str__(self):
-        return self.fullname
-
-
-class Movie(models.Model):
-    title  = models.CharField(max_length=255)
-    release_data = models.DateTimeField()
-    actors = models.ManyToManyField(Actor)
-
-    def __str__(self):
-        return self.title
-
-
 
 
 

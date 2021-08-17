@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,10 +31,10 @@
         <tbody>
             {% for filial in filials %}
                 <tr>
-                    <td>{{filial.id}}</td>
+                    <td>{{forloop.counter}}</td>
                     <td>{{filial.title}}</td>
                     <td>{{filial.director.fullname}}</td>
-                    <td>{{filial.director.image}}</td>
+                    <td>{% get_media_prefix %}{{filial.director.image}}</td>
                     <td>
                         <a href="{% url 'update-director' pk=filial.id %}">Update</a>
                     </td>

@@ -1,7 +1,8 @@
+from django.db.models.fields import NOT_PROVIDED
 from django.shortcuts import redirect, render
 from store.models import Product
 from django.urls import reverse
-from .models import CartItem
+from .models import CartItem, Cupon
 from .utils import get_cart
 
 
@@ -57,3 +58,10 @@ def cart(request):
         "cartitems":cartitems
     }
     return render(request, "cart.html",context)
+
+
+# def apply(request, code):
+#     code = request.POST.get('code', None)
+#     cupon = Cupon.objects.all()
+#     if cupon.code == code and cupon.is_used==True:
+

@@ -49,7 +49,6 @@
 
 <div class="mb-3"> 
 <var class="price h4">{{product.title}} </var> 
-<span class="text-muted">USD 562.65 incl. VAT</span> 
 </div> <!-- price-detail-wrap .// -->
 
 <p>{{product.description}}</p>
@@ -65,7 +64,7 @@
 
 <dt class="col-sm-3">Colors</dt>
 <dd class="col-sm-9">
-    <select  name="color" id="">
+    <select  name="color" >
         <option value="-1">Choose color</option>
         {% for color in product.product_colors.all %}
             <option value="{{color.id}}">{{color.name}}</option>  
@@ -74,9 +73,9 @@
 </dd>
 
 
-<dt class="col-sm-3">size</dt>
+<dt class="col-sm-3">Size</dt>
 <dd class="col-sm-9">
-    <select  name="size" id="">
+    <select  name="size" >
       <option value="-1" selected>Choose size</option>
       {% for size in product.product_size.all %}
           <option value="{{size.id}}">{{size.name}}</option>  
@@ -122,5 +121,6 @@
 </script>
 
 {% endblock script %}
+
 
 href="{% url 'add-cart-item'  product_id=product.id %}"

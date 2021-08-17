@@ -14,19 +14,8 @@
             <div class="col-6">
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-
-                    <input type="text" name="title" placeholder="Filial nomi" value="{{filial.title}}">
-                    <br>
-                    <input type="date" name="date" value="{{date}}">
-                    <input type="time" name="time" value="{{time}}">
-                    <br>
-                    <input type="text" name="director" placeholder="Director" value="{{filial.director.fullname}}">
-                    <br>
-                    <input type="text" name="experience" placeholder="Experience" value="{{filial.director.experience}}">
-                    <br>
-                    <input type="file" name="image" accept="image/*" class="form-control" required_id="id_image " value="{{filial.director.image}}">
-                    <br>
-                    
+                    {{filial_form.as_p}}
+                    {{director_form.as_p}}
                     <input type="submit" value="Save">
                 </form>
             </div>
