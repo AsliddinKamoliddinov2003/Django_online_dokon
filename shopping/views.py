@@ -60,8 +60,12 @@ def cart(request):
     return render(request, "cart.html",context)
 
 
-# def apply(request, code):
-#     code = request.POST.get('code', None)
-#     cupon = Cupon.objects.all()
-#     if cupon.code == code and cupon.is_used==True:
+def apply(request):
+    code = request.POST.get("k", None)
+    if code:
+        print("ha")
+    else:
+        print("Yoq")
 
+
+    return redirect(reverse("cart"))

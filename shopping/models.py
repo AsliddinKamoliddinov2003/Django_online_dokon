@@ -5,7 +5,6 @@ from django.contrib.auth import get_user_model
 from store.models import Product_color, Product_size
 
 
-
 def generate_cupon_code():
     import random
     import string
@@ -63,7 +62,7 @@ class CartItem(models.Model):
 
 
     def total_price(self):
-        return self.quantity * self.product.price
+        return self.quantity * self.product.price / (self.quantity * self.product.price)
 
     def get_color_name(self):
         color = Product_color.objects.filter(id=self.color).first()
