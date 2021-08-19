@@ -1,0 +1,42 @@
+{% extends "account/base.html" %}
+
+{% load static %}
+
+
+{% block main %}
+
+<div class="container my-4">
+    <div class="row">
+        <div class="col-4 offset-4">
+            <div class="card mb-4">
+                <article class="card-body">
+                <header class="mb-4">
+                    <h4 class="card-title">Log In</h4>
+                </header>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    
+                    <div class="col form-group">
+                        <label>{{form.gmail.label}}</label>
+                        {{form.gmail}}
+                    </div>
+
+                    <div class="col form-group">
+                        <label>{{form.password.label}}</label>
+                        {{form.password}}
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </div>                              
+                </form>
+                <hr>
+                <span style="color: red; text-align: center;">{{form.errors}}</span>
+                <p class="text-center">Have an account? <a href="">Log In</a></p>
+                </article> <!-- card-body end .// -->
+            </div> <!-- card.// -->
+        </div>
+    </div>
+</div>
+
+{% endblock main %}

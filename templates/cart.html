@@ -6,7 +6,7 @@
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
     <div class="container">
-    
+    {% if cartitems %}
     <div class="row">
         <main class="col-md-9">
     <div class="card">
@@ -43,7 +43,7 @@
                         <div class="form-group col-md flex-grow-0">
                             <div class="input-group mb-3 input-spinner">
                               <div class="input-group-prepend">
-                                <a class="btn btn-light" href="{% url 'subtract-cart-item'  product_id=cartitem.product.id %}" id="button-minus"> - </a>
+                                <a class="btn btn-light" href="{% url 'subtract-cart-item'  cartitem_id=cartitem.id %}" id="button-minus"> - </a>
                               </div>
                               <input type="text" class="form-control" value="{{cartitem.quantity}}">
                               <div class="input-group-append">
@@ -55,7 +55,7 @@
                     <td> 
                         <div class="price-wrap"> 
                             <var class="price">{{cartitem.total_price}} so'm</var> 
-                            <small class="text-muted"> {{cartitem.product.price}} so'm </small> 
+                            <small class="text-muted"> {{cartitem.get_price}} so'm </small> 
                         </div> <!-- price-wrap .// -->
                     </td>
                     <td class="text-right"> 
@@ -81,11 +81,13 @@
         <aside class="col-md-3">
             <div class="card mb-3">
                 <div class="card-body">
-                <form>
+                <form action= "{% url 'cart' %}" method="POST">
+                    {% csrf_token %}
                     <div class="form-group">
                         <label>Have coupon?</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" name="k" valvue="code" placeholder="Coupon code">
+                            <input type="text" class="form-control" name="cupon-code" valvue="code" placeholder="Coupon code">
+                            <span>{{cupon_message}}</span>
                             <span class="input-group-append"> 
                                 <button type="submit" class="btn btn-primary">Apply</button>
                             </span>
@@ -116,9 +118,12 @@
                 </div> <!-- card-body.// -->
             </div>  <!-- card .// -->
         </aside> <!-- col.// -->
-    </div>
-    
+        </div>
+    {% else %}
+    <h3>Currently, you don't have any items in your cart</h3>
+    {% endif %}
     </div> <!-- container .//  -->
+    
     </section>
     <!-- ========================= SECTION CONTENT END// ========================= -->
 
