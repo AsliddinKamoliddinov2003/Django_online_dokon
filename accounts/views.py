@@ -36,7 +36,7 @@ def login_account(request):
             login(request, user=user)
             next_page = request.GET.get("next", None)
             if next_page:
-                return redirect(reverse(next_page))
+                return redirect(next_page)
             else:
                 return redirect(reverse("store-page"))
         

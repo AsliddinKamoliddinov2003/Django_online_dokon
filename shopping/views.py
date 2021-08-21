@@ -71,15 +71,16 @@ def cart(request):
                         if category in categories:
                             if cartitem.reduced_price:
                                 cartitem.reduced_price = (cartitem.reduced_price*(100 - cupon.stock))/100
+                                
                             else:
                                 cartitem.reduced_price = (cartitem.product.price*(100 - cupon.stock))/100
-                            cupon.is_used=True
+
+                            cupon.is_used = True
                             cartitem.save()
 
     context["cartitems"] = cartitems
     return render(request, "cart.html",context)
                     
-
         
         
 
