@@ -36,28 +36,24 @@
             </div>  <!-- category-wrap.// -->
         </div> <!-- col.// -->
         <div class="col-lg-6 col-xl col-md-5 col-sm-12 flex-grow-1">
-            <form action="#" class="search-header">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="name">
-                    <select class="custom-select border-left"  name="category_name">
-                            <option value="">All type</option><option value="codex">Special</option>
+            <form action="" class="search-header">
+                    <div class="input-group">
+                        <input type="search" name="q" aria-label="Search" class="form-control" valvue="{{word}}" placeholder="Search">
+                    <select class="custom-select border-left"  name = "">
+                            <option value="">All type</option>
+                            <option value="codex">Special</option>
                             <option value="comments">Only best</option>
                             <option value="content">Latest</option>
                     </select>
-                </div>
-            </form> <!-- search-wrap .end// -->
-        </div> <!-- col.// -->
-        
-        <form action="" >
-            <div class="col-lg-6 col-xl col-md-5 col-sm-12 flex-grow-1">
-                <input type="search" name="q" aria-label="Search" valvue="{{word}}" class="form-control mb-2" placeholder="Search">
-                <button class="btn  btn-primary" type="submit"> Search </button>
-                <button class="btn  btn-light" type="submit"> Advanced </button>
-            </div>
-        </form>
-    </div> <!-- row.// -->
+                        <button class="btn  btn-primary" type="submit"> Search </button>
+                        <button class="btn  btn-light" type="submit"> Advanced </button>
+                    </div>
+                </form> <!-- search-wrap .end// -->
+            </div> <!-- col.// -->
+        </div> <!-- row.// -->
     </section> <!-- header-main .// -->
-    
+        
+                            
     
     <nav class="navbar navbar-main navbar-expand pl-0">
             <ul class="navbar-nav flex-wrap">

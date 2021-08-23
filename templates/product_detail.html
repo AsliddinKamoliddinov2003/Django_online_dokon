@@ -53,8 +53,7 @@
 
 <p>{{product.description}}</p>
 
-<form action="" method="POST">
-  {% csrf_token %}
+
 <input type="hidden" name="product_id" value="{{product.id}}">
 <dl class="row">
 <dt class="col-sm-3">Availabilty</dt>
@@ -64,7 +63,7 @@
 
 <dt class="col-sm-3">Colors</dt>
 <dd class="col-sm-9">
-    <select  name="color" >
+    <select  name="color" id = "id_color">
         <option value="-1">Choose color</option>
         {% for color in product.product_colors.all %}
             <option value="{{color.id}}">{{color.name}}</option>  
@@ -75,7 +74,7 @@
 
 <dt class="col-sm-3">Size</dt>
 <dd class="col-sm-9">
-    <select  name="size" >
+    <select  name="size" id = "id_size" >
       <option value="-1" selected>Choose size</option>
       {% for size in product.product_size.all %}
           <option value="{{size.id}}">{{size.name}}</option>  
@@ -88,7 +87,7 @@
 
 <div class="form-row  mt-4">
   <div class="form-group col-md">
-    <button  type="submit"  class="btn  btn-primary"> 
+    <button  type="submit"  class="btn  btn-primary" id="add_to_cart"> 
       <i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span> 
     </button>
     <a href="#" class="btn btn-light">
@@ -96,7 +95,6 @@
     </a>
   </div> <!-- col.// -->
 </div> <!-- row.// -->
-</form>
 
 </article> <!-- product-info-aside .// -->
   </main> <!-- col.// -->
@@ -120,7 +118,36 @@
   })
 </script>
 
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+
+<script>
+    var addToCart = document.getElementById("add_to_cart");
+    addToCart.addEventListener("click", () => {
+      console.log("Clicked");
+      
+      data = {
+        product_id: "{{product.id}}",
+        size: document.getElementById("id_size").value,
+        color: document.getElementById("id_color").value
+      }
+       
+      add_to_cart(data);
+      
+    });
+
+    function add_to_cart(data){
+      $.ajax("http://localhost:8000/cart/add-to-cart/",{
+        type: "GET",
+        data: data,
+        success: function (data, status, xhr) {
+          console.log(data);
+          document.getElementById("id_cartitems_count").innerText = data["cartitems_count"];
+        }
+      });
+    }
+</script>
+
 {% endblock script %}
-
-
-href="{% url 'add-cart-item'  product_id=product.id %}"

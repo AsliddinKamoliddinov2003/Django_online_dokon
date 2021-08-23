@@ -1,3 +1,5 @@
+from django.db import reset_queries
+from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from store.models import Product
 from django.urls import reverse
@@ -45,8 +47,8 @@ def remove_cart_item(request, cartitem_id):
     return redirect(reverse("cart"))
 
 
-
 def cart(request):
+
     context = {}
 
     cart = get_cart(request)
@@ -81,6 +83,39 @@ def cart(request):
     context["cartitems"] = cartitems
     return render(request, "cart.html",context)
                     
+
+def add_to_cart(request):
+    if request.method == "GET":
+        try:
+            product_id = int(request.GET.get("product_id", None))
+            size = int(request.GET.get("size", None))
+            color = int(request.GET.get("color", None))
+
+            cart = get_cart(request)
+            
+            product = Product.objects.all(id=product_id)
+            cartitems = CartItem.objects.filter(cart=cart, product=product, color=color, size=size)
+
+
+            if color == "-1" and size == "-1":
+                pass
+            elif cartitems.exists():
+                cartitem = cartitems.first()
+                cartitem.quantity += 1    
+                cartitem.save()
+            else:
+                cartitem = CartItem(product=product, cart=cart, color=color, size=size)
+                cartitem.save()
+            
+            
+
+            return JsonResponse({"cartitems_count": cartitem.quantity})
+
+        except:
+            return JsonResponse({"error":"parsing_error"})
+
+    return JsonResponse({"oxshadi": "natija"})
+
         
         
 
