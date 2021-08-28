@@ -60,7 +60,7 @@
                     </td>
                     <td class="text-right"> 
                     <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
-                    <a href="{% url 'remove-cart-item' cartitem_id=cartitem.id %}" class="btn btn-light"> Remove</a>
+                    <a href="{% url 'remove' cartitem_id=cartitem.id %}" class="btn btn-light" id="remove"> Remove</a>
                     </td>
                 </tr>
             {% endfor %}
@@ -126,5 +126,37 @@
     
     </section>
     <!-- ========================= SECTION CONTENT END// ========================= -->
+
+<script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous">
+</script>
+
+<script>
+    var addToCart = document.getElementById("remove");
+    addToCart.addEventListener("click", () => {
+    console.log("Clicked");
+    
+    data = {
+        cartitem_id: "{{cartitem.id}}"
+        // size: document.getElementById("id_size").value,
+        // color: document.getElementById("id_color").value
+    }
+        
+    add_to_cart(data);
+    
+    });
+
+    function remove(data){
+    $.ajax("http://localhost:8000/cart/",{
+        type: "GET",
+        data: data,
+        success: function (data, status, xhr) {
+        console.log(data);
+        }
+    });
+    }
+</script>
 
 {% endblock main %}

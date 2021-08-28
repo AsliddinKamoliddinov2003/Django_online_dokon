@@ -10,5 +10,6 @@ urlpatterns=[
     path("cart/", cart, name="cart"),
 
     path("cart/add-to-cart/", add_to_cart, name="add_to_cart"),
+    path("cart/remove/", remove, name="remove")
 
 ]

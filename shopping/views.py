@@ -93,7 +93,7 @@ def add_to_cart(request):
 
             cart = get_cart(request)
             
-            product = Product.objects.all(id=product_id)
+            product = Product.objects.get(id=product_id)
             cartitems = CartItem.objects.filter(cart=cart, product=product, color=color, size=size)
 
 
@@ -116,6 +116,18 @@ def add_to_cart(request):
 
     return JsonResponse({"oxshadi": "natija"})
 
+
+def remove(request):
+    if request.method == "GET":
+        try:
+            cartitem_id = int(request.GET.get("cartitem_id", None))
+
+            cartitem = CartItem.objects.get(id = int(cartitem_id))
+            cartitem.delete()
+
+        except:
+            return JsonResponse({"error":"parsing_error"})
+            
         
         
 
