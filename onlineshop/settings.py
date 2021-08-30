@@ -27,13 +27,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'intl',
     'corsheaders',
+    'parler',
+    'rosetta',
 
     'store',
     'shopping',
     'accounts',
     'simpleforms',
+    'intl',
 ]
 
 MIDDLEWARE = [
@@ -121,6 +123,27 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale')
 ]
 
+PARLER_LANGUAGES = {
+    None: (
+        {"code": "en",},
+        {"code": "uz",},
+        {"code": "ru",},
+    ),
+    "default":{
+        "fallbacks":["en"],
+        "hide_untranslated":False,
+    }
+}
+
+def check_user_status(user):
+    if user.is_authenticated:
+        if user.is_superuser:
+            return True
+    return False
+
+
+ROSETTA_ACCESS_CONTROL_FUNCTION = check_user_status
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -135,6 +158,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR, "staticfiles"),
 ]

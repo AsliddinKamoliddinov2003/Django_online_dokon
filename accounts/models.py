@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser,UserManager
+from django.contrib.auth.models import AbstractBaseUser,UserManager, PermissionsMixin
 
 
 class UserManager(UserManager):
@@ -22,7 +22,7 @@ class UserManager(UserManager):
 
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     gmail = models.CharField(max_length=255,unique=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)

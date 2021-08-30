@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     {% load i18n %}
-    {%   load change_lang %}
+    {% load change_lang %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,17 +11,22 @@
 <body>
     <div>
         <u>
-            <li><a href="{{ request|change_lang: 'uz' }}">O'zbekcha</a></li>
-            <li><a href="{{ request|change_lang: 'ru' }}">Ruscha</a></li>
-            <li><a href="{{ request|change_lang: 'en' }}">Inglizcha</a></li>
+            <li><a href="{{ request|change_lang:'uz' }}">O'zbekcha</a></li>
+            <li><a href="{{ request|change_lang:'ru' }}">Ruscha</a></li>
+            <li><a href="{{ request|change_lang:'en' }}">Inglizcha</a></li>
         </u>
     </div>
     <h1>{% trans 'Salomlar' %}</h1>
     {% for item in data %}
         <div  style="background-color: rgb(250, 226, 9); color: darkred; margin-top: 5px; ">{{item}}</div>
     {% endfor %}
-
     <hr>
+    {% for person in people %}
+        <div  style="background-color: rgb(250, 226, 9); color: darkred; margin-top: 5px; ">{{person.fullname}}-{{person.age}}-{{person.address}}-{{person.available}}</div>
+    {% endfor %}
+    <hr>
+    
+
     <form action="">
         <button>{% trans 'Send' %}</button>
     </form>
