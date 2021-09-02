@@ -6,23 +6,22 @@
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
     <div class="container">
-    {% if cartitems %}
-    <div class="row">
-        <main class="col-md-9">
-    <div class="card">
-    
-    <table class="table table-borderless table-shopping-cart">
-        <thead class="text-muted">
-            <tr class="small text-uppercase">
-                <th scope="col">Product</th>
-                <th scope="col" width="120">Quantity</th>
-                <th scope="col" width="120">Price</th>
-                <th scope="col" class="text-right" width="200"> </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for cartitem in cartitems %}
-                <tr>
+        <div class="row">
+            <main class="col-md-9">
+        <div class="card">
+        
+        <table class="table table-borderless table-shopping-cart">
+                <thead class="text-muted">
+                    <tr class="small text-uppercase">
+                        <th scope="col">Product</th>
+                        <th scope="col" width="120">Quantity</th>
+                        <th scope="col" width="120">Price</th>
+                        <th scope="col" class="text-right" width="200"> </th>
+                    </tr>
+                </thead>
+            <tbody>
+                {% for cartitem in cartitems %}
+                    <tr>
                     <td>
                         <figure class="itemside">
                             <div class="aside"><img src="{% get_media_prefix %}{{ cartitem.product.image }}" class="img-sm"></div>
@@ -42,90 +41,88 @@
                     <td> 
                         <div class="form-group col-md flex-grow-0">
                             <div class="input-group mb-3 input-spinner">
-                              <div class="input-group-prepend">
-                                <a class="btn btn-light" href="{% url 'subtract-cart-item'  cartitem_id=cartitem.id %}" id="button-minus"> - </a>
-                              </div>
-                              <input type="text" class="form-control" value="{{cartitem.quantity}}">
-                              <div class="input-group-append">
-                                <a class="btn btn-light" href="{% url 'add-cart-item'  cartitem_id=cartitem.id %}" id="button-plus"> + </a>
-                              </div>
+                                <div class="input-group-prepend">
+                                    <a class="btn btn-light" href="{% url 'subtract-cart-item'  cartitem_id=cartitem.id %}" type="button" id="button-minus"> - </a>
+                                </div>
+                                <input type="text" class="form-control" value="{{cartitem.quantity}}">
+                                <div class="input-group-append">
+                                    <a class="btn btn-light" href="{% url 'add-cart-item'  cartitem_id=cartitem.id %}" type="button" id="button-plus"> + </a>
+                                </div>
                             </div>
                         </div> <!-- col.// -->  
                     </td>
-                    <td> 
-                        <div class="price-wrap"> 
-                            <var class="price">{{cartitem.total_price}} so'm</var> 
-                            <small class="text-muted"> {{cartitem.get_price}} so'm </small> 
-                        </div> <!-- price-wrap .// -->
-                    </td>
-                    <td class="text-right"> 
-                    <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
-                    <a href="{% url 'remove' cartitem_id=cartitem.id %}" class="btn btn-light" id="remove"> Remove</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    
-    <div class="card-body border-top">
-        <a href="#" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
-        <a href="#" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
-    </div>	
-    </div> <!-- card.// -->
-    
-    <div class="alert alert-success mt-3">
-        <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
-    </div>
-    
-        </main> <!-- col.// -->
-        <aside class="col-md-3">
-            <div class="card mb-3">
-                <div class="card-body">
-                <form action= "{% url 'cart' %}" method="POST">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label>Have coupon?</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="cupon-code" valvue="code" placeholder="Coupon code">
-                            <span>{{cupon_message}}</span>
-                            <span class="input-group-append"> 
-                                <button type="submit" class="btn btn-primary">Apply</button>
-                            </span>
-                        </div> 
-                    </div>
-                </form>
-                </div> <!-- card-body.// -->
-            </div>  <!-- card .// -->
-            <div class="card">
-                <div class="card-body">
-                        <dl class="dlist-align">
-                          <dt>Total price:</dt>
-                          <dd class="text-right">USD 568</dd>
-                        </dl>
-                        <dl class="dlist-align">
-                          <dt>Discount:</dt>
-                          <dd class="text-right">USD 658</dd>
-                        </dl>
-                        <dl class="dlist-align">
-                          <dt>Total:</dt>
-                          <dd class="text-right  h5"><strong>$1,650</strong></dd>
-                        </dl>
-                        <hr>
-                        <p class="text-center mb-3">
-                            <img src="{% static 'images/misc/payments.png' %}" height="26">
-                        </p>
-                        
-                </div> <!-- card-body.// -->
-            </div>  <!-- card .// -->
-        </aside> <!-- col.// -->
+                        <td> 
+                            <div class="price-wrap"> 
+                                <var class="price">{{cartitem.total_price}} so'm</var> 
+                                <small class="text-muted"> {{cartitem.get_price}} so'm </small> 
+                            </div> <!-- price-wrap .// -->
+                        </td>
+                        <td class="text-right"> 
+                        <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
+                        <a href="{% url 'remove' cartitem_id=cartitem.id %}" class="btn btn-light" id="remove"> Remove</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="card-body border-top">
+            <a href="#" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+            <a href="#" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+        </div>	
+        </div> <!-- card.// -->
+        
+        <div class="alert alert-success mt-3">
+            <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
         </div>
-    {% else %}
-    <h3>Currently, you don't have any items in your cart</h3>
-    {% endif %}
+        
+            </main> <!-- col.// -->
+            <aside class="col-md-3">
+                <div class="card mb-3">
+                    <div class="card-body">
+                    <form action= "{% url 'cart' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>Have coupon?</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="cupon-code" valvue="code" placeholder="Coupon code">
+                                <span>{{cupon_message}}</span>
+                                <span class="input-group-append"> 
+                                    <button type="submit" class="btn btn-primary">Apply</button>
+                                </span>
+                            </div> 
+                        </div>
+                    </form>
+                    </div> <!-- card-body.// -->
+                </div>  <!-- card .// -->
+                <div class="card">
+                    <div class="card-body">
+                            <dl class="dlist-align">
+                            <dt>Total price:</dt>
+                            <dd class="text-right">USD 568</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                            <dt>Discount:</dt>
+                            <dd class="text-right">USD 658</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                            <dt>Total:</dt>
+                            <dd class="text-right  h5"><strong>$1,650</strong></dd>
+                            </dl>
+                            <hr>
+                            <p class="text-center mb-3">
+                                <img src="{% static 'images/misc/payments.png' %}" height="26">
+                            </p>
+                            
+                    </div> <!-- card-body.// -->
+                </div>  <!-- card .// -->
+            </aside> <!-- col.// -->
+        </div>
     </div> <!-- container .//  -->
+</section>
     
-    </section>
-    <!-- ========================= SECTION CONTENT END// ========================= -->
+    
+    ========================= SECTION CONTENT END// ========================= -->
 
 <script
     src="https://code.jquery.com/jquery-3.6.0.js"

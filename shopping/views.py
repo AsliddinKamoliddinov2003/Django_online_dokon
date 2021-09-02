@@ -81,7 +81,8 @@ def cart(request):
                             cartitem.save()
 
     context["cartitems"] = cartitems
-    return render(request, "cart.html",context)
+    print(cartitems)
+    return render(request, "cart.html", context)
                     
 
 def add_to_cart(request):
@@ -99,14 +100,17 @@ def add_to_cart(request):
 
             if color == "-1" and size == "-1":
                 pass
+
             elif cartitems.exists():
                 cartitem = cartitems.first()
-                cartitem.quantity += 1    
-                cartitem.save()
+                cartitem.quantity += 1  
+                cartitem.save()  
+                
             else:
                 cartitem = CartItem(product=product, cart=cart, color=color, size=size)
                 cartitem.save()
-            
+               
+                 
             
 
             return JsonResponse({"cartitems_count": cartitem.quantity})
