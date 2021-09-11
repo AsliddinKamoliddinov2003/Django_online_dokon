@@ -1,8 +1,10 @@
-from django.db import reset_queries
+import json
+
 from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
-from store.models import Product
 from django.urls import reverse
+
+from store.models import Product
 from .models import CartItem, Cupon
 from .utils import get_cart, get_current_utc, delete_cart
 
@@ -83,14 +85,16 @@ def cart(request):
     context["cartitems"] = cartitems
     print(cartitems)
     return render(request, "cart.html", context)
-                    
+                   
+
 
 def add_to_cart(request):
-    if request.method == "GET":
+    if request.method == "POST":
+        data = json.loads(request.body)
         try:
-            product_id = int(request.GET.get("product_id", None))
-            size = int(request.GET.get("size", None))
-            color = int(request.GET.get("color", None))
+            product_id = int(data.get("product_id", None))
+            size = int(data.get("size", None))
+            color = int(data.get("color", None))
 
             cart = get_cart(request)
             
@@ -109,19 +113,18 @@ def add_to_cart(request):
             else:
                 cartitem = CartItem(product=product, cart=cart, color=color, size=size)
                 cartitem.save()
-               
-                 
-            
 
             return JsonResponse({"cartitems_count": cartitem.quantity})
 
         except:
             return JsonResponse({"error":"parsing_error"})
+                
+            
 
     return JsonResponse({"oxshadi": "natija"})
 
 
-def remove(request):
+def remove(request, cartitem_id):
     if request.method == "GET":
         try:
             cartitem_id = int(request.GET.get("cartitem_id", None))
@@ -131,7 +134,12 @@ def remove(request):
 
         except:
             return JsonResponse({"error":"parsing_error"})
+
+
+
             
+        
+        
         
         
 
