@@ -125,6 +125,57 @@
     ========================= SECTION CONTENT END// ========================= -->
 
 {% endblock main %}
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script> 
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous">
+    </script>
+  
+    <script>
+        var addToCart = document.getElementById("remove");
+        addToCart.addEventListener("click", () => {
+        console.log("Clicked");
+    
+        data = {
+            cartitem_id: "{{cartitem.id}}"
+        }
+        
+    
+        remove(data);
+    
+        });
+    
+        function remove(data) {
+        const csrftoken = getCookie('csrftoken');
+        
+        fetch("{% url 'remove' %}",{
+            method: "POST",
+            headers: {
+            "Content-type": "application/json",
+            "X-CSRFToken": csrftoken
+            },
+            body: JSON.stringify(data)
+        }).then(
+            response => response.json()
+        );
+        }
+    </script>
 
 
 <!-- <script
@@ -140,11 +191,9 @@
     
     data = {
         cartitem_id: "{{cartitem.id}}"
-        // size: document.getElementById("id_size").value,
-        // color: document.getElementById("id_color").value
     }
         
-    add_to_cart(data);
+    remove(data);
     
     });
 
@@ -157,5 +206,5 @@
         }
     });
     }
-</script> -->
-
+</script>
+ -->

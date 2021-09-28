@@ -125,15 +125,26 @@ def add_to_cart(request):
 
 
 def remove(request, cartitem_id):
-    if request.method == "GET":
+    
+    data = json.loads(request.body)
+    print(cartitem_id)
+    if request.method == "POST":
+        print(type(cartitem_id))
         try:
-            cartitem_id = int(request.GET.get("cartitem_id", None))
+            print('2')
+            cartitem_id =data.get("cartitem_id", None)
+            print(cartitem_id)
 
-            cartitem = CartItem.objects.get(id = int(cartitem_id))
+            cartitem = CartItem.objects.get(id = cartitem_id)
             cartitem.delete()
 
-        except:
+        except Exception as e:
+            print(e)
+            print("ishlamadi")
             return JsonResponse({"error":"parsing_error"})
+
+    return JsonResponse({"natija":"o'xshadi"})
+
 
 
 
