@@ -2,79 +2,81 @@
 
 <div class="container">
     <section class="header-main border-bottom">
-    <div class="row row-sm">
-        <div class="col-6 col-sm col-md col-lg  flex-grow-0">
-            <a href="" class="brand-wrap">
-                <img class="logo" src="{% static 'images/logo.svg' %}">
-            </a> <!-- brand-wrap.// -->
-        </div>
-        <div class="col-6 col-sm col-md col-lg flex-md-grow-0">
-    
-            <!-- mobile-only -->
-            <div class="d-md-none float-right">
-                <a href="#" class="btn btn-light"> <i class="fa fa-bell"></i> </a>
-                <a href="#" class="btn btn-light"> <i class="fa fa-user"></i> </a>
-                <a href="#" class="btn btn-light"> <i class="fa fa-shopping-cart"></i> 2 </a>
+        <div class="row row-sm">
+            <div class="col-6 col-sm col-md col-lg  flex-grow-0">
+                <a href="" class="brand-wrap">
+                    <img class="logo" src="{% static 'images/logo.svg' %}">
+                </a> <!-- brand-wrap.// -->
             </div>
-            <!-- mobile-only //end  -->
-    
-            <div class="category-wrap d-none dropdown d-md-inline-block">
-                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">   Shop by 
-                </button>
-                <div class="dropdown-menu">
-                    {% for category in categories %}
+            <div class="col-6 col-sm col-md col-lg flex-md-grow-0">
+
+                <!-- mobile-only -->
+                <div class="d-md-none float-right">
+                    <a href="#" class="btn btn-light"> <i class="fa fa-bell"></i> </a>
+                    <a href="#" class="btn btn-light"> <i class="fa fa-user"></i> </a>
+                    <a href="#" class="btn btn-light"> <i class="fa fa-shopping-cart"></i> 2 </a>
+                </div>
+                <!-- mobile-only //end  -->
+
+                <div class="category-wrap d-none dropdown d-md-inline-block">
+                    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"> Shop by
+                    </button>
+                    <div class="dropdown-menu">
+                        {% for category in categories %}
                         <a class="dropdown-item" href="{% url 'category-products-page' category_slug=category.slug %}">
                             <b>{{category.name}}</b>
                             {% for subcategory in subcategories %}
-                                {% if subcategory.category == category %} 
-                                    |{{subcategory.name}} 
-                                {% endif %}
+                            {% if subcategory.category == category %}
+                            |{{subcategory.name}}
+                            {% endif %}
                             {% endfor %}
                         </a>
-                    {% endfor %}
-                </div>
-            </div>  <!-- category-wrap.// -->
-        </div> <!-- col.// -->
-        <div class="col-lg-6 col-xl col-md-5 col-sm-12 flex-grow-1">
-            <form action="" class="search-header">
+                        {% endfor %}
+                    </div>
+                </div> <!-- category-wrap.// -->
+            </div> <!-- col.// -->
+            <div class="col-lg-6 col-xl col-md-5 col-sm-12 flex-grow-1">
+                <form action="" class="search-header">
                     <div class="input-group">
-                        <input type="search" name="q" aria-label="Search" class="form-control" valvue="{{word}}" placeholder="Search">
-                    <select class="custom-select border-left"  name = "">
+                        <input type="search" name="q" aria-label="Search" class="form-control" valvue="{{word}}"
+                            placeholder="Search">
+                        <select class="custom-select border-left" name="">
                             <option value="">All type</option>
                             <option value="codex">Special</option>
                             <option value="comments">Only best</option>
                             <option value="content">Latest</option>
-                    </select>
+                        </select>
                         <button class="btn  btn-primary" type="submit"> Search </button>
                         <button class="btn  btn-light" type="submit"> Advanced </button>
                     </div>
                 </form> <!-- search-wrap .end// -->
-            </div> <!-- col.// -->
+            </div>
         </div> <!-- row.// -->
     </section> <!-- header-main .// -->
-        
-                            
-    
-    <nav class="navbar navbar-main navbar-expand pl-0">
-            <ul class="navbar-nav flex-wrap">
 
-                {% for category in categories %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> {{category.name}} </a>
-                        <div class="dropdown-menu">
-                            <nav class="row">
-                                <div class="col-12">
-                                    {% for subcategory in subcategories %}
-                                        {% if subcategory.category == category %}
-                                            <a href="{% url 'subcategory-products-page' category_slug=category.slug sub_category_slug=subcategory.slug %}">{{subcategory.name}}</a>
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
-                            </nav> <!--  row end .// -->
-                        </div> <!--  dropdown-menu dropdown-large end.// -->
-                    </li>
-                {% endfor %}
-            </ul>
+
+
+    <nav class="navbar navbar-main navbar-expand pl-0">
+        <ul class="navbar-nav flex-wrap">
+
+            {% for category in categories %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> {{category.name}} </a>
+                <div class="dropdown-menu">
+                    <nav class="row">
+                        <div class="col-12">
+                            {% for subcategory in subcategories %}
+                            {% if subcategory.category == category %}
+                            <a
+                                href="{% url 'subcategory-products-page' category_slug=category.slug sub_category_slug=subcategory.slug %}">{{subcategory.name}}</a>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </nav> <!--  row end .// -->
+                </div> <!--  dropdown-menu dropdown-large end.// -->
+            </li>
+            {% endfor %}
+        </ul>
     </nav> <!-- navbar-main  .// -->
-    
+
 </div> <!-- container.// -->

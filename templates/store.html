@@ -57,9 +57,6 @@
                         </div> <!-- form-row.// -->
                         <span class="text text-danger" id="warning-text" style="display: none;">Qiymatlar oralig'i xato</span>
                         <button class="btn btn-block btn-primary"> Filter qilish </button>
-                        
-
-
                     </div> <!-- inner.// -->
                 </form>
             </div>
@@ -98,17 +95,17 @@
             
     {% if products.object_list.count > 0 %}
     
-    <header class="mb-3">
-            <div class="form-inline">
-                <strong class="mr-md-auto">{{products.object_list.count}} ta mahsulot topildi</strong>
-                <select class="mr-2 form-control">
-                    <option>Latest items</option>
-                    <option>Trending</option>
-                    <option>Most Popular</option>
-                    <option>Cheapest</option>
-                </select>
-            </div>
-    </header><!-- sect-heading -->
+        <header class="mb-3">
+                <div class="form-inline">
+                    <strong class="mr-md-auto">{{products.object_list.count}} ta mahsulot topildi</strong>
+                    <select class="mr-2 form-control">
+                        <option>Latest items</option>
+                        <option>Trending</option>
+                        <option>Most Popular</option>
+                        <option>Cheapest</option>
+                    </select>
+                </div>
+        </header><!-- sect-heading -->
         {% for product in products.object_list %}
             <article class="card card-product-list">
                 <div class="row no-gutters">

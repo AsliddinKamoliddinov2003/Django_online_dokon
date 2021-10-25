@@ -1,4 +1,4 @@
-from store.models import Category, Product_image,SubCategory,Product
+from store.models import Category,SubCategory,Product
 from shopping.utils import get_cartitems_count
 
 
