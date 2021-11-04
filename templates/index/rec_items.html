@@ -21,9 +21,13 @@
                         </ul>
                         <div>
                             <a href="#" class="text-muted">{{product.sub_category.category}}</a>
-                            <a href="{% url 'product-detail' slug=product.slug %}" class="title">{{product.title}}</a>
+                            <h5><a href="{% url 'product-detail' slug=product.slug %}" class="title">{{product.title}}</a></h5>
                         </div> 
-                        <div class="price h5 mt-2">{{product.price}} so'm</div> <!-- price.// -->
+                        <div class="price-wrap my-2">
+                            <span class="price">{{product.price}} so'm</span>
+                            <del class="price-old">{{product.old_price}} so'm</del>
+                        </div> 
+                         <!-- price.// -->
                     </figcaption>
                 </div>
             </div> <!-- col.// -->

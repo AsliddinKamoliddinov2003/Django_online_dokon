@@ -1,8 +1,20 @@
-{% extends "base.html" %}
+{% extends "index/base.html" %}
 
 {% load static %}
 
 {% block main %}
+
+
+<section class="py-3 bg-light">
+  <div class="container">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'bosh-sahifa' %}">Home</a></li>
+        <li class="breadcrumb-item"><a >{{product.sub_category.category}}</a></li>
+        <li class="breadcrumb-item"><a >{{product.sub_category}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{product.title}}</li>
+    </ol>
+  </div>
+</section>
 
 <!-- ============================ ITEM DETAIL ======================== -->
 <div class="row">
@@ -27,28 +39,27 @@
   </aside>
   <main class="col-md-6">
     <article class="product-info-aside">
-
-      <h2 class="title mt-3">{{context.title}}</h2>
+      <h2 class="title mt-3"> {{product.title}} </h2>
 
       <div class="rating-wrap my-3">
         <ul class="rating-stars">
-          <li style="width:80%" class="stars-active">
-            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
+          <li style="width:80%" class="stars-active"> 
+            <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+            <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+            <i class="fa fa-star"></i> 
           </li>
           <li>
-            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+            <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+            <i class="fa fa-star"></i> 
           </li>
         </ul>
         <small class="label-rating text-muted">132 reviews</small>
         <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
       </div> <!-- rating-wrap.// -->
-
-      <div class="mb-3">
-        <var class="price h4">{{product.title}} </var>
+      
+      <div class="mb-3"> 
+        <var class="price h4">USD {{product.price}}</var> 
       </div> <!-- price-detail-wrap .// -->
 
       <p>{{product.description}}</p>
@@ -56,8 +67,23 @@
 
       <input type="hidden" name="product_id" value="{{product.id}}">
       <dl class="row">
-        <dt class="col-sm-3">Availabilty</dt>
-        <dd class="col-sm-9">in Stock</dd>
+        <dt class="col-sm-3">Manufacturer</dt>
+        <dd class="col-sm-9">{{product.manufacturer}}</dd>
+
+        {% if product.availabilty == True %}
+          <dt class="col-sm-3">Availabilty</dt>
+          <dd class="col-sm-9">in Stock</dd>
+        {% else %}
+          <dt class="col-sm-3">Availabilty</dt>
+          <dd class="col-sm-9">out of Stock</dd>
+        {% endif %}
+          
+
+        <dt class="col-sm-3">Guarantee</dt>
+        <dd class="col-sm-9">{{product.guarantee}} year</dd>
+
+        <dt class="col-sm-3">Delivery time</dt>
+        <dd class="col-sm-9">{{product.delivery_time}} days</dd>
 
         <dt class="col-sm-3">Size</dt>
         <dd class="col-sm-9">
@@ -152,7 +178,6 @@
 
   function add_to_cart(data, callback=null) {
     const csrftoken = getCookie('csrftoken');
-    
     fetch("{% url 'add_to_cart' %}",{
       method: "POST",
       headers: {
@@ -165,12 +190,12 @@
     ).then((data) => {
       console.log(data.cartitems_count);
         if(callback){
-          callback();
+          callback(data);
         }
     });
   }
 
-  function updateCartCount(){
+  function updateCartCount(data){
     document.getElementById("id_cartitems_count").innerText = data.cartitems_count;
   }
     

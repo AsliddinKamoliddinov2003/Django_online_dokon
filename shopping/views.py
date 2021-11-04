@@ -1,11 +1,13 @@
 import json
+from django.core.checks import messages
+from django.db import models
 
-from django.http.response import JsonResponse
-from django.shortcuts import redirect, render
+from django.http.response import HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
 from store.models import Product
-from .models import CartItem, Cupon
+from .models import CartItem, Cupon, Wishlist
 from .utils import get_cart, get_current_utc, delete_cart
 
 
@@ -84,9 +86,8 @@ def cart(request):
 
     context["cartitems"] = cartitems
     print(cartitems)
-    return render(request, "cart.html", context)
+    return render(request, "shopping/cart.html", context)
                    
-
 
 def add_to_cart(request):
     if request.method == "POST":
@@ -124,26 +125,56 @@ def add_to_cart(request):
     return JsonResponse({"oxshadi": "natija"})
 
 
-def remove(request, cartitem_id):
+def add_to_wishlist(request, pk):
+    product = Product.objects.get(id=pk)
+    wishlist = Wishlist.objects.filter(user=request.user, product=product)
+    if not wishlist.exists():
+        wishlist = Wishlist(user=request.user, product=product)
+        wishlist.save()
+
+    return redirect(reverse("cart"))
+
+
+def wishlist_items(request):
+    items = Wishlist.objects.filter(user=request.user)
+    context = {
+        "items":items
+    }
+    return render(request, "shopping/wishlist.html", context)
+
+
+def remove_wishlist(request, pk):
+    try:
+        wishlist = Wishlist.objects.filter(id=pk)
+        wishlist.delete()
+    except Wishlist.DoesNotExist:
+        pass
+    return redirect(reverse("wishlist"))
+
+
+
+
+
+# def remove(request, cartitem_id):
     
-    data = json.loads(request.body)
-    print(cartitem_id)
-    if request.method == "POST":
-        print(type(cartitem_id))
-        try:
-            print('2')
-            cartitem_id =data.get("cartitem_id", None)
-            print(cartitem_id)
+#     data = json.loads(request.body)
+#     print(cartitem_id)
+#     if request.method == "POST":
+#         print(type(cartitem_id))
+#         try:
+#             print('2')
+#             cartitem_id =data.get("cartitem_id", None)
+#             print(cartitem_id)
 
-            cartitem = CartItem.objects.get(id = cartitem_id)
-            cartitem.delete()
+#             cartitem = CartItem.objects.get(id = cartitem_id)
+#             cartitem.delete()
 
-        except Exception as e:
-            print(e)
-            print("ishlamadi")
-            return JsonResponse({"error":"parsing_error"})
+#         except Exception as e:
+#             print(e)
+#             print("ishlamadi")
+#             return JsonResponse({"error":"parsing_error"})
 
-    return JsonResponse({"natija":"o'xshadi"})
+#     return JsonResponse({"natija":"o'xshadi"})
 
 
 

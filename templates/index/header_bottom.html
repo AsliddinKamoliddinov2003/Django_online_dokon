@@ -4,7 +4,7 @@
     <section class="header-main border-bottom">
         <div class="row row-sm">
             <div class="col-6 col-sm col-md col-lg  flex-grow-0">
-                <a href="" class="brand-wrap">
+                <a href="/" class="brand-wrap">
                     <img class="logo" src="{% static 'images/logo.svg' %}">
                 </a> <!-- brand-wrap.// -->
             </div>
@@ -36,21 +36,15 @@
                 </div> <!-- category-wrap.// -->
             </div> <!-- col.// -->
             <div class="col-lg-6 col-xl col-md-5 col-sm-12 flex-grow-1">
-                <form action="" class="search-header">
+                <form action="{% url 'store-page' %}" class="search-header">
                     <div class="input-group">
                         <input type="search" name="q" aria-label="Search" class="form-control" valvue="{{word}}"
                             placeholder="Search">
-                        <select class="custom-select border-left" name="">
-                            <option value="">All type</option>
-                            <option value="codex">Special</option>
-                            <option value="comments">Only best</option>
-                            <option value="content">Latest</option>
-                        </select>
-                        <button class="btn  btn-primary" type="submit"> Search </button>
-                        <button class="btn  btn-light" type="submit"> Advanced </button>
-                    </div>
-                </form> <!-- search-wrap .end// -->
+                            <button class="btn  btn-primary" type="submit"> Search </button>
+                        </div>
+                    </form> <!-- search-wrap .end// -->
             </div>
+            <button class="btn  btn-light" type="submit"> Advanced </button>
         </div> <!-- row.// -->
     </section> <!-- header-main .// -->
 
@@ -59,7 +53,7 @@
     <nav class="navbar navbar-main navbar-expand pl-0">
         <ul class="navbar-nav flex-wrap">
 
-            {% for category in categories %}
+            <!-- {% for category in categories %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> {{category.name}} </a>
                 <div class="dropdown-menu">
@@ -72,8 +66,30 @@
                             {% endif %}
                             {% endfor %}
                         </div>
-                    </nav> <!--  row end .// -->
-                </div> <!--  dropdown-menu dropdown-large end.// -->
+                    </nav>  
+                </div>
+            </li>
+            {% endfor %} -->
+            {% for category in categories %}
+            <li class="nav-item dropdown position-relative">
+                <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">{{category.name}}</a>
+                <div class="dropdown-menu">
+                    {% for subcategory in subcategories %}
+                    {% if subcategory.category == category %}
+                    <ul>
+                        <li>
+                            
+                            <i class="lni-angle-double-right right-arrow" style="color: gold;">
+                                <a class="dropdown-item" style="color: darkred;"
+                                    href="{% url 'subcategory-products-page' category_slug=category.slug sub_category_slug=subcategory.slug %}">{{subcategory.name}}
+                                </a>
+                            </i>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    {% endfor %}
+                </div>
             </li>
             {% endfor %}
         </ul>

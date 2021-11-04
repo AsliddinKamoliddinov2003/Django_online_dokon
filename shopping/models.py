@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 
 from store.models import Product_color, Product_size
+from accounts.models import User
 
 
 def generate_cupon_code():
@@ -92,6 +93,7 @@ class CartItem(models.Model):
         else:
             return self.product.price
 
+
 class Cupon(models.Model):
     code = models.CharField(max_length=8, blank=True, unique=True)
     stock = models.FloatField()
@@ -131,6 +133,15 @@ class CuponGroup(models.Model):
                 cupon.save()
             else:
                 add_cupon(self)    
+
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+    added_date = models.DateTimeField(auto_now_add=True, null=True)
+    
+    def __str__(self):
+        return self.product.title
 
            
 

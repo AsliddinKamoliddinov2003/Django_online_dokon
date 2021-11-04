@@ -31,25 +31,21 @@
 </head>
 <body>
 
-{% include "header.html" %}
+{% include "index/header.html" %}
 
 
-{% include "banner.html" %}
+{% include "index/banner.html" %}
 
 <div class="container">
 
 {% block main %}
 {% endblock main %}
 	
-{% include "daily_deals.html" %}
-
+{% include "index/daily_deals.html" %}
 
 </div>  
-<!-- container end.// -->
 
-
-{% include "footer.html" %}
-
+{% include "index/footer.html" %}
 
 {% block script %}
 {% endblock script %}

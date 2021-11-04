@@ -171,6 +171,4 @@ MEDIA_ROOT=os.path.join(BASE_DIR,"media")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-NEW_PRODUCT_SECONDS = 86000
-
 CORS_ALLOW_ALL_ORIGINS = True

@@ -1,4 +1,6 @@
 from django.contrib import admin
+
+from shopping.models import Wishlist
 from .models import *
 
 
@@ -25,7 +27,7 @@ class ProductSizeStackedAdmin(admin.StackedInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display=["title", "price", "rating", "sub_category", "is_active"]
+    list_display=["id", "title", "price", "rating", "sub_category", "is_active"]
     list_display_links=["title"]
     search_fields=["title","description"]
     prepopulated_fields={"slug":("title",)}
@@ -46,3 +48,4 @@ class SubCategoryAdmin(admin.ModelAdmin):
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(SubCategory,SubCategoryAdmin)
 admin.site.register(Product,ProductAdmin)
+admin.site.register(Wishlist)

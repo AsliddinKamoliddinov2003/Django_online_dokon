@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "index/base.html" %}
 
 {% load static %}
 
@@ -35,6 +35,8 @@
                                 {% if  cartitem.get_color_name %}
                                     <p class="text-muted small">color: {{cartitem.get_color_name}}</p>
                                 {% endif %}
+                                <p class="text-muted small">guarantee: {{cartitem.product.guarantee}} year </p>
+                                <p class="text-muted small">Manufacturer: {{cartitem.product.manufacturer}}  </p>
                             </figcaption>
                         </figure>
                     </td>
@@ -49,17 +51,17 @@
                                     <a class="btn btn-light" href="{% url 'add-cart-item'  cartitem_id=cartitem.id %}" type="button" id="button-plus"> + </a>
                                 </div>
                             </div>
-                        </div> <!-- col.// -->  
+                        </div>
                     </td>
                         <td> 
                             <div class="price-wrap"> 
                                 <var class="price">{{cartitem.total_price}} so'm</var> 
                                 <small class="text-muted"> {{cartitem.get_price}} so'm </small> 
-                            </div> <!-- price-wrap .// -->
+                            </div>
                         </td>
                         <td class="text-right"> 
-                        <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
-                        <a href="{% url 'remove' cartitem_id=cartitem.id %}" class="btn btn-light" id="remove"> Remove</a>
+                        <a data-original-title="Save to Wishlist"  title="" href="{% url 'add-to-wishlist' pk=cartitem.product.id %}" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart" style="color: red;"></i></a> 
+                        <a href="{% url 'remove-cart-item' cartitem_id=cartitem.id %}" class="btn btn-light" id="remove"> Remove</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -68,7 +70,7 @@
         
         <div class="card-body border-top">
             <a href="#" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
-            <a href="#" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+            <a href="{% url 'store-page' %}" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
         </div>	
         </div> <!-- card.// -->
         
@@ -86,11 +88,11 @@
                             <label>Have coupon?</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" name="cupon-code" valvue="code" placeholder="Coupon code">
-                                <span>{{cupon_message}}</span>
                                 <span class="input-group-append"> 
                                     <button type="submit" class="btn btn-primary">Apply</button>
                                 </span>
                             </div> 
+                            <a style="color: darkred;"><span>{{cupon_message}}</span></a>
                         </div>
                     </form>
                     </div> <!-- card-body.// -->
@@ -122,8 +124,6 @@
 </section>
     
     
-    ========================= SECTION CONTENT END// ========================= -->
-
 {% endblock main %}
     <script>
         function getCookie(name) {

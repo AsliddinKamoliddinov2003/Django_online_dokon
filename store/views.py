@@ -3,24 +3,21 @@ from django.urls import reverse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
-
-
 from .models import Category, Product, SubCategory
 from .utils import filter_min_max, get_paginated
-from shopping.models import CartItem
+from shopping.models import CartItem, Cupon
 from shopping.utils import get_cart
 
 
 @login_required(login_url="/account/login/")
 def home(request):
-
     products=Product.objects.filter().order_by("-rating")[:12]
+ 
     context={
-        "products":products
+        "products":products,
     }
 
-    return render(request,"index.html",context)
-
+    return render(request,"index/index.html",context)
 
 
 def search(request, products):
@@ -37,7 +34,6 @@ def store(request):
     if search(request, products):
         products=search(request,products)
 
-
     paginated = get_paginated(request, products, 3)
     context = {
         "products" : paginated["items"],
@@ -45,7 +41,7 @@ def store(request):
         "word": products
         }
 
-    return render(request, "store.html",context)
+    return render(request, "store/store.html",context)
     
 
 @login_required(login_url="/account/login/")
@@ -57,7 +53,6 @@ def category_products(request,category_slug):
     if search(request, products):
         products=search(request,products)
         
-
     paginated = get_paginated(request, products, 3)
 
     context = {
@@ -65,9 +60,8 @@ def category_products(request,category_slug):
         "pages": paginated["pages"],
         "word": products
         }
-    return render(request, "store.html",context)
+    return render(request, "store/store.html",context)
     
-
 
 @login_required(login_url="/account/login/")
 def sub_category_products(request,category_slug,sub_category_slug):
@@ -87,7 +81,8 @@ def sub_category_products(request,category_slug,sub_category_slug):
         "pages": paginated["pages"],
         "word": products
         }
-    return render(request, "store.html",context)
+    return render(request, "store/store.html",context)
+
 
 @login_required(login_url="/account/login/")
 def product_detail(request,slug):
@@ -97,15 +92,12 @@ def product_detail(request,slug):
     else:
         product = products.first()
 
-    
-
     if request.method == "POST":
         color =  request.POST.get('color',"")
         size =  request.POST.get('size',"")
         cart = get_cart(request) 
 
         cartitems = CartItem.objects.filter(cart=cart, product=product,color=color,size=size)
-
 
         if color == "-1" and size == "-1":
             pass
@@ -117,15 +109,17 @@ def product_detail(request,slug):
             cartitem = CartItem(product=product, cart=cart,color=color, size=size)
             cartitem.save()
             
-
-
-       
     context = {
         "product":product
     }
-    return render(request, "product_detail.html", context)
+    return render(request, "store/product_detail.html", context)
+
+
+def help_page(request):
+    return render(request, "index/help.html")
 
 
     
 
 
+    

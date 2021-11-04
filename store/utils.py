@@ -2,7 +2,6 @@ from django.core.paginator import Paginator
 
 
 
-
 def filter_min_max(request, products):
     min_price = request.GET.get("min", None)
     max_price =  request.GET.get("max",None)
