@@ -1,26 +1,25 @@
 from django.contrib import admin
 
-
 from shopping.models import Wishlist
 from .models import *
 
 
 class ProductImageAdmin(admin.StackedInline):
-    model = Product_image
+    model = ProductImage
     fields = ["image"]
     extra = 1
 
 
 
 class ProductColorStackedAdmin(admin.StackedInline):
-    model = Product_color
+    model = ProductColor
     fields = ["name"]
     extra = 1
 
 
 
 class ProductSizeStackedAdmin(admin.StackedInline):
-    model = Product_size
+    model = ProductSize
     fields = ["name"]
     extra = 1
 

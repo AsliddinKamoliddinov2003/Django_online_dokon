@@ -102,14 +102,14 @@ class Product(TranslatableModel):
 
 
 
-class  Product_color(TranslatableModel):
+class  ProductColor(TranslatableModel):
     translation = TranslatedFields(
         name = models.CharField(max_length=255, null=True)   
     )
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_colors",null=True)
 
 
-class Product_size(TranslatableModel):
+class ProductSize(TranslatableModel):
     translation = TranslatedFields(
         name = models.CharField(max_length=255, null=True) 
     )
@@ -117,7 +117,7 @@ class Product_size(TranslatableModel):
     
 
 
-class Product_image(models.Model):
-    image = models.ImageField(upload_to="images/")
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_images")
+class ProductImage(models.Model):
+    image = models.ImageField(upload_to="images/", null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_images", null=True)
 

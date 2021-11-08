@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from parler.models import TranslatableModel, TranslatedFields
 
-from store.models import Product_color, Product_size
+from store.models import ProductColor, ProductSize
 from accounts.models import User
 
 
@@ -76,14 +76,14 @@ class CartItem(TranslatableModel):
         
 
     def get_color_name(self):
-        color = Product_color.objects.filter(id=self.color).first()
+        color = ProductColor.objects.filter(id=self.color).first()
         if color:
             return color.name
         else:
             None
 
     def get_size_name(self):
-        size = Product_size.objects.filter(id=self.size).first()
+        size = ProductSize.objects.filter(id=self.size).first()
         if size:
             return size.name
         else:
