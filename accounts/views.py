@@ -27,18 +27,18 @@ def login_account(request):
     if request.method == "POST":
         form = UserLoginForm(request.POST)
         if form.is_valid():
-            gmail = form.cleaned_data["gmail"]
+            email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
 
-        user = authenticate(request, gmail=gmail, password=password)
+            user = authenticate(request, email=email, password=password)
 
-        if user:
-            login(request, user=user)
-            next_page = request.GET.get("next", None)
-            if next_page:
-                return redirect(next_page)
-            else:
-                return redirect(reverse("store-page"))
+            if user:
+                login(request, user=user)
+                next_page = request.GET.get("next", None)
+                if next_page:
+                    return redirect(next_page)
+                else:
+                    return redirect(reverse("store-page"))
         
            
     context = {

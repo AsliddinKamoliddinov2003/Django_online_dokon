@@ -1,5 +1,6 @@
 {% extends "index/base.html" %}
-
+{% load i18n %}
+{% load change_lang %}
 {% load static %}
 
 {% block main %}
@@ -13,9 +14,9 @@
         <table class="table table-borderless table-shopping-cart">
                 <thead class="text-muted">
                     <tr class="small text-uppercase">
-                        <th scope="col">Product</th>
-                        <th scope="col" width="120">Quantity</th>
-                        <th scope="col" width="120">Price</th>
+                        <th scope="col">{% trans 'Product' %}</th>
+                        <th scope="col" width="120">{% trans 'Quantity' %}</th>
+                        <th scope="col" width="120">{% trans 'Price' %}</th>
                         <th scope="col" class="text-right" width="200"> </th>
                     </tr>
                 </thead>
@@ -61,7 +62,7 @@
                         </td>
                         <td class="text-right"> 
                         <a data-original-title="Save to Wishlist"  title="" href="{% url 'add-to-wishlist' pk=cartitem.product.id %}" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart" style="color: red;"></i></a> 
-                        <a href="{% url 'remove-cart-item' cartitem_id=cartitem.id %}" class="btn btn-light" id="remove"> Remove</a>
+                        <a href="{% url 'remove-cart-item' cartitem_id=cartitem.id %}" class="btn btn-light" id="remove"> {% trans 'Remove' %} </a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -69,13 +70,13 @@
         </table>
         
         <div class="card-body border-top">
-            <a href="#" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
-            <a href="{% url 'store-page' %}" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+            <a href="#" class="btn btn-primary float-md-right"> {% trans 'Make Purchase' %} <i class="fa fa-chevron-right"></i> </a>
+            <a href="{% url 'store-page' %}" class="btn btn-light"> <i class="fa fa-chevron-left"></i> {% trans 'Continue shopping' %} </a>
         </div>	
         </div> <!-- card.// -->
         
         <div class="alert alert-success mt-3">
-            <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
+            <p class="icontext"><i class="icon text-success fa fa-truck"></i> {% trans 'Free Delivery within 1-2 weeks' %} </p>
         </div>
         
             </main> <!-- col.// -->
@@ -85,11 +86,11 @@
                     <form action= "{% url 'cart' %}" method="POST">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label>Have coupon?</label>
+                            <label>{% trans 'Have coupon?' %}</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" name="cupon-code" valvue="code" placeholder="Coupon code">
                                 <span class="input-group-append"> 
-                                    <button type="submit" class="btn btn-primary">Apply</button>
+                                    <button type="submit" class="btn btn-primary">{% trans 'Apply' %}</button>
                                 </span>
                             </div> 
                             <a style="color: darkred;"><span>{{cupon_message}}</span></a>

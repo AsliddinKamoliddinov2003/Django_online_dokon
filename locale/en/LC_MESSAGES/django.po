@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-29 13:04+0300\n"
+"POT-Creation-Date: 2021-11-08 19:04+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,38 +18,267 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\intl\models.py:7
-msgid "fullname"
-msgstr "fullname"
+#: .\intl\models.py:14
+msgid "Fullname"
+msgstr "Fullname"
 
-#: .\intl\models.py:8
+#: .\intl\models.py:15
 msgid "age"
 msgstr "age"
 
-#: .\intl\views.py:8
+#: .\intl\views.py:9
 msgid "daftarlar"
-msgstr "Notebooks"
+msgstr "notebooks"
 
-#: .\intl\views.py:8
+#: .\intl\views.py:9
 msgid "kitoblar"
 msgstr "books"
 
-#: .\intl\views.py:8
+#: .\intl\views.py:9
 msgid "ruchkalar"
 msgstr "pens"
 
-#: .\intl\views.py:8
+#: .\intl\views.py:9
 msgid "telefonlar"
-msgstr "telefons"
+msgstr "phones"
 
-#: .\intl\views.py:8
+#: .\intl\views.py:9
 msgid "qalamlar"
 msgstr "pencils"
 
+#: .\templates\index\daily_deals.html:8
+msgid "Daily deals"
+msgstr "Daily deals"
+
+#: .\templates\index\header_bottom.html:24
+msgid "Shop by"
+msgstr "Shop by"
+
+#: .\templates\index\header_bottom.html:45
+msgid "Search"
+msgstr "Search"
+
+#: .\templates\index\header_bottom.html:49
+msgid "Advanced"
+msgstr "Advanced"
+
+#: .\templates\index\header_top.html:12
+msgid "Sign in"
+msgstr "Sign in"
+
+#: .\templates\index\header_top.html:12
+msgid "Register"
+msgstr "Register"
+
+#: .\templates\index\header_top.html:13
+msgid "Deals"
+msgstr "Deals"
+
+#: .\templates\index\header_top.html:14
+msgid "Sell"
+msgstr "Sell"
+
+#: .\templates\index\header_top.html:15
+msgid "Help"
+msgstr "Help"
+
+#: .\templates\index\header_top.html:18
+msgid "Ship to"
+msgstr "Ship to"
+
+#: .\templates\index\header_top.html:20
+msgid "Til"
+msgstr "Languages"
+
+#: .\templates\index\header_top.html:27 .\templates\shopping\wishlist.html:35
+msgid "My wishlist"
+msgstr "My wishlist"
+
+#: .\templates\index\help.html:13
+msgid "Starter page"
+msgstr "Starter page"
+
+#: .\templates\index\rec_items.html:7
+msgid "Recommended items"
+msgstr "Recommended items"
+
 #: .\templates\intl\index.html:19
 msgid "Salomlar"
-msgstr "Hi"
+msgstr "hi"
 
-#: .\templates\intl\index.html:26
+#: .\templates\intl\index.html:31
 msgid "Send"
-msgstr "Submit"
+msgstr "Send"
+
+#: .\templates\shopping\cart.html:17
+msgid "Product"
+msgstr "Product"
+
+#: .\templates\shopping\cart.html:18
+msgid "Quantity"
+msgstr "Quantity"
+
+#: .\templates\shopping\cart.html:19
+msgid "Price"
+msgstr "Price"
+
+#: .\templates\shopping\cart.html:65
+msgid "Remove"
+msgstr "Remove"
+
+#: .\templates\shopping\cart.html:73
+msgid "Make Purchase"
+msgstr "Make Purchase"
+
+#: .\templates\shopping\cart.html:74
+msgid "Continue shopping"
+msgstr "Continue shopping"
+
+#: .\templates\shopping\cart.html:79
+msgid "Free Delivery within 1-2 weeks"
+msgstr "Free Delivery within 1-2 weeks"
+
+#: .\templates\shopping\cart.html:89
+msgid "Have coupon?"
+msgstr "Have coupon?"
+
+#: .\templates\shopping\cart.html:93
+msgid "Apply"
+msgstr "Apply"
+
+#: .\templates\shopping\wishlist.html:13
+msgid "Download theme"
+msgstr "Download theme"
+
+#: .\templates\shopping\wishlist.html:20
+msgid "My account"
+msgstr "My account"
+
+#: .\templates\shopping\wishlist.html:32
+msgid "Account overview"
+msgstr "Account overview"
+
+#: .\templates\shopping\wishlist.html:33
+msgid "My Address"
+msgstr "My Address"
+
+#: .\templates\shopping\wishlist.html:34
+msgid "My Orders"
+msgstr "My Orders"
+
+#: .\templates\shopping\wishlist.html:36
+msgid "My Selling Items"
+msgstr "My Selling Items"
+
+#: .\templates\shopping\wishlist.html:37
+msgid "Settings"
+msgstr "Settings"
+
+#: .\templates\shopping\wishlist.html:38
+msgid "Log out"
+msgstr "Log out"
+
+#: .\templates\shopping\wishlist.html:53
+msgid "cart"
+msgstr "cart"
+
+#: .\templates\store\product_detail.html:11 .\templates\store\store.html:17
+msgid "Home"
+msgstr "Home"
+
+#: .\templates\store\product_detail.html:70
+msgid "Manufacturer"
+msgstr "Manufacturer"
+
+#: .\templates\store\product_detail.html:74
+#: .\templates\store\product_detail.html:77
+msgid "Availabilty"
+msgstr "Availabilty"
+
+#: .\templates\store\product_detail.html:75
+msgid "in Stock"
+msgstr "in Stock"
+
+#: .\templates\store\product_detail.html:78
+msgid "out of Stock"
+msgstr "out of Stock"
+
+#: .\templates\store\product_detail.html:82
+msgid "Guarantee"
+msgstr "Guarantee"
+
+#: .\templates\store\product_detail.html:88
+msgid "Size"
+msgstr "Size"
+
+#: .\templates\store\product_detail.html:91
+msgid "Choose size"
+msgstr "Choose size"
+
+#: .\templates\store\product_detail.html:99
+msgid "Colors"
+msgstr "Colors"
+
+#: .\templates\store\product_detail.html:102
+msgid "Choose color"
+msgstr "Choose color"
+
+#: .\templates\store\product_detail.html:113
+msgid "Add to cart"
+msgstr "Add to cart"
+
+#: .\templates\store\product_detail.html:116
+msgid "Contact supplier"
+msgstr "Contact supplier"
+
+#: .\templates\store\store.html:30
+msgid "Product type"
+msgstr "Product type"
+
+#: .\templates\store\store.html:44
+msgid "Narx oralig"
+msgstr "Amount the price"
+
+#: .\templates\store\store.html:59
+msgid "Qiymatlar oralig"
+msgstr "range of values"
+
+#: .\templates\store\store.html:60
+msgid "Filter qilish "
+msgstr "Sort"
+
+#: .\templates\store\store.html:71
+msgid "ta mahsulot topildi"
+msgstr "products founds"
+
+#: .\templates\store\store.html:125
+msgid "Purchase"
+msgstr "Purchase"
+
+#: .\templates\store\store.html:138
+msgid "Previous"
+msgstr "Previous"
+
+#: .\templates\store\store.html:144
+msgid "Next"
+msgstr "Next"
+
+#: .\templates\store\store.html:154
+msgid "Siz qidirgan ma"
+msgstr ""
+
+#: .\templates\store\store.html:158
+msgid "Iltimos "
+msgstr ""
+
+#: .\templates\store\store.html:158
+msgid "bosh sahifa "
+msgstr ""
+
+#: .\templates\store\store.html:158
+msgid "ga o"
+msgstr ""
+
+#: .\templates\store\store.html:171
+msgid "Did you find what you were looking for？"
+msgstr "Did you find what you were looking for？"

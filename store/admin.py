@@ -1,9 +1,8 @@
 from django.contrib import admin
 
+
 from shopping.models import Wishlist
 from .models import *
-
-
 
 
 class ProductImageAdmin(admin.StackedInline):
@@ -27,25 +26,25 @@ class ProductSizeStackedAdmin(admin.StackedInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display=["id", "title", "price", "rating", "sub_category", "is_active"]
-    list_display_links=["title"]
-    search_fields=["title","description"]
-    prepopulated_fields={"slug":("title",)}
+#     list_display=["id", "title", "price", "rating", "sub_category", "is_active"]
+#     list_display_links=["title"]
+#     search_fields=["title","description"]
+#     prepopulated_fields={"slug":("title",)}
 
     inlines = [ProductImageAdmin,ProductColorStackedAdmin,ProductSizeStackedAdmin]
 
 
-class CategoryAdmin(admin.ModelAdmin):
-    prepopulated_fields={"slug":("name",)}
+# class CategoryAdmin(admin.ModelAdmin):
+#     prepopulated_fields={"slug":("name",)}
 
 
-class SubCategoryAdmin(admin.ModelAdmin):
-    prepopulated_fields={"slug":("name",)}
+# class SubCategoryAdmin(admin.ModelAdmin):
+#     prepopulated_fields={"slug":("name",)}
    
 
 
 
-admin.site.register(Category,CategoryAdmin)
-admin.site.register(SubCategory,SubCategoryAdmin)
+admin.site.register(Category)
+admin.site.register(SubCategory)
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Wishlist)

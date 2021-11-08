@@ -8,7 +8,7 @@ class UserRegisterForm(forms.ModelForm):
     password2 = forms.CharField(widget=forms.PasswordInput())
     class Meta:
         model = User
-        fields = ["gmail", "first_name", "last_name", "genders", "password1", "password2"]
+        fields = ["email", "first_name", "last_name", "gender", "password1", "password2"]
 
 
     def __init__(self, *args, **kwargs):
@@ -18,7 +18,7 @@ class UserRegisterForm(forms.ModelForm):
             self.fields[field].widget.attrs["class"] = "form-control"
             self.fields[field].widget.attrs["placeholder"] = f"Your {field}"
 
-        self.fields["gmail"].widget.attrs["type"] = "gmail"
+        self.fields["email"].widget.attrs["type"] = "email"
 
 
     def save(self, *args, **kwargs):
@@ -27,13 +27,13 @@ class UserRegisterForm(forms.ModelForm):
 
         if password1 == password2:
             super(UserRegisterForm, self).save(*args, **kwargs)
-            user = User.objects.get(gmail=self.cleaned_data["gmail"])
+            user = User.objects.get(email=self.cleaned_data["email"])
             user.set_password(password1)
             user.save()
 
 
 class UserLoginForm(forms.Form):
-    gmail = forms.EmailField()
+    email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput())
 
     def __init__(self, *args, **kwargs):

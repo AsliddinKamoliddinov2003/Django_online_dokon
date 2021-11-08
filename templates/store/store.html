@@ -1,5 +1,6 @@
 {% extends "index/base.html" %}
-
+{% load i18n %}
+{% load change_lang %}
 {% load static %}
 {% load has_query_string %}
 
@@ -13,7 +14,7 @@
     <div class="card mb-3">
         <div class="card-body">
             <ol class="breadcrumb float-left">
-                <li class="breadcrumb-item"><a href="{% url 'bosh-sahifa' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'bosh-sahifa' %}">{% trans 'Home' %}</a></li>
                 <li class="breadcrumb-item"><a href="#"></a>Category name</li>
                 <li class="breadcrumb-item active">Item details</li>
             </ol>
@@ -26,7 +27,7 @@
     
         <article class="filter-group">
             <h6 class="title">
-                <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1">Product type</a>
+                <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1">{% trans 'Product type' %}</a>
             </h6>
             <div class="filter-content collapse show" id="collapse_1">
                 <div class="inner">
@@ -40,7 +41,7 @@
         </article> <!-- filter-group  .// -->
         <article class="filter-group">
             <h6 class="title">
-                <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_3"> Narx oralig'i </a>
+                <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_3">{% trans 'Narx oralig'i ' %}</a>
             </h6>
             <div class="filter-content collapse show" id="collapse_3">
                 <form action="" method="GET">
@@ -55,8 +56,8 @@
                                 <input class="form-control" name="max"  placeholder="{{max_price.price}} so'm " id="max-price" type="number" value="{{request.GET.max}}">
                             </div>
                         </div> <!-- form-row.// -->
-                        <span class="text text-danger" id="warning-text" style="display: none;">Qiymatlar oralig'i xato</span>
-                        <button class="btn btn-block btn-primary"> Filter qilish </button>
+                        <span class="text text-danger" id="warning-text" style="display: none;">{% trans 'Qiymatlar oralig'i xato' %}</span>
+                        <button class="btn btn-block btn-primary"> {% trans 'Filter qilish ' %}</button>
                     </div> <!-- inner.// -->
                 </form>
             </div>
@@ -67,7 +68,7 @@
     
         <header class="mb-3">
                 <div class="form-inline">
-                    <strong class="mr-md-auto">{{products.object_list.count}} ta mahsulot topildi</strong>
+                    <strong class="mr-md-auto">{{products.object_list.count}}{% trans 'ta mahsulot topildi' %}</strong>
                 </div>
         </header><!-- sect-heading -->
         {% for product in products.object_list %}
@@ -121,7 +122,7 @@
                             <br>
                             <a data-original-title="Save to Wishlist"  title="" href="{% url 'add-to-wishlist' pk=product.id %}" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart" style="color: red;"></i></a> 
                             <p class="mt-3">
-                                <a href="{% url 'product-detail' slug=product.slug %}" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i>Purchase</a>
+                                <a href="{% url 'product-detail' slug=product.slug %}" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i>{% trans 'Purchase' %}</a>
                             </p>
             
                         </div> <!-- info-aside.// -->
@@ -134,13 +135,13 @@
             <ul class="pagination">
 
 
-                <li class="page-item {% if not products.has_previous %}disabled{% endif %}"><a class="page-link" href="{% if  products.has_previous %}{% if request|has_query_string  %}{{request.get_full_path}}&{% else %}?{% endif %}page={{products.previous_page_number}}{% endif %}">Previous</a></li>
+                <li class="page-item {% if not products.has_previous %}disabled{% endif %}"><a class="page-link" href="{% if  products.has_previous %}{% if request|has_query_string  %}{{request.get_full_path}}&{% else %}?{% endif %}page={{products.previous_page_number}}{% endif %}">{% trans 'Previous' %}</a></li>
 
 
                 {% for page_num in pages.page_range %}
                     <li class="page-item {% if page_num == products.number %}active{% endif %}"><a class="page-link" href="{% if request|has_query_string  %}{{request.get_full_path}}&{% else %}?{% endif %}page={{page_num}}">{{page_num}}</a></li>
                 {% endfor %}
-                <li class="page-item {% if not products.has_next %}disabled{% endif %}"><a class="page-link" href="{% if  products.has_next %}{% if request|has_query_string  %}{{request.get_full_path}}&{% else %}?{% endif %}page={{products.next_page_number}}{% endif %}">Next</a></li>
+                <li class="page-item {% if not products.has_next %}disabled{% endif %}"><a class="page-link" href="{% if  products.has_next %}{% if request|has_query_string  %}{{request.get_full_path}}&{% else %}?{% endif %}page={{products.next_page_number}}{% endif %}">{% trans 'Next' %}</a></li>
             </ul>
         </nav>
          
@@ -150,11 +151,11 @@
             <div class="container">
             
             <header class="section-heading">
-                <h2 class="section-title">Siz qidirgan ma'lumot topilmadi!</h2>
+                <h2 class="section-title">{% trans 'Siz qidirgan ma'lumot topilmadi!' %}</h2>
             </header><!-- sect-heading -->
             
             <article>
-                <p>Iltimos <a style="color: crimson;" href="{% url 'bosh-sahifa' %}"> bosh sahifa </a> ga o'tib mahsulotni qidirishda davom eting</p>
+                <p>{% trans 'Iltimos ' %}<a style="color: crimson;" href="{% url 'bosh-sahifa' %}"> {% trans 'bosh sahifa ' %} </a> {% trans 'ga o'tib mahsulotni qidirishda davom eting' %} </p>
             
             
             </article>
@@ -167,7 +168,7 @@
     
     
     <div class="box text-center">
-        <p>Did you find what you were looking for？</p>
+        <p>{% trans 'Did you find what you were looking for？' %}</p>
         <a href="{% url 'bosh-sahifa' %}" class="btn btn-light">Yes</a>
         <a href="{% url 'bosh-sahifa' %}" class="btn btn-light">No</a>
     </div>

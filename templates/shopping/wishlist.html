@@ -1,5 +1,6 @@
 {% extends "index/base.html" %}
-
+{% load i18n %}
+{% load change_lang %}
 {% load static %}
 
 {% block main %}
@@ -9,14 +10,14 @@
 
 	<!-- REMOVE FOLLOWING LINK -->
 	<a href="http://bootstrap-ecommerce.com/page-themes.html" class="btn btn-dark rounded-pill"
-		style="font-size:13px; z-index:100; position: fixed; bottom:10px; right:10px;">Download theme</a>
+		style="font-size:13px; z-index:100; position: fixed; bottom:10px; right:10px;">{% trans 'Download theme' %}</a>
 	<!-- REMOVE  //END -->
 
 
 	<!-- ========================= SECTION PAGETOP ========================= -->
 	<section class="section-pagetop bg-gray">
 		<div class="container">
-			<h2 class="title-page">My account</h2>
+			<h2 class="title-page">{% trans 'My account' %}</h2>
 		</div> <!-- container //  -->
 	</section>
 	<!-- ========================= SECTION PAGETOP END// ========================= -->
@@ -28,13 +29,13 @@
 			<div class="row">
 				<aside class="col-md-3">
 					<nav class="list-group">
-						<a class="list-group-item" href=""> Account overview </a>
-						<a class="list-group-item" href=""> My Address </a>
-						<a class="list-group-item" href=""> My Orders </a>
-						<a class="list-group-item active" href=""> My wishlist </a>
-						<a class="list-group-item" href=""> My Selling Items </a>
-						<a class="list-group-item" href=""> Settings </a>
-						<a class="list-group-item" href=""> Log out </a>
+						<a class="list-group-item" href=""> {% trans 'Account overview' %} </a>
+						<a class="list-group-item" href=""> {% trans 'My Address' %} </a>
+						<a class="list-group-item" href=""> {% trans 'My Orders' %} </a>
+						<a class="list-group-item active" href=""> {% trans 'My wishlist' %} </a>
+						<a class="list-group-item" href=""> {% trans 'My Selling Items' %} </a>
+						<a class="list-group-item" href=""> {% trans 'Settings' %} </a>
+						<a class="list-group-item" href=""> {% trans 'Log out' %} </a>
 					</nav>
 				</aside> <!-- col.// -->
 				<main class="col-md-9">
@@ -49,7 +50,7 @@
 										<figcaption class="info">
 											<a href="{% url 'product-detail' slug=item.product.slug %}" class="title">{{item.product.title}}</a>
 											<p class="price mb-2">{{item.product.price}} so'm</p>
-											<a href="{% url 'cart' %}" class="btn btn-secondary btn-sm"> cart </a>
+											<a href="{% url 'cart' %}" class="btn btn-secondary btn-sm"> {% trans 'cart' %} </a>
 											<a href="{% url 'remove-wishlist' pk=item.id %}" class="btn btn-danger btn-sm" data-toggle="tooltip" title=""
 												data-original-title="Remove from wishlist"> <i class="fa fa-times"></i>
 											</a>

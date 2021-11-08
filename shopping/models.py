@@ -1,7 +1,7 @@
-from django.db.models.deletion import SET_DEFAULT
 from store.models import Product, SubCategory
 from django.db import models
 from django.contrib.auth import get_user_model
+from parler.models import TranslatableModel, TranslatedFields
 
 from store.models import Product_color, Product_size
 from accounts.models import User
@@ -52,10 +52,12 @@ class Cart(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
     
 
-class CartItem(models.Model):
+class CartItem(TranslatableModel):
+    translation = TranslatedFields(
+        color = models.CharField(max_length=255, null=True)
+    )
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    color = models.CharField(max_length=255, null=True)
     size = models.CharField(max_length=255, null=True)
     quantity = models.PositiveIntegerField(default=1)
 

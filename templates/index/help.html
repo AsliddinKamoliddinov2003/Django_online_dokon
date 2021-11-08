@@ -1,5 +1,6 @@
 {% extends "index/base.html" %}
-
+{% load i18n %}
+{% load change_lang %}
 {% load static %}
 
 {% block main %}
@@ -9,7 +10,7 @@
 <div class="container">
 
 <header class="section-heading">
-	<h2 class="section-title">Starter page </h2>
+	<h2 class="section-title"> {% trans 'Starter page' %} </h2>
 </header><!-- sect-heading -->
 
 <article>

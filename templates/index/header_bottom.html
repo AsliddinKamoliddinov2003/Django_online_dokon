@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+{% load change_lang %}
 
 <div class="container">
     <section class="header-main border-bottom">
@@ -19,7 +21,7 @@
                 <!-- mobile-only //end  -->
 
                 <div class="category-wrap d-none dropdown d-md-inline-block">
-                    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"> Shop by
+                    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"> {% trans 'Shop by' %}
                     </button>
                     <div class="dropdown-menu">
                         {% for category in categories %}
@@ -40,11 +42,11 @@
                     <div class="input-group">
                         <input type="search" name="q" aria-label="Search" class="form-control" valvue="{{word}}"
                             placeholder="Search">
-                            <button class="btn  btn-primary" type="submit"> Search </button>
+                            <button class="btn  btn-primary" type="submit"> {% trans 'Search' %} </button>
                         </div>
                     </form> <!-- search-wrap .end// -->
             </div>
-            <button class="btn  btn-light" type="submit"> Advanced </button>
+            <button class="btn  btn-light" type="submit"> {% trans 'Advanced' %} </button>
         </div> <!-- row.// -->
     </section> <!-- header-main .// -->
 

@@ -1,10 +1,11 @@
 import json
 from django.core.checks import messages
 from django.db import models
-
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.utils.translation import gettext as _
+
 
 from store.models import Product
 from .models import CartItem, Cupon, Wishlist
@@ -138,7 +139,7 @@ def add_to_wishlist(request, pk):
 def wishlist_items(request):
     items = Wishlist.objects.filter(user=request.user)
     context = {
-        "items":items
+        "items":_(items)
     }
     return render(request, "shopping/wishlist.html", context)
 

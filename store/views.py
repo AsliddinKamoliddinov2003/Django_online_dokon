@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404,render
 from django.urls import reverse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import gettext as _
 
 from .models import Category, Product, SubCategory
 from .utils import filter_min_max, get_paginated
@@ -14,7 +15,7 @@ def home(request):
     products=Product.objects.filter().order_by("-rating")[:12]
  
     context={
-        "products":products,
+        "products":_(products),
     }
 
     return render(request,"index/index.html",context)
@@ -38,7 +39,7 @@ def store(request):
     context = {
         "products" : paginated["items"],
         "pages": paginated["pages"],
-        "word": products
+        "word": _(products)
         }
 
     return render(request, "store/store.html",context)
@@ -58,7 +59,7 @@ def category_products(request,category_slug):
     context = {
         "products" : paginated["items"],
         "pages": paginated["pages"],
-        "word": products
+        "word": _(products)
         }
     return render(request, "store/store.html",context)
     
@@ -79,7 +80,7 @@ def sub_category_products(request,category_slug,sub_category_slug):
     context = {
         "products" : paginated["items"],
         "pages": paginated["pages"],
-        "word": products
+        "word": _(products)
         }
     return render(request, "store/store.html",context)
 
@@ -110,7 +111,7 @@ def product_detail(request,slug):
             cartitem.save()
             
     context = {
-        "product":product
+        "product":_(product)
     }
     return render(request, "store/product_detail.html", context)
 

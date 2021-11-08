@@ -1,14 +1,14 @@
 {% extends "index/base.html" %}
-
+{% load i18n %}
+{% load change_lang %}
 {% load static %}
-
 {% block main %}
 
 
 <section class="py-3 bg-light">
   <div class="container">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'bosh-sahifa' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'bosh-sahifa' %}">{% trans 'Home' %}</a></li>
         <li class="breadcrumb-item"><a >{{product.sub_category.category}}</a></li>
         <li class="breadcrumb-item"><a >{{product.sub_category}}</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{product.title}}</li>
@@ -67,28 +67,28 @@
 
       <input type="hidden" name="product_id" value="{{product.id}}">
       <dl class="row">
-        <dt class="col-sm-3">Manufacturer</dt>
+        <dt class="col-sm-3">{% trans 'Manufacturer' %}</dt>
         <dd class="col-sm-9">{{product.manufacturer}}</dd>
 
         {% if product.availabilty == True %}
-          <dt class="col-sm-3">Availabilty</dt>
-          <dd class="col-sm-9">in Stock</dd>
+          <dt class="col-sm-3">{% trans 'Availabilty' %}</dt>
+          <dd class="col-sm-9">{% trans 'in Stock' %}</dd>
         {% else %}
-          <dt class="col-sm-3">Availabilty</dt>
-          <dd class="col-sm-9">out of Stock</dd>
+          <dt class="col-sm-3">{% trans 'Availabilty' %}</dt>
+          <dd class="col-sm-9">{% trans 'out of Stock' %}</dd>
         {% endif %}
           
 
-        <dt class="col-sm-3">Guarantee</dt>
+        <dt class="col-sm-3">{% trans 'Guarantee' %}</dt>
         <dd class="col-sm-9">{{product.guarantee}} year</dd>
 
         <dt class="col-sm-3">Delivery time</dt>
         <dd class="col-sm-9">{{product.delivery_time}} days</dd>
 
-        <dt class="col-sm-3">Size</dt>
+        <dt class="col-sm-3">{% trans 'Size' %}</dt>
         <dd class="col-sm-9">
           <select name="size" id="id_size">
-            <option value="-1" selected>Choose size</option>
+            <option value="-1" selected>{% trans 'Choose size' %}</option>
             {% for size in product.product_size.all %}
             <option value="{{size.id}}">{{size.name}}</option>
             {% endfor %}
@@ -96,10 +96,10 @@
         </dd>
 
 
-        <dt class="col-sm-3">Colors</dt>
+        <dt class="col-sm-3">{% trans 'Colors' %}</dt>
         <dd class="col-sm-9">
           <select name="color" id="id_color">
-            <option value="-1">Choose color</option>
+            <option value="-1">{% trans 'Choose color' %}</option>
             {% for color in product.product_colors.all %}
             <option value="{{color.id}}">{{color.name}}</option>
             {% endfor %}
@@ -110,10 +110,10 @@
       <div class="form-row  mt-4">
         <div class="form-group col-md">
           <button type="submit" class="btn  btn-primary" id="add_to_cart">
-            <i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span>
+            <i class="fas fa-shopping-cart"></i> <span class="text">{% trans 'Add to cart' %}</span>
           </button>
           <a href="#" class="btn btn-light">
-            <i class="fas fa-envelope"></i> <span class="text">Contact supplier</span>
+            <i class="fas fa-envelope"></i> <span class="text">{% trans 'Contact supplier' %}</span>
           </a>
         </div> <!-- col.// -->
       </div> <!-- row.// -->

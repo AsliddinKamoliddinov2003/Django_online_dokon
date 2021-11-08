@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-29 13:04+0300\n"
+"POT-Creation-Date: 2021-11-08 19:04+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,40 +20,267 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\intl\models.py:7
-msgid "To'liq ism"
-msgstr "polniy imya"
+#: .\intl\models.py:14
+msgid "Fullname"
+msgstr "полное имя"
 
-#: .\intl\models.py:8
+#: .\intl\models.py:15
 msgid "age"
-msgstr "let"
+msgstr "лет"
 
-#: .\intl\views.py:8
+#: .\intl\views.py:9
 msgid "daftarlar"
-msgstr "тетрадь"
+msgstr "тетради"
 
-#: .\intl\views.py:8
+#: .\intl\views.py:9
 msgid "kitoblar"
-msgstr "книгы"
+msgstr "книги"
 
-#: .\intl\views.py:8
+#: .\intl\views.py:9
 msgid "ruchkalar"
 msgstr "ручки"
 
-#: .\intl\views.py:8
+#: .\intl\views.py:9
 msgid "telefonlar"
 msgstr "телефоны"
 
-#: .\intl\views.py:8
+#: .\intl\views.py:9
 msgid "qalamlar"
 msgstr "каранлащи"
 
-#: .\templates\intl\index.html:19
-#, fuzzy
-#| msgid "qalamlar"
-msgid "Salomlar"
-msgstr "каранлащи"
+#: .\templates\index\daily_deals.html:8
+msgid "Daily deals"
+msgstr "Ежедневные Сделки"
 
-#: .\templates\intl\index.html:26
+#: .\templates\index\header_bottom.html:24
+msgid "Shop by"
+msgstr "делать покупки"
+
+#: .\templates\index\header_bottom.html:45
+msgid "Search"
+msgstr "поиск"
+
+#: .\templates\index\header_bottom.html:49
+msgid "Advanced"
+msgstr "переводой"
+
+#: .\templates\index\header_top.html:12
+msgid "Sign in"
+msgstr "войти"
+
+#: .\templates\index\header_top.html:12
+msgid "Register"
+msgstr "регистр"
+
+#: .\templates\index\header_top.html:13
+msgid "Deals"
+msgstr "Сделки"
+
+#: .\templates\index\header_top.html:14
+msgid "Sell"
+msgstr "проводать"
+
+#: .\templates\index\header_top.html:15
+msgid "Help"
+msgstr "помочь"
+
+#: .\templates\index\header_top.html:18
+msgid "Ship to"
+msgstr "доставка до"
+
+#: .\templates\index\header_top.html:20
+msgid "Til"
+msgstr "язык"
+
+#: .\templates\index\header_top.html:27 .\templates\shopping\wishlist.html:35
+msgid "My wishlist"
+msgstr "Список моих желанй"
+
+#: .\templates\index\help.html:13
+msgid "Starter page"
+msgstr "стартовая страница"
+
+#: .\templates\index\rec_items.html:7
+msgid "Recommended items"
+msgstr "рекомендуемые предметы"
+
+#: .\templates\intl\index.html:19
+msgid "Salomlar"
+msgstr "привет"
+
+#: .\templates\intl\index.html:31
 msgid "Send"
+msgstr "отправить"
+
+#: .\templates\shopping\cart.html:17
+msgid "Product"
+msgstr "предметы"
+
+#: .\templates\shopping\cart.html:18
+msgid "Quantity"
+msgstr "количество"
+
+#: .\templates\shopping\cart.html:19
+msgid "Price"
+msgstr "цена"
+
+#: .\templates\shopping\cart.html:65
+msgid "Remove"
+msgstr "удалит"
+
+#: .\templates\shopping\cart.html:73
+msgid "Make Purchase"
+msgstr "сделать покупку"
+
+#: .\templates\shopping\cart.html:74
+msgid "Continue shopping"
+msgstr "продолжить покупки"
+
+#: .\templates\shopping\cart.html:79
+msgid "Free Delivery within 1-2 weeks"
+msgstr "бесплатная доставка в течении 1-2 недель"
+
+#: .\templates\shopping\cart.html:89
+msgid "Have coupon?"
+msgstr "есть купон?"
+
+#: .\templates\shopping\cart.html:93
+msgid "Apply"
+msgstr "подать заявление"
+
+#: .\templates\shopping\wishlist.html:13
+msgid "Download theme"
+msgstr "скачать тему"
+
+#: .\templates\shopping\wishlist.html:20
+msgid "My account"
+msgstr "мой ассаунт"
+
+#: .\templates\shopping\wishlist.html:32
+msgid "Account overview"
+msgstr "обзор аккаунта"
+
+#: .\templates\shopping\wishlist.html:33
+msgid "My Address"
+msgstr "мой аддрес"
+
+#: .\templates\shopping\wishlist.html:34
+msgid "My Orders"
+msgstr "мой заказь"
+
+#: .\templates\shopping\wishlist.html:36
+msgid "My Selling Items"
+msgstr "мои продаваемые товары"
+
+#: .\templates\shopping\wishlist.html:37
+msgid "Settings"
+msgstr "настройки"
+
+#: .\templates\shopping\wishlist.html:38
+msgid "Log out"
+msgstr "выйти"
+
+#: .\templates\shopping\wishlist.html:53
+msgid "cart"
+msgstr "тележка"
+
+#: .\templates\store\product_detail.html:11 .\templates\store\store.html:17
+msgid "Home"
+msgstr "дом"
+
+#: .\templates\store\product_detail.html:70
+msgid "Manufacturer"
+msgstr "производитель"
+
+#: .\templates\store\product_detail.html:74
+#: .\templates\store\product_detail.html:77
+msgid "Availabilty"
+msgstr "Доступность"
+
+#: .\templates\store\product_detail.html:75
+msgid "in Stock"
+msgstr "в наличии"
+
+#: .\templates\store\product_detail.html:78
+msgid "out of Stock"
+msgstr "распродано"
+
+#: .\templates\store\product_detail.html:82
+msgid "Guarantee"
+msgstr "гарантия"
+
+#: .\templates\store\product_detail.html:88
+msgid "Size"
+msgstr "размер"
+
+#: .\templates\store\product_detail.html:91
+msgid "Choose size"
+msgstr "выбрать размер"
+
+#: .\templates\store\product_detail.html:99
+msgid "Colors"
+msgstr "цветь"
+
+#: .\templates\store\product_detail.html:102
+msgid "Choose color"
+msgstr "выбрать цветь"
+
+#: .\templates\store\product_detail.html:113
+msgid "Add to cart"
+msgstr "добавить в корзину"
+
+#: .\templates\store\product_detail.html:116
+msgid "Contact supplier"
+msgstr "связаться поставщиком"
+
+#: .\templates\store\store.html:30
+msgid "Product type"
+msgstr "тип продукта"
+
+#: .\templates\store\store.html:44
+msgid "Narx oralig"
+msgstr "ценовой диапазон"
+
+#: .\templates\store\store.html:59
+msgid "Qiymatlar oralig"
+msgstr "диапазон значений"
+
+#: .\templates\store\store.html:60
+msgid "Filter qilish "
+msgstr "Фильтр"
+
+#: .\templates\store\store.html:71
+msgid "ta mahsulot topildi"
+msgstr "найденные продукты"
+
+#: .\templates\store\store.html:125
+msgid "Purchase"
+msgstr "покупка"
+
+#: .\templates\store\store.html:138
+msgid "Previous"
+msgstr "Предыдущий "
+
+#: .\templates\store\store.html:144
+msgid "Next"
+msgstr "Следущий"
+
+#: .\templates\store\store.html:154
+msgid "Siz qidirgan ma"
 msgstr ""
+
+#: .\templates\store\store.html:158
+msgid "Iltimos "
+msgstr ""
+
+#: .\templates\store\store.html:158
+msgid "bosh sahifa "
+msgstr ""
+
+#: .\templates\store\store.html:158
+msgid "ga o"
+msgstr ""
+
+#: .\templates\store\store.html:171
+msgid "Did you find what you were looking for？"
+msgstr "Вы нашли то, что искали?"

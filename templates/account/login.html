@@ -2,7 +2,6 @@
 
 {% load static %}
 
-
 {% block main %}
 
 <div class="container my-4">
@@ -17,8 +16,8 @@
                     {% csrf_token %}
                     
                     <div class="col form-group">
-                        <label>{{form.gmail.label}}</label>
-                        {{form.gmail}}
+                        <label>{{form.email.label}}</label>
+                        {{form.email}}
                     </div>
 
                     <div class="col form-group">

@@ -3,16 +3,16 @@ from django.contrib.auth.models import AbstractBaseUser,UserManager, Permissions
 
 
 class UserManager(UserManager):
-    def create_user(self,gmail,password=None):
-        user = self.model(gmail=gmail)
+    def create_user(self,email,password=None):
+        user = self.model(email=email)
         user.set_password(password)
         user.save()
 
         return user
 
     
-    def create_superuser(self, gmail, password):
-        user = self.create_user(gmail,password)
+    def create_superuser(self, email, password):
+        user = self.create_user(email,password)
         user.is_admin = True
         user.is_superuser = True
         user.save()
@@ -23,7 +23,7 @@ class UserManager(UserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    gmail = models.CharField(max_length=255,unique=True)
+    email = models.CharField(max_length=255,unique=True, null=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
 
@@ -31,17 +31,17 @@ class User(AbstractBaseUser, PermissionsMixin):
         ("m", "male"),
         ("f", "female")
     }
-    genders = models.CharField(choices=GENDERS, max_length=10, default="m")
+    gender = models.CharField(choices=GENDERS, max_length=10, default="m", null=True)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-    is_seperuser = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
     last_login = models.DateTimeField(auto_now=True)
     date_joined = models.DateTimeField(auto_now_add=True)
 
 
-    USERNAME_FIELD = "gmail"
+    USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
     
     objects = UserManager()

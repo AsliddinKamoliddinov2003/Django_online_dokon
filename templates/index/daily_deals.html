@@ -1,9 +1,11 @@
+{% load i18n %}
+{% load change_lang %}
 {% load static %}
 <!-- =============== SECTION 2 =============== -->
 <section class="padding-bottom">
 
     <header class="section-heading mb-4">
-        <h3 class="title-section">Daily deals</h3>
+        <h3 class="title-section">{% trans 'Daily deals' %}</h3>
     </header>
     <div class="row row-sm">
         {% for daily_product in daily_products %}

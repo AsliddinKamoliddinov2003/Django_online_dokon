@@ -1,18 +1,21 @@
 from django.db import models
 from datetime import datetime, timezone
 from django.conf import settings
+from parler.models import TranslatableModel, TranslatedFields
 
-class Category(models.Model):
+
+
+class Category(TranslatableModel):
     class Meta:
         verbose_name="Category"
         verbose_name_plural="Categories"
 
+    translation = TranslatedFields(
+        name = models.CharField(verbose_name="Nomi",max_length=255, null=True) 
+    )
 
-    name = models.CharField(verbose_name="Nomi",max_length=255)
     icon=models.ImageField(upload_to="images/",null=True)
     slug = models.CharField(max_length=255,null=True)
-    
-
 
     created_at = models.DateTimeField(verbose_name="yaratilgan sana",auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="O'zgartirilgan sana",auto_now=True)
@@ -21,12 +24,14 @@ class Category(models.Model):
         return self.name
 
 
-class SubCategory(models.Model):
+class SubCategory(TranslatableModel):
     class Meta:
         verbose_name="Kichik kategoriya"
         verbose_name_plural="Kichik kategoriyalar"
 
-    name = models.CharField(max_length=255)
+    translation = TranslatedFields(
+        name = models.CharField(max_length=255, null=True) 
+    )
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     slug = models.CharField(max_length=255,null=True)
 
@@ -34,15 +39,12 @@ class SubCategory(models.Model):
         return self.name
 
 
-
-
-
 # from mptt.models import MPTTModel, TreeForeignKey
 
 
 # class Kategoriya(models.Model):
 #     title = models.CharField(max_length=255)
-#     parent = models.ForeignKey(Kategoriya, on_delete=models.CASCADE, null=True, blank=True, related_name="children")
+#     parent = models.ForeignKey(Kategoriya, on_delete=models.CASCADE, null=True, blank=True,                 related_name="children")
 
 #     def __str__(self):
 #         return self.title
@@ -57,22 +59,20 @@ class SubCategory(models.Model):
 
 
 
-
-
-
-
-class Product(models.Model):
+class Product(TranslatableModel):
     class Meta:
         verbose_name = "Mahsulot"
         verbose_name_plural = "Mahsulotlar"
 
+    translation = TranslatedFields(
+        title = models.CharField(max_length=255, null=True), 
+        description = models.TextField(null=True)
+    )
 
-    title = models.CharField(max_length=255)
     price = models.FloatField()
     old_price = models.FloatField(null=True)
     manufacturer = models.CharField(max_length=255, null=True)
     slug = models.CharField(max_length=255,null=True)
-    description = models.TextField()
     rating = models.FloatField()
     guarantee = models.CharField(max_length=255, null=True, default=2)
     delivery_time = models.CharField(max_length=255, null=True)
@@ -102,13 +102,17 @@ class Product(models.Model):
 
 
 
-class  Product_color(models.Model):
-    name = models.CharField(max_length=255)
+class  Product_color(TranslatableModel):
+    translation = TranslatedFields(
+        name = models.CharField(max_length=255, null=True)   
+    )
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_colors",null=True)
 
 
-class Product_size(models.Model):
-    name = models.CharField(max_length=255) 
+class Product_size(TranslatableModel):
+    translation = TranslatedFields(
+        name = models.CharField(max_length=255, null=True) 
+    )
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_size",null=True)
     
 
