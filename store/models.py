@@ -20,8 +20,11 @@ class Category(TranslatableModel):
     created_at = models.DateTimeField(verbose_name="yaratilgan sana",auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="O'zgartirilgan sana",auto_now=True)
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return self.safe_translation_getter("name", any_language=True).__str__()
+    
+    def __unicode__(self):
+        return self.safe_translation_getter("name", any_language=True)
 
 
 
@@ -36,8 +39,11 @@ class SubCategory(TranslatableModel):
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     slug = models.CharField(max_length=255,null=True)
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return self.safe_translation_getter("name", any_language=True).__str__()
+    
+    def __unicode__(self):
+        return self.safe_translation_getter("name", any_language=True)
 
 # from mptt.models import MPTTModel, TreeForeignKey
 
