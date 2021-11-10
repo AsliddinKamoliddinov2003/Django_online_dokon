@@ -114,7 +114,6 @@ class CuponGroup(models.Model):
     expires_in = models.DateTimeField()
     category = models.ManyToManyField(SubCategory)
 
-
     def save(self, *args, **kwargs):
         super(CuponGroup, self).save(*args, **kwargs)
         for i in range(self.count):
@@ -126,7 +125,7 @@ class CuponGroup(models.Model):
                 cupon = Cupon(
                     code = code,
                     stock = self.stock,
-                    expires_in = self.expires_in
+                    expires_in = self.expires_in,
                 )
 
                 cupon.save()
