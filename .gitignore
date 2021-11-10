@@ -8,6 +8,8 @@
 *.pyc
 __pycache__/
 local_settings.py
+media
+static
 .vscode
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
