@@ -139,7 +139,7 @@ def add_to_wishlist(request, pk):
 def wishlist_items(request):
     items = Wishlist.objects.filter(user=request.user)
     context = {
-        "items":_(items)
+        "items":items
     }
     return render(request, "shopping/wishlist.html", context)
 

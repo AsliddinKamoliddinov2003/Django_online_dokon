@@ -39,7 +39,7 @@ def store(request):
     context = {
         "products" : paginated["items"],
         "pages": paginated["pages"],
-        "word": _(products)
+        "word": products
         }
 
     return render(request, "store/store.html",context)
@@ -59,7 +59,7 @@ def category_products(request,category_slug):
     context = {
         "products" : paginated["items"],
         "pages": paginated["pages"],
-        "word": _(products)
+        "word": products
         }
     return render(request, "store/store.html",context)
     
@@ -80,7 +80,7 @@ def sub_category_products(request,category_slug,sub_category_slug):
     context = {
         "products" : paginated["items"],
         "pages": paginated["pages"],
-        "word": _(products)
+        "word": products
         }
     return render(request, "store/store.html",context)
 
@@ -111,7 +111,7 @@ def product_detail(request,slug):
             cartitem.save()
             
     context = {
-        "product":_(product)
+        "product":product
     }
     return render(request, "store/product_detail.html", context)
 
