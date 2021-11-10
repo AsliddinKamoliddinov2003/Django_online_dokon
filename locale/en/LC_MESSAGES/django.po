@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-08 19:04+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2021-11-10 20:59+0000\n"
+"Last-Translator:   <a@a.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.7\n"
 
 #: .\intl\models.py:14
 msgid "Fullname"
@@ -265,19 +266,19 @@ msgstr "Next"
 
 #: .\templates\store\store.html:154
 msgid "Siz qidirgan ma"
-msgstr ""
+msgstr "not found"
 
 #: .\templates\store\store.html:158
 msgid "Iltimos "
-msgstr ""
+msgstr "please"
 
 #: .\templates\store\store.html:158
 msgid "bosh sahifa "
-msgstr ""
+msgstr "home page"
 
 #: .\templates\store\store.html:158
 msgid "ga o"
-msgstr ""
+msgstr "ga o"
 
 #: .\templates\store\store.html:171
 msgid "Did you find what you were looking for？"
