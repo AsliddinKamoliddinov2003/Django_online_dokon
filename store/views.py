@@ -25,7 +25,7 @@ def home(request):
 def search(request, products):
     word = request.GET.get('q',None)
     if word:
-        return products.filter(Q(translations__title=word) | Q(translations__description=word))
+        return products.filter(Q(translation__title=word) | Q(translation__description=word))
     return None
     
 
