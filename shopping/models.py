@@ -45,8 +45,6 @@ Client = get_user_model()
 class Cart(models.Model):
     session_id = models.CharField(max_length=255,null=True)
     is_active = models.BooleanField(default=True)
-
-
     
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
