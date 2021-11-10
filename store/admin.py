@@ -41,8 +41,11 @@ class ProductAdmin(TranslatableAdmin, SlugableAdmin):
     inlines = [ProductImageAdmin,ProductColorStackedAdmin,ProductSizeStackedAdmin]
 
 
-class CategoryAdmin(TranslatableAdmin, SlugableAdmin):
-    pass
+class CategoryAdmin(TranslatableAdmin):
+    def get_prepopulated_fields(self, request, obj=None):
+        return {
+            'slug': ('name',)
+        }
 
 
 class SubCategoryAdmin(TranslatableAdmin):
