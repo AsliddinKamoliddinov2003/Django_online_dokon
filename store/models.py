@@ -81,8 +81,6 @@ class Product(TranslatableModel):
     image = models.ImageField(upload_to="images/",null=True)
     sub_category = models.ForeignKey(SubCategory,on_delete=models.CASCADE,null=True)
     is_active = models.BooleanField(default=True)
-    
-
 
     created_at = models.DateTimeField(auto_now_add = True, null=True)
     updated_at = models.DateTimeField(auto_now = True, null=True)

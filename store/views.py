@@ -15,7 +15,7 @@ def home(request):
     products=Product.objects.filter().order_by("-rating")[:12]
  
     context={
-        "products":_(products),
+        "products": products,
     }
 
     return render(request,"index/index.html",context)

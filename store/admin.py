@@ -3,6 +3,15 @@ from django.contrib import admin
 from shopping.models import Wishlist
 from .models import *
 
+from parler.admin import TranslatableStackedInline, TranslatableAdmin
+
+
+class SlugableAdmin:
+    def get_prepopulated_fields(self, request, obj=None):
+        return {
+            'slug': ('title',)
+        }
+
 
 class ProductImageAdmin(admin.StackedInline):
     model = ProductImage
@@ -11,39 +20,41 @@ class ProductImageAdmin(admin.StackedInline):
 
 
 
-class ProductColorStackedAdmin(admin.StackedInline):
+class ProductColorStackedAdmin(TranslatableStackedInline):
     model = ProductColor
     fields = ["name"]
     extra = 1
 
 
 
-class ProductSizeStackedAdmin(admin.StackedInline):
+class ProductSizeStackedAdmin(TranslatableStackedInline):
     model = ProductSize
     fields = ["name"]
     extra = 1
 
 
-class ProductAdmin(admin.ModelAdmin):
-#     list_display=["id", "title", "price", "rating", "sub_category", "is_active"]
-#     list_display_links=["title"]
-#     search_fields=["title","description"]
-#     prepopulated_fields={"slug":("title",)}
+class ProductAdmin(TranslatableAdmin, SlugableAdmin):
+    list_display=["id", "title", "price", "rating", "sub_category", "is_active"]
+    list_display_links=["title"]
+    search_fields=["title","description"]
 
     inlines = [ProductImageAdmin,ProductColorStackedAdmin,ProductSizeStackedAdmin]
 
 
-# class CategoryAdmin(admin.ModelAdmin):
-#     prepopulated_fields={"slug":("name",)}
+class CategoryAdmin(TranslatableAdmin, SlugableAdmin):
+    pass
 
 
-# class SubCategoryAdmin(admin.ModelAdmin):
-#     prepopulated_fields={"slug":("name",)}
+class SubCategoryAdmin(TranslatableAdmin):
+    def get_prepopulated_fields(self, request, obj=None):
+        return {
+            'slug': ('name',)
+        }
    
 
 
 
-admin.site.register(Category)
-admin.site.register(SubCategory)
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(SubCategory, SubCategoryAdmin)
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Wishlist)
