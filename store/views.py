@@ -4,7 +4,6 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext as _
 
-
 from .models import Category, Product, SubCategory
 from .utils import filter_min_max, get_paginated
 from shopping.models import CartItem, Cupon
