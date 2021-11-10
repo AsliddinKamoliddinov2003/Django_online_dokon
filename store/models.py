@@ -39,7 +39,6 @@ class SubCategory(TranslatableModel):
     # def __str__(self):
     #     return self.name
 
-
 # from mptt.models import MPTTModel, TreeForeignKey
 
 
@@ -88,7 +87,7 @@ class Product(TranslatableModel):
 
 
     def __str__(self):
-        return f"{self.title} - {self.price}"
+        return self.safe_translation_getter("title", any_language=True)
 
 
     def get_rating_percent(self):
