@@ -120,7 +120,7 @@
                             </div> <!-- price-wrap.// -->
                             <p class="text-muted mt-3">{{product.manufacturer}}</p>
                             <br>
-                            
+
                             <a data-original-title="Save to Wishlist"  title="" href="{% url 'add-to-wishlist' pk=product.id %}" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart" style="color: red;"></i></a> 
                             <p class="mt-3">
                                 <a href="{% url 'product-detail' slug=product.slug %}" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i>{% trans 'Purchase' %}</a>
@@ -152,11 +152,11 @@
             <div class="container">
             
             <header class="section-heading">
-                <h2 class="section-title">{% trans 'Siz qidirgan ma'lumot topilmadi!' %}</h2>
+                <h2 class="section-title">{% trans "Siz qidirgan ma'lumot topilmadi!" %}</h2>
             </header><!-- sect-heading -->
             
             <article>
-                <p>{% trans 'Iltimos ' %}<a style="color: crimson;" href="{% url 'bosh-sahifa' %}"> {% trans 'bosh sahifa ' %} </a> {% trans 'ga o'tib mahsulotni qidirishda davom eting' %} </p>
+                <p>{% trans 'Iltimos ' %}<a style="color: crimson;" href="{% url 'bosh-sahifa' %}"> {% trans 'bosh sahifa ' %} </a> {% trans "ga o'tib mahsulotni qidirishda davom eting" %} </p>
             
             
             </article>

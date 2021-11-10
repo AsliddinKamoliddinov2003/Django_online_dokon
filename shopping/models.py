@@ -125,7 +125,7 @@ class CuponGroup(models.Model):
                 cupon = Cupon(
                     code = code,
                     stock = self.stock,
-                    expires_in = self.expires_in,
+                    expires_in = self.expires_in
                 )
 
                 cupon.save()
