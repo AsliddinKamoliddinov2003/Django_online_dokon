@@ -57,8 +57,6 @@ class SubCategory(TranslatableModel):
 #         for child_kategory in kategoriya.children.all():
 #             print(child_kategory)
 
-
-
 class Product(TranslatableModel):
     class Meta:
         verbose_name = "Mahsulot"
@@ -87,6 +85,9 @@ class Product(TranslatableModel):
 
 
     def __str__(self):
+        return self.safe_translation_getter("title", any_language=True).__str__()
+    
+    def __unicode__(self):
         return self.safe_translation_getter("title", any_language=True)
 
 
@@ -106,16 +107,29 @@ class  ProductColor(TranslatableModel):
     )
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_colors",null=True)
 
+    def __str__(self):
+        return self.safe_translation_getter("name", any_language=True).__str__()
+
+    def __unicode__(self):
+        return self.safe_translation_getter("name", any_language=True)
+
 
 class ProductSize(TranslatableModel):
     translation = TranslatedFields(
         name = models.CharField(max_length=255, null=True) 
     )
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_size",null=True)
+
+    def __str__(self):
+        return self.safe_translation_getter("name", any_language=True).__str__()
+
+    def __unicode__(self):
+        return self.safe_translation_getter("name", any_language=True)
     
 
 
 class ProductImage(models.Model):
     image = models.ImageField(upload_to="images/", null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_images", null=True)
+    
 
