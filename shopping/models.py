@@ -1,3 +1,4 @@
+from django.db.models.base import Model
 from store.models import Product, SubCategory
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -50,13 +51,11 @@ class Cart(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
     
 
-class CartItem(TranslatableModel):
-    translation = TranslatedFields(
-        color = models.CharField(max_length=255, null=True)
-    )
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    size = models.CharField(max_length=255, null=True)
+class CartItem(models.Model):
+    color = models.ForeignKey(ProductColor, on_delete=models.SET_NULL, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True)
+    size = models.ForeignKey(ProductSize, on_delete=models.SET_NULL, null=True)
     quantity = models.PositiveIntegerField(default=1)
 
     reduced_price = models.FloatField(blank=True, default=0.0)
@@ -74,18 +73,16 @@ class CartItem(TranslatableModel):
         
 
     def get_color_name(self):
-        color = ProductColor.objects.filter(id=self.color).first()
-        if color:
-            return color.name
-        else:
-            None
+        if self.color:
+            return self.color.safe_translation_getter("name", any_language=True)
+        
+        return ""
 
     def get_size_name(self):
-        size = ProductSize.objects.filter(id=self.size).first()
-        if size:
-            return size.name
-        else:
-            None
+        if self.size:
+            return self.size.safe_translation_getter("name", any_language=True)
+        
+        return ""
 
     def get_price(self):
         if self.reduced_price != 0.0:

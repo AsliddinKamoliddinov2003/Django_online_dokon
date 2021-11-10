@@ -171,9 +171,8 @@
       color: document.getElementById("id_color").value
     }
     
-
+    console.log(data);
     add_to_cart(data, updateCartCount);
-
   });
 
   function add_to_cart(data, callback=null) {
@@ -188,6 +187,7 @@
     }).then(
       response => response.json()
     ).then((data) => {
+      console.log(data);
       console.log(data.cartitems_count);
         if(callback){
           callback(data);

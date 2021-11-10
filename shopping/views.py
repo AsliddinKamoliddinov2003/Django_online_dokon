@@ -6,8 +6,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.translation import gettext as _
 
-
-from store.models import Product
+from store.models import Product, ProductColor, ProductSize
 from .models import CartItem, Cupon, Wishlist
 from .utils import get_cart, get_current_utc, delete_cart
 
@@ -93,35 +92,34 @@ def cart(request):
 def add_to_cart(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        try:
-            product_id = int(data.get("product_id", None))
-            size = int(data.get("size", None))
-            color = int(data.get("color", None))
+        # try:
+        product_id = int(data.get("product_id", None))
+        size = int(data.get("size", None))
+        color = int(data.get("color", None))
 
-            cart = get_cart(request)
+        cart = get_cart(request)
+        
+        product = Product.objects.get(id=product_id)
+        cartitems = CartItem.objects.filter(cart=cart, product=product, color__id=color, size__id=size)
+
+        if color == "-1" and size == "-1":
+            pass
+
+        elif cartitems.exists(): 
+            cartitem = cartitems.first()
+            cartitem.quantity += 1  
+            cartitem.save()  
             
-            product = Product.objects.get(id=product_id)
-            cartitems = CartItem.objects.filter(cart=cart, product=product, color=color, size=size)
+        else:
+            color_obj = ProductColor.objects.get(id=color)
+            size_obj = ProductSize.objects.get(id=size)
+            cartitem = CartItem(product=product, cart=cart, color=color_obj, size=size_obj)
+            cartitem.save()
 
+        return JsonResponse({"cartitems_count": cartitem.quantity})
 
-            if color == "-1" and size == "-1":
-                pass
-
-            elif cartitems.exists():
-                cartitem = cartitems.first()
-                cartitem.quantity += 1  
-                cartitem.save()  
-                
-            else:
-                cartitem = CartItem(product=product, cart=cart, color=color, size=size)
-                cartitem.save()
-
-            return JsonResponse({"cartitems_count": cartitem.quantity})
-
-        except:
-            return JsonResponse({"error":"parsing_error"})
-                
-            
+        # except Exception as e:
+        #     return JsonResponse({"error":"parsing_error", "detail": str(e)})
 
     return JsonResponse({"oxshadi": "natija"})
 
