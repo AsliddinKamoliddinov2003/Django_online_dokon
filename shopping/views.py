@@ -92,7 +92,7 @@ def cart(request):
 def add_to_cart(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        # try:
+
         product_id = int(data.get("product_id", None))
         size = int(data.get("size", None))
         color = int(data.get("color", None))
@@ -117,9 +117,6 @@ def add_to_cart(request):
             cartitem.save()
 
         return JsonResponse({"cartitems_count": cartitem.quantity})
-
-        # except Exception as e:
-        #     return JsonResponse({"error":"parsing_error", "detail": str(e)})
 
     return JsonResponse({"oxshadi": "natija"})
 

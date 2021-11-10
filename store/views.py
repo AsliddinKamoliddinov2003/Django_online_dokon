@@ -4,6 +4,7 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext as _
 
+
 from .models import Category, Product, SubCategory
 from .utils import filter_min_max, get_paginated
 from shopping.models import CartItem, Cupon
@@ -24,8 +25,9 @@ def home(request):
 def search(request, products):
     word = request.GET.get('q',None)
     if word:
-        return products.filter(Q(title__contains=word) | Q(description__contains=word))
+        return products.filter(Q(translations__title=word) | Q(translations__description=word))
     return None
+    
 
 
 @login_required(login_url="/account/login/")
