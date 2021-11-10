@@ -24,6 +24,7 @@ class Category(TranslatableModel):
         return self.name
 
 
+
 class SubCategory(TranslatableModel):
     class Meta:
         verbose_name="Kichik kategoriya"
