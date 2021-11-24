@@ -61,8 +61,12 @@
                             </div>
                         </td>
                         <td class="text-right"> 
-                        <a data-original-title="Save to Wishlist"  title="" href="{% url 'add-to-wishlist' pk=cartitem.product.id %}" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart" style="color: red;"></i></a> 
-                        <a href="{% url 'remove-cart-item' cartitem_id=cartitem.id %}" class="btn btn-light" id="remove"> {% trans 'Remove' %} </a>
+                        {% if cartitem.product in items %}
+                            <a data-original-title="Remove to Wishlist"  title="" href="{% url 'remove-wishlist' pk=cartitem.product.id data='cart' %}" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart" style="color: red;"></i></a> 
+                        {% else %}
+                            <a data-original-title="Save to Wishlist"  title="" href="{% url 'add-to-wishlist' pk=cartitem.product.id data='cart' %}" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
+                        {% endif %}
+                        <a href="{% url 'remove-cart-item' cartitem_id=cartitem.id%}" class="btn btn-light" id="remove"> {% trans 'Remove' %} </a>
                         </td>
                     </tr>
                 {% endfor %}

@@ -121,7 +121,11 @@
                             <p class="text-muted mt-3">{{product.manufacturer}}</p>
                             <br>
 
-                            <a data-original-title="Save to Wishlist"  title="" href="{% url 'add-to-wishlist' pk=product.id %}" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart" style="color: red;"></i></a> 
+                            {% if product in items %}
+                                <a data-original-title="Save to Wishlist"  title="" href="{% url 'remove-wishlist' pk=product.id data='store-page' %}" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart" style="color: red;"></i></a> 
+                            {% else %}
+                                <a data-original-title="Save to Wishlist"  title="" href="{% url 'add-to-wishlist' pk=product.id data='store-page' %}" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
+                            {% endif %}
                             <p class="mt-3">
                                 <a href="{% url 'product-detail' slug=product.slug %}" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i>{% trans 'Purchase' %}</a>
                             </p>
@@ -134,11 +138,7 @@
 
         <nav class="mb-4" aria-label="Page navigation sample">
             <ul class="pagination">
-
-
                 <li class="page-item {% if not products.has_previous %}disabled{% endif %}"><a class="page-link" href="{% if  products.has_previous %}{% if request|has_query_string  %}{{request.get_full_path}}&{% else %}?{% endif %}page={{products.previous_page_number}}{% endif %}">{% trans 'Previous' %}</a></li>
-
-
                 {% for page_num in pages.page_range %}
                     <li class="page-item {% if page_num == products.number %}active{% endif %}"><a class="page-link" href="{% if request|has_query_string  %}{{request.get_full_path}}&{% else %}?{% endif %}page={{page_num}}">{{page_num}}</a></li>
                 {% endfor %}

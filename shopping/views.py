@@ -121,14 +121,14 @@ def add_to_cart(request):
     return JsonResponse({"oxshadi": "natija"})
 
 
-def add_to_wishlist(request, pk):
+def add_to_wishlist(request, pk, data):
     product = Product.objects.get(id=pk)
     wishlist = Wishlist.objects.filter(user=request.user, product=product)
     if not wishlist.exists():
         wishlist = Wishlist(user=request.user, product=product)
         wishlist.save()
 
-    return redirect(reverse("cart"))
+    return redirect(reverse(data))
 
 
 def wishlist_items(request):
@@ -139,13 +139,21 @@ def wishlist_items(request):
     return render(request, "shopping/wishlist.html", context)
 
 
-def remove_wishlist(request, pk):
+def remove_wishlist(request, pk, data):
+    product=Product.objects.get(id=pk)
+    wishlist_i = Wishlist.objects.filter(user=request.user, product=product)
     try:
-        wishlist = Wishlist.objects.filter(id=pk)
-        wishlist.delete()
-    except Wishlist.DoesNotExist:
-        pass
-    return redirect(reverse("wishlist"))
+        print("ochdi")
+        wishlist_i.delete()
+    except:
+        print("pishdi")
+    
+    # try:
+    #     wishlist = Wishlist.objects.filter(id=pk)
+    #     wishlist.delete()
+    # except Wishlist.DoesNotExist:
+    #     pass
+    return redirect(reverse(data))
 
 
 

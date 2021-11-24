@@ -51,7 +51,7 @@
 											<a href="{% url 'product-detail' slug=item.product.slug %}" class="title">{{item.product.title}}</a>
 											<p class="price mb-2">{{item.product.price}} so'm</p>
 											<a href="{% url 'cart' %}" class="btn btn-secondary btn-sm"> {% trans 'cart' %} </a>
-											<a href="{% url 'remove-wishlist' pk=item.id %}" class="btn btn-danger btn-sm" data-toggle="tooltip" title=""
+											<a href="{% url 'remove-wishlist' pk=item.product.id data='wishlist' %}" class="btn btn-danger btn-sm" data-toggle="tooltip" title=""
 												data-original-title="Remove from wishlist"> <i class="fa fa-times"></i>
 											</a>
 										</figcaption>
