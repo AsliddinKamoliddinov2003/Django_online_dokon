@@ -4,8 +4,6 @@ from shopping.models import  Wishlist
 from django.contrib.auth.decorators import login_required
 
 
-
-
 def category(request):
     categories = Category.objects.all()
     subcategories = SubCategory.objects.all()
@@ -21,13 +19,14 @@ def category(request):
         "cartitems_amount":amount,
     } 
 
+
 @login_required(login_url="/account/login/")
 def user_auth(request):
     wishlist_items = Wishlist.objects.filter(user=request.user)
 
     items = []
     for wi in wishlist_items:
-        items = str(items.append(wi.product))
+        items.append(wi.product)
 
     return {
         "items":items,
