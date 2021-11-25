@@ -3,7 +3,6 @@ from .views import *
 
 
 urlpatterns=[
-
     path("add-cart-item/<int:cartitem_id>/", add_cart_item, name="add-cart-item"),
     path("subtract-cart-item/<int:cartitem_id>/",subtract_cart_item, name="subtract-cart-item"),
     path("remove-cart-item/<int:cartitem_id>/",remove_cart_item, name="remove-cart-item"),
@@ -12,6 +11,4 @@ urlpatterns=[
     path("wishlist/<int:pk>/<str:data>/", add_to_wishlist, name="add-to-wishlist"),
     path("wishlist/", wishlist_items, name="wishlist"),
     path("remove-wishlist/<int:pk>/<str:data>/", remove_wishlist, name="remove-wishlist"),
-    # path("cart/remove/<int:cartitem_id>/", remove, name="remove")
-
 ]
