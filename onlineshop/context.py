@@ -26,7 +26,7 @@ def user_auth(request):
 
     items = []
     for wi in wishlist_items:
-        dict(items.append(wi.product))
+        items.append(wi.product)
 
     return {
         "items":items,
