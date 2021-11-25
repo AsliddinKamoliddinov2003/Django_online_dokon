@@ -1,9 +1,8 @@
-from shopping.views import wishlist_items
 from store.models import Category,SubCategory,Product
 from shopping.utils import get_cartitems_count
-from shopping.models import Cupon, Wishlist
-from accounts.models import User 
+from shopping.models import  Wishlist
 from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -33,4 +32,4 @@ def user_auth(request):
     return {
         "items":items,
     }
-    
+
