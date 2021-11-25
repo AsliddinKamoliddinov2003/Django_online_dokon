@@ -1,10 +1,10 @@
 import json
-from django.core.checks import messages
-from django.db import models
-from django.http.response import HttpResponse, JsonResponse
+from django.http.response import  JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.translation import gettext as _
+from django.contrib.auth.decorators import login_required
+
 
 from store.models import Product, ProductColor, ProductSize
 from .models import CartItem, Cupon, Wishlist
@@ -121,6 +121,7 @@ def add_to_cart(request):
     return JsonResponse({"oxshadi": "natija"})
 
 
+@login_required(login_url="/account/login/")
 def add_to_wishlist(request, pk, data):
     product = Product.objects.get(id=pk)
     wishlist = Wishlist.objects.filter(user=request.user, product=product)
@@ -131,6 +132,7 @@ def add_to_wishlist(request, pk, data):
     return redirect(reverse(data))
 
 
+@login_required(login_url="/account/login/")
 def wishlist_items(request):
     items = Wishlist.objects.filter(user=request.user)
     context = {
@@ -139,21 +141,23 @@ def wishlist_items(request):
     return render(request, "shopping/wishlist.html", context)
 
 
+@login_required(login_url="/account/login/")
 def remove_wishlist(request, pk, data):
     product=Product.objects.get(id=pk)
     wishlist_i = Wishlist.objects.filter(user=request.user, product=product)
     try:
-        print("ochdi")
         wishlist_i.delete()
     except:
-        print("pishdi")
+        pass
+    
+    return redirect(reverse(data))
+
     
     # try:
     #     wishlist = Wishlist.objects.filter(id=pk)
     #     wishlist.delete()
     # except Wishlist.DoesNotExist:
     #     pass
-    return redirect(reverse(data))
 
 
 
