@@ -11,6 +11,7 @@ from .models import CartItem, Cupon, Wishlist
 from .utils import get_cart, get_current_utc, delete_cart
 
 
+@login_required(login_url="/account/login/")
 def add_cart_item(request,cartitem_id):
     try:
         cartitem = CartItem.objects.get(id=cartitem_id)
@@ -22,6 +23,7 @@ def add_cart_item(request,cartitem_id):
     return redirect(reverse("cart"))
 
 
+@login_required(login_url="/account/login/")
 def subtract_cart_item(request,cartitem_id):
     try:
         cartitem = CartItem.objects.get(id=cartitem_id)
@@ -40,6 +42,7 @@ def subtract_cart_item(request,cartitem_id):
     return redirect(reverse("cart"))
 
 
+@login_required(login_url="/account/login/")
 def remove_cart_item(request, cartitem_id):
     try:
         cartitem = CartItem.objects.get(id = int(cartitem_id))
@@ -51,6 +54,7 @@ def remove_cart_item(request, cartitem_id):
     return redirect(reverse("cart"))
 
 
+@login_required(login_url="/account/login/")
 def cart(request):
 
     context = {}
@@ -89,6 +93,7 @@ def cart(request):
     return render(request, "shopping/cart.html", context)
                    
 
+@login_required(login_url="/account/login/")
 def add_to_cart(request):
     if request.method == "POST":
         data = json.loads(request.body)
@@ -121,6 +126,7 @@ def add_to_cart(request):
     return JsonResponse({"oxshadi": "natija"})
 
 
+@login_required(login_url="/account/login/")
 def add_to_wishlist(request, pk, data):
     product = Product.objects.get(id=pk)
     wishlist = Wishlist.objects.filter(user=request.user, product=product)
@@ -131,6 +137,7 @@ def add_to_wishlist(request, pk, data):
     return redirect(reverse(data))
 
 
+@login_required(login_url="/account/login/")
 def wishlist_items(request):
     items = Wishlist.objects.filter(user=request.user)
     context = {
@@ -139,6 +146,7 @@ def wishlist_items(request):
     return render(request, "shopping/wishlist.html", context)
 
 
+@login_required(login_url="/account/login/")
 def remove_wishlist(request, pk, data):
     product=Product.objects.get(id=pk)
     wishlist_i = Wishlist.objects.filter(user=request.user, product=product)
