@@ -36,6 +36,7 @@ class ProductSizeStackedAdmin(TranslatableStackedInline):
 class ProductAdmin(TranslatableAdmin, SlugableAdmin):
     list_display=["id", "title", "price", "rating", "sub_category", "is_active"]
     list_display_links=["title"]
+    list_editable = ["price", "rating", "is_active"]
     search_fields=["title","description"]
 
     inlines = [ProductImageAdmin,ProductColorStackedAdmin,ProductSizeStackedAdmin]

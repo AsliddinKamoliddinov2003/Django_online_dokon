@@ -33,7 +33,7 @@ def login_account(request):
             user = authenticate(request, email=email, password=password)
 
             if user:
-                login(request, user)
+                login(request, user=user)
                 next_page = request.GET.get("next", None)
                 if next_page:
                     return redirect(next_page)
