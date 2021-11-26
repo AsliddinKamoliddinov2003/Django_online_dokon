@@ -69,9 +69,7 @@ class CartItem(models.Model):
             return self.reduced_price * self.quantity
         else:
             return self.product.price * self.quantity
-
-        
-
+       
     def get_color_name(self):
         if self.color:
             return self.color.safe_translation_getter("name", any_language=True)

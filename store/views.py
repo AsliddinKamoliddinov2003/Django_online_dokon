@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext as _
 
 from .models import Category, Product, SubCategory
-from .utils import filter_min_max, get_paginated
+from .utils import filter_min_max, get_paginated, condition_filter
 from shopping.models import CartItem, Cupon
 from shopping.utils import get_cart
 
@@ -32,6 +32,7 @@ def search(request, products):
 @login_required(login_url="/account/login/")
 def store(request):
     products = Product.objects.all()
+    products = condition_filter(request)
 
     if search(request, products):
         products=search(request,products)
@@ -50,6 +51,7 @@ def store(request):
 def category_products(request,category_slug):
     category = get_object_or_404(Category, slug=category_slug)
     products = Product.objects.filter(sub_category__category=category)
+    products = condition_filter(request)
     products=filter_min_max(request,products)
 
     if search(request, products):

@@ -56,6 +56,36 @@
                                 <input class="form-control" name="max"  placeholder="{{max_price.price}} so'm " id="max-price" type="number" value="{{request.GET.max}}">
                             </div>
                         </div> <!-- form-row.// -->
+                        
+                        <article class="filter-group">
+                            <h6 class="title">
+                                <a href="#" class="dropdown-toggle" data-toggle="collapse"
+                                    data-target="#collapse_5">
+                                    Holati </a>
+                            </h6>
+                            <div class="filter-content collapse show" id="collapse_5">
+                                <div class="inner">
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" name="holat"
+                                            class="custom-control-input" value="1">
+                                        <div class="custom-control-label"> yangi </div>
+                                    </label>
+
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" name="holat"
+                                            class="custom-control-input" value="2">
+                                        <div class="custom-control-label"> ishlatilgan </div>
+                                    </label>
+
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" name="holat"
+                                            class="custom-control-input" value="3">
+                                        <div class="custom-control-label"> bepul </div>
+                                    </label>
+                                </div> <!-- inner.// -->
+                            </div>
+                        </article> <!-- filter-group .// -->
+                        <br>
                         <span class="text text-danger" id="warning-text" style="display: none;">{% trans "Qiymatlar oralig'i xato" %}</span>
                         <button class="btn btn-block btn-primary"> {% trans 'Filter qilish ' %}</button>
                     </div> <!-- inner.// -->

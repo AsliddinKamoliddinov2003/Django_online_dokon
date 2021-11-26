@@ -91,6 +91,7 @@ def cart(request):
     context["cartitems"] = cartitems
     print(cartitems)
     return render(request, "shopping/cart.html", context)
+
                    
 
 @login_required(login_url="/account/login/")

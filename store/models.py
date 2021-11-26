@@ -73,6 +73,12 @@ class Product(TranslatableModel):
         description = models.TextField(null=True)
     )
 
+    CONDITION = {
+        ("1", "yangi"),
+        ("2", "ishlatilgan"),
+        ("3", "bepul")
+    }
+    condition = models.CharField(choices=CONDITION, max_length=10, default="1", null=True)
     price = models.FloatField()
     old_price = models.FloatField(null=True)
     manufacturer = models.CharField(max_length=255, null=True)

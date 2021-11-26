@@ -1,7 +1,9 @@
 from store.models import Category,SubCategory,Product
 from shopping.utils import get_cartitems_count
-from shopping.models import  Wishlist
+from shopping.models import  Wishlist, CartItem
 from django.contrib.auth.decorators import login_required
+
+from shopping.utils import get_cart
 
 
 def category(request):
@@ -30,5 +32,17 @@ def user_auth(request):
 
     return {
         "items":items,
+    }
+
+
+def all_price(request):
+    cart = get_cart(request)
+    cartitems = CartItem.objects.filter(cart=cart)
+    price_all = 0
+    for cartitem in cartitems:
+        price_all += ( cartitem.product.price * cartitem.quantity)
+ 
+    return {
+        "price_all":price_all
     }
 

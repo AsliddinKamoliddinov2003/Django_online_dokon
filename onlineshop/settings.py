@@ -69,6 +69,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'onlineshop.context.category',
                 'onlineshop.context.user_auth',
+                'onlineshop.context.all_price',
             ],
         },
     },

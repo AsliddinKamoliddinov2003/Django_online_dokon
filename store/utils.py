@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator
+from .models import Product
 
 
 
@@ -32,4 +33,16 @@ def get_paginated(request, items, number):
     }
 
     return paginated
+
+
+def condition_filter(request):
+    holat = request.GET.get('holat',None)
+    if holat:
+        products = Product.objects.filter(condition=holat)
+        products = filter_min_max(request, products)
+    else:
+        products = Product.objects.all()
+        products = filter_min_max(request, products) 
+
+    return products
 
