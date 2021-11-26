@@ -51,7 +51,6 @@ def store(request):
 def category_products(request,category_slug):
     category = get_object_or_404(Category, slug=category_slug)
     products = Product.objects.filter(sub_category__category=category)
-    products = condition_filter(request)
     products=filter_min_max(request,products)
 
     if search(request, products):
