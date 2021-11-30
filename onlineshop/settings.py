@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'shopping',
     'accounts',
     'simpleforms',
-    'intl',
+    'profileapp',
 ]
 
 MIDDLEWARE = [

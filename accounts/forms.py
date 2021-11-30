@@ -43,8 +43,3 @@ class UserLoginForm(forms.Form):
             self.fields[field].widget.attrs["class"] = "form-control"
             self.fields[field].widget.attrs["autocomplate"] = "off"
             self.fields[field].widget.attrs["placeholder"] = f"Your {field}"
-    
-
-
-
-   

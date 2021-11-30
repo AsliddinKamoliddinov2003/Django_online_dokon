@@ -56,16 +56,13 @@ def remove_cart_item(request, cartitem_id):
 
 @login_required(login_url="/account/login/")
 def cart(request):
-
     context = {}
-
     cart = get_cart(request)
     cartitems = CartItem.objects.filter(cart=cart)
-    
     if request.method=="POST":
         cupon_code = request.POST.get("cupon-code", None)
         if cupon_code:
-            cupons = Cupon.objects.filter(code=cupon_code)
+            cupons = Cupon.objects.filter(code=cupon_code, is_used=False)
             if not cupons.exists():
                 context["cupon_message"] = "The cupon code doesn't exist"
             else:

@@ -2,16 +2,17 @@ from accounts.forms import UserRegisterForm, UserLoginForm
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 
 from .models import User
-
 
 
 
 def register_account(request):
     form = UserRegisterForm()
 
-    if request.method=="POST":
+    if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
@@ -39,9 +40,8 @@ def login_account(request):
                     return redirect(next_page)
                 else:
                     return redirect(reverse("store-page"))
-        
            
     context = {
-        "form":form
+        "form": form
     }
     return render(request, "account/login.html", context)

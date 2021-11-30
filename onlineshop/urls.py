@@ -8,12 +8,12 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
-    path("", include("store.urls")),
-    path("", include("shopping.urls")),
     path("account/", include("accounts.urls")),
     path("simpleforms/", include("simpleforms.urls")),
-    path("", include("intl.urls")),
-
+    path("", include("store.urls")),
+    path("", include("shopping.urls")),
+    path("profile/", include("profileapp.urls")),
+    
  ) + static(settings.STATIC_URL,document_root=settings.STATIC_ROOT) \
     + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
     

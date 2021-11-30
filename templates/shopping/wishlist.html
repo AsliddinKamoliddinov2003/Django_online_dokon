@@ -42,8 +42,8 @@
 
 					<article class="card">
 						<div class="card-body">
-							{% for item in items %}
 							<div class="row">
+								{% for item in items %}
 								<div class="col-md-6">
 									<figure class="itemside mb-4">
 										<div class="aside"><img src="{% get_media_prefix %}{{item.product.image}}" class="border img-md"></div>
@@ -57,8 +57,8 @@
 										</figcaption>
 									</figure>
 								</div> <!-- col.// -->
+								{% endfor %}
 							</div> <!-- row .//  -->
-							{% endfor %}
 
 						</div> <!-- card-body.// -->
 					</article>

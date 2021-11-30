@@ -94,7 +94,7 @@ class Cupon(models.Model):
     stock = models.FloatField()
     expires_in = models.DateTimeField()
     category = models.ManyToManyField(SubCategory)
-    is_used = models.BooleanField(default=False, null=True)
+    is_used = models.BooleanField(default=False)
 
 
     def __str__(self):

@@ -1,0 +1,90 @@
+{% extends "profile/base.html" %}
+{% load static %}
+{% block content %}
+<body>
+
+
+<!-- REMOVE FOLLOWING LINK -->
+<a href="http://bootstrap-ecommerce.com/page-themes.html" class="btn btn-dark rounded-pill" style="font-size:13px; z-index:100; position: fixed; bottom:10px; right:10px;">Download theme</a>
+<!-- REMOVE  //END -->
+
+{% include 'profile/header.html' %}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+<div class="container">
+
+<div class="row">
+	{% include 'profile/links.html' %}
+	<main class="col-md-9">
+
+	<div class="card">
+      <div class="card-body">
+     <form class="row">
+     	<div class="col-md-9">
+     		<div class="form-row">
+				<div class="col form-group">
+					<label>Name</label>
+				  	<input type="text" class="form-control" value="Vosidiy">
+				</div> <!-- form-group end.// -->
+				<div class="col form-group">
+					<label>Email</label>
+				  	<input type="email" class="form-control" value="vosidiy@gmail.com">
+				</div> <!-- form-group end.// -->
+			</div> <!-- form-row.// -->
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+				  <label>Country</label>
+				  <select id="inputState" class="form-control">
+				    <option> Choose...</option>
+				      <option>Uzbekistan</option>
+				      <option>Russia</option>
+				      <option selected="">United States</option>
+				      <option>India</option>
+				      <option>Afganistan</option>
+				  </select>
+				</div> <!-- form-group end.// -->
+				<div class="form-group col-md-6">
+				  <label>City</label>
+				  <input type="text" class="form-control">
+				</div> <!-- form-group end.// -->
+			</div> <!-- form-row.// -->
+
+			<div class="form-row">
+				<div class="form-group col-md-6">
+				  <label>Zip</label>
+				  <input type="text" class="form-control" value="123009">
+				</div> <!-- form-group end.// -->
+				<div class="form-group col-md-6">
+				  <label>Phone</label>
+				  <input type="text" class="form-control" value="+123456789">
+				</div> <!-- form-group end.// -->
+			</div> <!-- form-row.// -->
+
+			<button class="btn btn-primary">Save</button>	
+			<button class="btn btn-light">Change password</button>	
+
+			<br><br><br><br><br><br>
+
+     	</div> <!-- col.// -->
+     	<div class="col-md">
+     		<img src="{% static 'images/avatars/avatar1.jpg' %}" class="img-md rounded-circle border">
+     	</div>  <!-- col.// -->
+      </form>
+      </div> <!-- card-body.// -->
+    </div> <!-- card .// -->
+
+
+
+	</main> <!-- col.// -->
+</div>
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{%  include 'profile/footer.html' %}
+
+</body>
+{% endblock content %}

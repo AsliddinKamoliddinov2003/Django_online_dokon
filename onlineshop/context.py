@@ -18,20 +18,21 @@ def category(request):
         "subcategories":subcategories,
         "daily_products":daily_products,
         "max_price": max_price,
-        "cartitems_amount":amount,
-    } 
+        "cartitems_amount":amount
+    }
 
 
-@login_required(login_url="/account/login/")
 def user_auth(request):
-    wishlist_items = Wishlist.objects.filter(user=request.user)
+    items = None
+    if request.user.is_authenticated:
+        wishlist_items = Wishlist.objects.filter(user=request.user)
 
-    items = []
-    for wi in wishlist_items:
-        items.append(wi.product)
+        items = []
+        for wi in wishlist_items:
+            items.append(wi.product)
 
     return {
-        "items":items,
+        "items": items or []
     }
 
 

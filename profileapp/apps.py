@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class IntlConfig(AppConfig):
+class ProfileappConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'intl'
+    name = 'profileapp'
