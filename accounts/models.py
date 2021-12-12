@@ -46,6 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     objects = UserManager()
 
+
     def has_perm(self, obj):
         return self.is_admin
 

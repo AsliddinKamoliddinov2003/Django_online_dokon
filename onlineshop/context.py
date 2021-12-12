@@ -1,9 +1,11 @@
 from store.models import Category,SubCategory,Product
 from shopping.utils import get_cartitems_count
 from shopping.models import  Wishlist, CartItem
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate
 
 from shopping.utils import get_cart
+from accounts.models import User
+
 
 
 def category(request):
@@ -46,4 +48,5 @@ def all_price(request):
     return {
         "price_all":price_all
     }
+
 

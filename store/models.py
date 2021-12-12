@@ -112,7 +112,7 @@ class Product(TranslatableModel):
         return time_delta.seconds < 86400
 
 
-
+        
 class  ProductColor(TranslatableModel):
     translation = TranslatedFields(
         name = models.CharField(max_length=255, null=True)   
