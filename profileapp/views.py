@@ -1,36 +1,47 @@
 from django.db import connection
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from .models import *
 from .forms import *
-from accounts.models import User
 
 
 def account_view(request):
     return render(request, 'profile/account.html')
 
 
+@login_required(login_url="/account/login/")
 def settings_view(request):
-    client = ClientProfile.objects.first()
+    client = ClientProfile.objects.get(account=request.user)
     user = request.user
     if not client:
-        print("1")
         form = ClientForm()
         if request.method == "POST":
             form = ClientForm(request.POST, request.FILES)
             if form.is_valid():
                 form.save()
-                print("saqladi")    
+                form_data = form.cleaned_data
+                try:
+                    user.first_name=form_data['first_name']
+                    user.last_name=form_data['last_name']
+                    user.email=form_data['email']
+                    user.save()
+                except:
+                    pass
     else:
         form = ClientForm(instance=client)
-        print("2")
         if request.method == "POST":
             form = ClientForm(request.POST, request.FILES, instance=client)
             if form.is_valid():
-                c = ClientProfile.objects.first()
-                u = User.objects.first()
                 form.save()
-                print("saqladi2")
+                form_data = form.cleaned_data
+                try:
+                    user.first_name=form_data['first_name']
+                    user.last_name=form_data['last_name']
+                    user.email=form_data['email']
+                    user.save()
+                except:
+                    pass
 
     context = {
         "form":form,

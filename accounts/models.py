@@ -20,17 +20,15 @@ class UserManager(UserManager):
         return user
 
 
-
-
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.CharField(max_length=255,unique=True, null=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
 
-    GENDERS = {
+    GENDERS = [
         ("m", "male"),
         ("f", "female")
-    }
+    ]
     gender = models.CharField(choices=GENDERS, max_length=10, default="m", null=True)
 
     is_active = models.BooleanField(default=True)

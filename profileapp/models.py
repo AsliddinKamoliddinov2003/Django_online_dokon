@@ -3,6 +3,7 @@ from accounts.models import User
 
 
 class ClientProfile(models.Model):
+    account = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     first_name = models.CharField(max_length=255, null=True)
     last_name = models.CharField(max_length=255, null=True)
     email = models.EmailField(null=True)
@@ -17,7 +18,7 @@ class ClientProfile(models.Model):
 
 
 class Address(models.Model):
-    client = models.ForeignKey(User, on_delete=models.CASCADE, related_name="address")
+    client = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     country = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     street = models.CharField(max_length=255)

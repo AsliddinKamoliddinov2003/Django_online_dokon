@@ -77,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'onlineshop.wsgi.application'
 
-AUTH_USER_MODEL = 'accounts.User'
 
 
 # Database
