@@ -18,16 +18,17 @@ class ClientProfile(models.Model):
 
 
 class Address(models.Model):
-    client = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     country = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     street = models.CharField(max_length=255)
     building = models.CharField(max_length=255)
     floor = models.PositiveIntegerField()
     appertment = models.PositiveIntegerField()
+    status = models.BooleanField(default=True)
 
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return self.client.first_name
+    # def __str__(self):
+    #     return self.client.first_name

@@ -55,8 +55,9 @@
 
 									</div> <!-- col.// -->
 									<div class="col-md">
-										<img src="{% get_media_prefix %}{{form.image}}"
+										<img src="{{form.image.url}}"
 											class="img-md rounded-circle border">
+											{{form.image}}
 									</div> <!-- col.// -->
 								{% else %}
 									<div class="col-md-9">
@@ -90,6 +91,7 @@
 									</div> <!-- col.// -->
 									<div class="col-md">
 										<img class="img-md rounded-circle border" src="{{client.image.url}}">{{form.image}}
+									</div>
 								{% endif %}
 							</form>
 						</div> <!-- card-body.// -->
