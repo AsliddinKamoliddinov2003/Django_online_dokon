@@ -10,6 +10,8 @@ from shopping.models import CartItem, Cupon
 from shopping.utils import get_cart
 
 
+
+
 def home(request):
     products=Product.objects.filter().order_by("-rating")[:12]
  
@@ -40,7 +42,7 @@ def store(request):
         "word": products
         }
 
-    return render(request, "store/store.html",context)
+    return render(request, "store/store.html", context)
     
 
 def category_products(request,category_slug):
@@ -68,8 +70,7 @@ def sub_category_products(request,category_slug,sub_category_slug):
     products=filter_min_max(request,products)
 
     if search(request, products):
-        products=search(request,products)
-        
+        products=search(request,products)      
     
     paginated = get_paginated(request, products, 3)
 

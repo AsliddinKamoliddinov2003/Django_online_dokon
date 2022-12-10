@@ -3,8 +3,12 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
+from shopping.models import CartItem, Cart
+
 from .models import *
 from .forms import *
+from shopping.utils import get_cart
+from .utils import *
 
 
 def account_view(request):
@@ -69,6 +73,7 @@ def adress_view(request):
     return render(request, 'profile/address.html', context)
 
 
+@login_required(login_url="/account/login/")
 def add_adress_view(request):
     form = AdressForm()
     if request.method == "POST":
@@ -88,6 +93,7 @@ def add_adress_view(request):
             adres.country = form_data['country']
             adres.building = form_data['building']
             adres.appertment = form_data['appertment']
+            adres.pochta_code = form_data['pochta_code']
             adres.save()
             return redirect(reverse("adress-view"))
 
@@ -152,5 +158,31 @@ def selling_view(request):
     return render(request, 'profile/sellings.html')
 
 
+@login_required(login_url="/account/login/")
 def order_view(request):
+    cart = get_cart(request)
+    adress = Address.objects.filter(status=True)
+    order = Order()
+    account = ClientProfile()
+    if request.user.is_authenticated and  not adress.exists():
+        return redirect(reverse("add-adress-view"))
+    else:
+        order.ip = get_ip_address(request)
+    order.is_ordered = True
+    order.order_number = generate_order_number(cart)
+    order.client = request.user
+    order.save()
+    cartitems = CartItem.objects.filter(cart=cart)
+    for cartitem in cartitems:
+        order = OrderProduct(order=order, product=cartitem.product, quantity=cartitem.quantity)
+        order.save()   
+        print("ishladi1")
+        cartitems.delete()
+        print("ishladi2")
+    # orderitems = OrderProduct.objects.filter(order=order)
+    # context = {
+    #     "orderitems":orderitems
+    # }
+    
     return render(request, 'profile/orders.html')
+

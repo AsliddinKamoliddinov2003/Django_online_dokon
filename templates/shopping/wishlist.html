@@ -19,17 +19,7 @@
 		<div class="container">
 
 			<div class="row">
-				<aside class="col-md-3">
-					<nav class="list-group">
-						<a class="list-group-item" href=""> {% trans 'Account overview' %} </a>
-						<a class="list-group-item" href=""> {% trans 'My Address' %} </a>
-						<a class="list-group-item" href=""> {% trans 'My Orders' %} </a>
-						<a class="list-group-item active" href=""> {% trans 'My wishlist' %} </a>
-						<a class="list-group-item" href=""> {% trans 'My Selling Items' %} </a>
-						<a class="list-group-item" href=""> {% trans 'Settings' %} </a>
-						<a class="list-group-item" href=""> {% trans 'Log out' %} </a>
-					</nav>
-				</aside> <!-- col.// -->
+				{% include 'profile/links.html' %}
 				<main class="col-md-9">
 
 					<article class="card">

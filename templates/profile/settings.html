@@ -1,112 +1,139 @@
-{% extends "profile/base.html" %}
-{% load static %}
-{% block content %}
+{% extends "profile/base.html" %} {% load static %} {% block content %}
 
 <body>
 
 
-	<!-- REMOVE FOLLOWING LINK -->
-	<a href="http://bootstrap-ecommerce.com/page-themes.html" class="btn btn-dark rounded-pill"
-		style="font-size:13px; z-index:100; position: fixed; bottom:10px; right:10px;">Download theme</a>
-	<!-- REMOVE  //END -->
+    <!-- REMOVE FOLLOWING LINK -->
+    <a href="http://bootstrap-ecommerce.com/page-themes.html" class="btn btn-dark rounded-pill" style="font-size:13px; z-index:100; position: fixed; bottom:10px; right:10px;">Download theme</a>
+    <!-- REMOVE  //END -->
 
-	{% include 'profile/header.html' %}
+    {% include 'profile/header.html' %}
 
-	<!-- ========================= SECTION CONTENT ========================= -->
-	<section class="section-content padding-y">
-		<div class="container">
+    <!-- ========================= SECTION CONTENT ========================= -->
+    <section class="section-content padding-y">
+        <div class="container">
 
-			<div class="row">
-				{% include 'profile/links.html' %}
-				<main class="col-md-9">
+            <div class="row">
+                {% include 'profile/links.html' %}
+                <main class="col-md-9">
 
-					<div class="card">
-						<div class="card-body">
-							<form class="row" method="post" enctype="multipart/form-data">
-								{% csrf_token %}
-								{% if not client %}
-									<div class="col-md-9">
-										<div class="form-row">
-											<div class="form-group col-md-6">
-												<label>First name</label>
-												<input type="text" name="first_name" class="form-control" value="{{user.first_name}}">
-											</div> <!-- form-group end.// -->
-											<div class="form-group col-md-6">
-												<label>Last name</label>
-												<input type="text" name="last_name" class="form-control" value="{{user.last_name}}">
-											</div> <!-- form-group end.// -->
-										</div> <!-- form-row.// -->
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="row" method="post" enctype="multipart/form-data">
+                                {% csrf_token %} {% if not client %}
+                                <div class="col-md-9">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>First name</label>
+                                            <input type="text" name="first_name" class="form-control" value="{{user.first_name}}">
+                                        </div>
+                                        <!-- form-group end.// -->
+                                        <div class="form-group col-md-6">
+                                            <label>Last name</label>
+                                            <input type="text" name="last_name" class="form-control" value="{{user.last_name}}">
+                                        </div>
+                                        <!-- form-group end.// -->
+                                    </div>
+                                    <!-- form-row.// -->
 
-										<div class="form-row">
-											<div class="form-group col-md-6">
-												<label>Email</label>
-												<input type="text" name="email" class="form-control" value="{{user.email}}">
-											</div> <!-- form-group end.// -->
-											<div class="col form-group">
-												<label>{{form.phone_number.label}}</label>
-												{{form.phone_number}}
-											</div>
-										</div> <!-- form-row.// -->
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Email</label>
+                                            <input type="text" name="email" class="form-control" value="{{user.email}}">
+                                        </div>
+                                        <!-- form-group end.// -->
+                                        <div class="col form-group">
+                                            <label>{{form.phone_number.label}}</label> {{form.phone_number}}
+                                        </div>
+                                    </div>
+                                    <!-- form-row.// -->
 
-										<button class="btn btn-primary">Save</button>
-										<button class="btn btn-light">Change password</button>
+                                    <div class="form-row">
+                                        <div class="col form-group">
+                                            <label></label>
 
-										<br><br><br><br><br><br>
+                                        </div>
+                                        <div class="col form-group">
+                                            <label></label>
 
-									</div> <!-- col.// -->
-									<div class="col-md">
-										<img src="{{form.image.url}}"
-											class="img-md rounded-circle border">
-											{{form.image}}
-									</div> <!-- col.// -->
-								{% else %}
-									<div class="col-md-9">
-										<div class="form-row">
-											<div class="col form-group">
-												<label>{{form.first_name.label}}</label>
-												{{form.first_name}}
-											</div>
-											<div class="col form-group">
-												<label>{{form.last_name.label}}</label>
-												{{form.last_name}}
-											</div>
-										</div> <!-- form-row.// -->
+                                        </div>
+                                    </div>
+                                    <!-- form-row.// -->
 
-										<div class="form-row">
-											<div class="col form-group">
-												<label>{{form.email.label}}</label>
-												{{form.email}}
-											</div>
-											<div class="col form-group">
-												<label>{{form.phone_number.label}}</label>
-												{{form.phone_number}}
-											</div>
-										</div> <!-- form-row.// -->
+                                    <button class="btn btn-primary">Save</button>
+                                    <button class="btn btn-light">Change password</button>
 
-										<button class="btn btn-primary">Save</button>
-										<button class="btn btn-light">Change password</button>
+                                    <br><br><br><br><br><br>
 
-										<br><br><br><br><br><br>
+                                </div>
+                                <!-- col.// -->
+                                <div class="col-md">
+                                    <img src="{{form.image.url}}" class="img-md rounded-circle border"> {{form.image}}
+                                </div>
+                                <!-- col.// -->
+                                {% else %}
+                                <div class="col-md-9">
+                                    <div class="form-row">
+                                        <div class="col form-group">
+                                            <label>{{form.first_name.label}}</label> {{form.first_name}}
+                                        </div>
+                                        <div class="col form-group">
+                                            <label>{{form.last_name.label}}</label> {{form.last_name}}
+                                        </div>
+                                    </div>
+                                    <!-- form-row.// -->
 
-									</div> <!-- col.// -->
-									<div class="col-md">
-										<img class="img-md rounded-circle border" src="{{client.image.url}}">{{form.image}}
-									</div>
-								{% endif %}
-							</form>
-						</div> <!-- card-body.// -->
-					</div> <!-- card .// -->
+                                    <div class="form-row">
+                                        <div class="col form-group">
+                                            <label>{{form.email.label}}</label> {{form.email}}
+                                        </div>
+                                        <div class="col form-group">
+                                            <label>{{form.phone_number.label}}</label> {{form.phone_number}}
+                                        </div>
+                                    </div>
+                                    <!-- form-row.// -->
+
+                                    <div class="form-row">
+                                        <div class="col form-group">
+                                            <label></label>
+
+                                        </div>
+                                        <div class="col form-group">
+                                            <label></label>
+
+                                        </div>
+                                    </div>
+                                    <!-- form-row.// -->
+
+                                    <button class="btn btn-primary">Save</button>
+                                    <button class="btn btn-light">Change password</button>
+
+                                    <br><br><br><br><br><br>
+
+                                </div>
+                                <!-- col.// -->
+                                <div class="col-md">
+                                    <img class="img-md rounded-circle border" src="{{client.image.url}}">{{form.image}}
+                                </div>
+                                {% endif %}
+                            </form>
+                        </div>
+                        <!-- card-body.// -->
+                    </div>
+                    <!-- card .// -->
 
 
 
-				</main> <!-- col.// -->
-			</div>
+                </main>
+                <!-- col.// -->
+            </div>
 
-		</div> <!-- container .//  -->
-	</section>
-	<!-- ========================= SECTION CONTENT END// ========================= -->
+        </div>
+        <!-- container .//  -->
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
 
-	{% include 'profile/footer.html' %}
+    {% include 'profile/footer.html' %}
 
 </body>
 {% endblock content %}

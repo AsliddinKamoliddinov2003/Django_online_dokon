@@ -57,7 +57,6 @@ class SubCategoryAdmin(TranslatableAdmin):
    
 
 
-
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(SubCategory, SubCategoryAdmin)
 admin.site.register(Product,ProductAdmin)

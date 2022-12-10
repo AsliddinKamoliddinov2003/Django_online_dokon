@@ -70,6 +70,7 @@ TEMPLATES = [
                 'onlineshop.context.category',
                 'onlineshop.context.user_auth',
                 'onlineshop.context.all_price',
+                # 'onlineshop.context.order_data',
             ],
         },
     },

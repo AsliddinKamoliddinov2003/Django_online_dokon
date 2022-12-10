@@ -1,3 +1,4 @@
+from profileapp.models import Address
 from store.models import Category,SubCategory,Product
 from shopping.utils import get_cartitems_count
 from shopping.models import  Wishlist, CartItem
@@ -44,9 +45,17 @@ def all_price(request):
     price_all = 0
     for cartitem in cartitems:
         price_all += ( cartitem.product.price * cartitem.quantity)
- 
     return {
         "price_all":price_all
     }
+
+
+# def order_data(request):
+#     if request.user.is_authenticated:
+#         adress_data = Address.objects.filter(user=request.user, status=True)
+
+#         return {
+#             "adress_data":adress_data 
+#         }
 
 

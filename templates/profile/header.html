@@ -9,14 +9,9 @@
                     </a> <!-- brand-wrap.// -->
                 </div>
                 <div class="col-xl-6 col-lg-5 col-md-6">
-                    <form action="#" class="search-header">
+                    <form action="{% url 'store-page' %}" class="search-header">
                         <div class="input-group w-100">
-                            <select class="custom-select border-right"  name="category_name">
-                                    <option value="">All type</option><option value="codex">Special</option>
-                                    <option value="comments">Only best</option>
-                                    <option value="content">Latest</option>
-                            </select>
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="search" name="q" aria-label="Search" class="form-control" placeholder="Search" value="{{word}}">
                             
                             <div class="input-group-append">
                               <button class="btn btn-primary" type="submit">
@@ -29,10 +24,9 @@
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="widgets-wrap float-md-right">
                         <div class="widget-header mr-3">
-                            <a href="#" class="widget-view">
+                            <a href="{% url 'settings-view' %}" class="widget-view">
                                 <div class="icon-area">
                                     <i class="fa fa-user"></i>
-                                    <span class="notify">3</span>
                                 </div>
                                 <small class="text"> My profile </small>
                             </a>
@@ -40,16 +34,8 @@
                         <div class="widget-header mr-3">
                             <a href="#" class="widget-view">
                                 <div class="icon-area">
-                                    <i class="fa fa-comment-dots"></i>
-                                    <span class="notify">1</span>
-                                </div>
-                                <small class="text"> Message </small>
-                            </a>
-                        </div>
-                        <div class="widget-header mr-3">
-                            <a href="#" class="widget-view">
-                                <div class="icon-area">
                                     <i class="fa fa-store"></i>
+                                    <span class="notify">1</span>
                                 </div>
                                 <small class="text"> Orders </small>
                             </a>
@@ -58,6 +44,7 @@
                             <a href="#" class="widget-view">
                                 <div class="icon-area">
                                     <i class="fa fa-shopping-cart"></i>
+                                    
                                 </div>
                                 <small class="text"> Cart </small>
                             </a>

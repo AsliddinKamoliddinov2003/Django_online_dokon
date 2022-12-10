@@ -112,15 +112,12 @@ class CuponGroup(models.Model):
         for i in range(self.count):
             code = generate_cupon_code()
             cupons  =Cupon.objects.filter(code=code)
-
-
             if not cupons.exists():
                 cupon = Cupon(
                     code = code,
                     stock = self.stock,
                     expires_in = self.expires_in
                 )
-
                 cupon.save()
                 cupon_group = CuponGroup.objects.get(count=self.count, stock=self.stock,expires_in=self.expires_in)
                 cupon.category.add(*cupon_group.category.all())

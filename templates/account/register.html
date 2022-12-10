@@ -1,56 +1,50 @@
-{% extends "account/base.html" %}
-
-{% load static %}
-
-
-{% block main %}
+{% extends "account/base.html" %} {% load static %} {% block main %}
 
 <div class="container my-4">
     <div class="row">
         <div class="col-4 offset-4">
             <div class="card mb-4">
                 <article class="card-body">
-                <header class="mb-4">
-                    <h4 class="card-title">Sign up</h4>
-                </header>
-                <form action="" method="post">
-                    {% csrf_token %}
-                    
-                    <div class="col form-group">
-                        <label>{{form.email.label}}</label>
-                        {{form.email}}
-                    </div>
-                    <div class="col form-group">
-                        <label>{{form.first_name.label}}</label>
-                        {{form.first_name}}
-                    </div>
-                    <div class="col form-group">
-                        <label>{{form.last_name.label}}</label>
-                        {{form.last_name}}
-                    </div>
-                    <div class="col form-group">
-                        <label>{{form.gender.label}}</label>
-                        {{form.gender}}
-                    </div>
+                    <header class="mb-4">
+                        <h4 class="card-title">Sign up</h4>
+                    </header>
+                    <form action="" method="post">
+                        {% csrf_token %}
 
-                    <div class="col form-group">
-                        <label>{{form.password1.label}}</label>
-                        {{form.password1}}
-                    </div>
-                    <div class="col form-group">
-                        <label>{{form.password2.label}}</label>
-                        {{form.password2}}
-                    </div>
+                        <div class="col form-group">
 
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block">Register</button>
-                    </div>                              
-                </form>
-                <hr>
-                <span style="color: red; text-align: center;">{{form.errors}}</span>
-                <p class="text-center">Have an account? <a href="">Log In</a></p>
-                </article> <!-- card-body end .// -->
-            </div> <!-- card.// -->
+                        </div>
+                        <div class="col form-group">
+                            <label>{{form.email.label}}</label> {{form.email}}
+                        </div>
+                        <div class="col form-group">
+                            <label>{{form.first_name.label}}</label> {{form.first_name}}
+                        </div>
+                        <div class="col form-group">
+                            <label>{{form.last_name.label}}</label> {{form.last_name}}
+                        </div>
+                        <div class="col form-group">
+                            <label>{{form.gender.label}}</label> {{form.gender}}
+                        </div>
+
+                        <div class="col form-group">
+                            <label>{{form.password1.label}}</label> {{form.password1}}
+                        </div>
+                        <div class="col form-group">
+                            <label>{{form.password2.label}}</label> {{form.password2}}
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        </div>
+                    </form>
+                    <hr>
+                    <span style="color: red; text-align: center;">{{form.errors}}</span>
+                    <p class="text-center">Have an account? <a href="">Log In</a></p>
+                </article>
+                <!-- card-body end .// -->
+            </div>
+            <!-- card.// -->
         </div>
     </div>
 </div>

@@ -80,8 +80,7 @@
                     {% for subcategory in subcategories %}
                     {% if subcategory.category == category %}
                     <ul>
-                        <li>
-                            
+                        <li>     
                             <i class="lni-angle-double-right right-arrow" style="color: gold;">
                                 <a class="dropdown-item" style="color: darkred;"
                                     href="{% url 'subcategory-products-page' category_slug=category.slug sub_category_slug=subcategory.slug %}">{{subcategory.name}}
@@ -94,6 +93,15 @@
                 </div>
             </li>
             {% endfor %}
+            <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" data-toggle="dropdown">English</a>
+                <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Russian</a>
+                <a class="dropdown-item" href="#">French</a>
+                <a class="dropdown-item" href="#">Spanish</a>
+                <a class="dropdown-item" href="#">Chinese</a>
+                </div>
+            </li> -->
         </ul>
     </nav> <!-- navbar-main  .// -->
 

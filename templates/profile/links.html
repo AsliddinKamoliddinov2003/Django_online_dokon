@@ -1,11 +1,11 @@
 <aside class="col-md-3">
     <nav class="list-group">
-        <a class="list-group-item" href="{% url 'account-view' %}"> Account overview  </a>
+        <a class="list-group-item" href="{% url 'account-view' %}"> Account overview </a>
         <a class="list-group-item" href="{% url 'adress-view' %}"> My Address </a>
-        <a class="list-group-item active" href="{% url 'order-view' %}"> My Orders </a>
-        <a class="list-group-item" href="{% url 'wishlist' %}"> My wishlist </a>
+        <a class="list-group-item" href="{% url 'order-view' %}"> My Orders </a>
+        <a class="list-group-item active" href="{% url 'wishlist' %}"> My wishlist </a>
         <a class="list-group-item" href="{% url 'selling-view' %}"> My Selling Items </a>
         <a class="list-group-item" href="{% url 'settings-view' %}"> Settings </a>
-        <a class="list-group-item" href=""> Log out </a>
+        <a class="list-group-item" href="{% url 'account-logout' %}"> Log out </a>
     </nav>
 </aside> <!-- col.// -->

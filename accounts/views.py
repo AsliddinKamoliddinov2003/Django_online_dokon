@@ -1,7 +1,7 @@
 from accounts.forms import UserRegisterForm, UserLoginForm
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 
@@ -45,3 +45,11 @@ def login_account(request):
         "form": form
     }
     return render(request, "account/login.html", context)
+
+
+
+def account_logout(request):
+    if request.method == "POST":
+        logout(request)
+
+    return redirect(reverse("account-login"))

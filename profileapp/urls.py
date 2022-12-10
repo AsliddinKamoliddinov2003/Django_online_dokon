@@ -4,7 +4,6 @@ from django.urls import path
 from .views import *
 
 
-
 urlpatterns = [
     path("account/", account_view, name="account-view"),
     path("settings/", settings_view, name="settings-view"),
